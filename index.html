@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0e6651">
+  <meta name="description" content="Ireland 2027 family trip proposal, lodging galleries, costs and activity choices.">
+  <meta property="og:title" content="Ireland 2027 Family Trip">
+  <meta property="og:description" content="Review the proposed dates, lodging, costs and activities, then text your choices.">
+  <meta property="og:image" content="assets/og.png">
+  <title>Ireland 2027 Family Trip</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="data.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#overview" aria-label="Ireland 2027 home"><span class="mark">IE</span><span>Ireland 2027<small>family trip proposal</small></span></a>
+    <button class="menu-button" id="menuButton" aria-expanded="false" aria-controls="siteNav">Menu</button>
+    <nav id="siteNav" aria-label="Trip sections">
+      <a href="#overview">Overview</a><a href="#dates">Dates</a><a href="#lodging">Lodging</a><a href="#activities">Activities</a><a href="#budget">My cost</a><a href="#share">Text choices</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero section" id="overview">
+      <div><p class="eyebrow">13 travelers · 3 stays · 3 vehicles</p><h1>Ten nights in Ireland, without turning it into a marathon.</h1><p class="hero-copy">This is the family review version. Nothing here books, charges or shares information. Choose the dates and activities that work for you, then copy or text your summary.</p><div class="hero-actions"><a class="button primary" href="#dates">Start with the dates</a><a class="button quiet" href="assets/Ireland_2027_family_pitch_deck.pdf" target="_blank">Open the PDF deck</a></div></div>
+      <aside class="hero-total"><span>Expected total expense</span><strong>$2,097–$2,397</strong><small>$900–$1,200 airfare + $1,197 required trip pool. Food and optional choices are shown separately.</small></aside>
+    </section>
+
+    <section class="headline-costs section narrow" aria-label="Core costs">
+      <article><span>Airfare</span><strong>$900–$1,200</strong><p>Booked individually after the family locks the dates.</p></article>
+      <article><span>Required trip pool</span><strong>$1,197</strong><p>$882 lodging + $177 three-vehicle rental + $138 driving fund.</p></article>
+      <article class="optional"><span>Plan separately</span><strong>Food & choices</strong><p>Food, DFW parking, admissions, insurance and personal shopping are not in the headline.</p></article>
+    </section>
+
+    <section class="section narrow" id="dates">
+      <div class="section-heading"><p class="eyebrow">Decision one</p><h2>Which travel window works?</h2><p>Mark your answer on each option. Your choices stay only on this device until you copy or text the summary.</p></div>
+      <div class="date-grid" id="dateCards"></div>
+    </section>
+
+    <section class="section lodging-section" id="lodging">
+      <div class="section-heading narrow"><p class="eyebrow">Three bases, fewer hotel changes</p><h2>See the actual lodging candidates.</h2><p>The photos come from the current public Booking.com listings. Prices, capacity and 2027 availability must be checked again before anyone pays.</p></div>
+      <div class="lodging-list narrow" id="lodgingList"></div>
+    </section>
+
+    <section class="section narrow" id="activities">
+      <div class="section-heading"><p class="eyebrow">Three vehicles can split directions</p><h2>Choose the days worth your time.</h2><p>Distance is measured from the relevant lodging base. Mark yes, maybe or no; the organizer can form vehicle groups from the text replies.</p></div>
+      <div id="activityGroups"></div>
+    </section>
+
+    <section class="section budget-section" id="budget">
+      <div class="section-heading narrow"><p class="eyebrow">Personal planning calculator</p><h2>What should I expect to spend?</h2><p>This calculator is private to your device. It does not collect or transmit amounts.</p></div>
+      <div class="budget-layout narrow">
+        <div class="budget-controls">
+          <label>Airfare<select id="airfare"><option value="900">Basic target · $900</option><option value="1200">More premium · $1,200</option></select></label>
+          <label>Food plan<select id="food"><option value="456">Lean · $456</option><option value="497" selected>Expected · $497</option><option value="538">Upper · $538</option></select></label>
+          <label>DFW parking or ride<input id="airport" type="number" inputmode="numeric" min="0" step="10" value="0"></label>
+          <label class="check"><input id="insurance" type="checkbox" value="192"><span>Show $192 travel-insurance planning allowance</span></label>
+          <p class="fine">The insurance amount is only a placeholder until an actual policy is selected and quoted.</p>
+        </div>
+        <aside class="budget-total"><span>My working total</span><strong id="personalTotal">$2,594</strong><div id="budgetBreakdown"></div></aside>
+      </div>
+    </section>
+
+    <section class="section share-section" id="share">
+      <div class="share-card narrow">
+        <div><p class="eyebrow">Coordinate by text message</p><h2>Send your choices to the organizer.</h2><p>Select your name, review the summary and copy it into the family text thread. Nothing is sent automatically.</p></div>
+        <label>Your name<select id="travelerName"></select></label>
+        <textarea id="choiceSummary" rows="12" readonly aria-label="My trip choices"></textarea>
+        <div class="share-actions"><button class="button primary" id="copyChoices">Copy my choices</button><a class="button quiet" id="textChoices" href="#">Open text message</a><button class="button text-button" id="clearChoices">Clear this device</button></div>
+        <p class="copy-status" id="copyStatus" aria-live="polite"></p>
+      </div>
+    </section>
+  </main>
+
+  <div class="lightbox" id="lightbox" hidden>
+    <div class="lightbox-dialog" role="dialog" aria-modal="true" aria-labelledby="lightboxTitle">
+      <div class="lightbox-bar"><div><p class="eyebrow" id="lightboxCounter"></p><h2 id="lightboxTitle"></h2></div><button id="closeLightbox" aria-label="Close photo gallery">×</button></div>
+      <div class="lightbox-stage"><button id="previousPhoto" aria-label="Previous photo">‹</button><img id="lightboxImage" alt=""><button id="nextPhoto" aria-label="Next photo">›</button></div>
+      <div class="lightbox-strip" id="lightboxStrip"></div>
+      <div class="lightbox-foot"><p>Public listing photos for family comparison. The live listing remains the source of truth.</p><a id="lightboxLink" target="_blank" rel="noreferrer">Open live listing ↗</a></div>
+    </div>
+  </div>
+
+  <footer><span>Ireland 2027 family trip proposal</span><span>Static review site · no accounts · no shared database</span></footer>
+</body>
+</html>
