@@ -1,7 +1,7 @@
 (() => {
   const DATA = window.TRIP_DATA;
   const STORAGE_KEY = "ireland-2027-static-choices";
-  const defaultState = { dates: {}, activities: {}, airfare: 900, food: 497, airport: 0, insurance: false, name: "" };
+  const defaultState = { activities: {}, airfare: 900, food: 497, airport: 0, insurance: false, name: "" };
   let state = loadState();
   let galleryStay = null;
   let galleryIndex = 0;
@@ -9,7 +9,7 @@
   function loadState() {
     try {
       const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
-      return { ...defaultState, ...saved, dates: saved.dates || {}, activities: saved.activities || {} };
+      return { ...defaultState, ...saved, activities: saved.activities || {} };
     } catch {
       return { ...defaultState };
     }
@@ -28,10 +28,6 @@
   function choiceButtons(kind, id) {
     const selected = state[kind][id] || "";
     return `<div class="choice-row" role="group" aria-label="Choose yes, maybe or no">${["yes", "maybe", "no"].map(choice => `<button data-kind="${kind}" data-id="${id}" data-choice="${choice}" class="${selected === choice ? "selected" : ""}">${choice}</button>`).join("")}</div>`;
-  }
-
-  function renderDates() {
-    document.querySelector("#dateCards").innerHTML = DATA.dates.map(option => `<article class="date-card"><div class="activity-top"><span class="day-pill">${option.badge}</span></div><h3>${option.title}</h3><ul>${option.lines.map(line => `<li>${line}</li>`).join("")}</ul><p>${option.note}</p>${choiceButtons("dates", option.id)}</article>`).join("");
   }
 
   function renderLodging() {
@@ -68,11 +64,10 @@
 
   function buildSummary() {
     const name = state.name || "Name not selected";
-    const dateLines = DATA.dates.map(option => `- ${option.title}: ${formatChoice(state.dates[option.id])}`);
     const activityLines = DATA.activities.filter(activity => state.activities[activity.id]).map(activity => `- ${activity.title}: ${formatChoice(state.activities[activity.id])}`);
     const activityCost = DATA.activities.reduce((sum, activity) => sum + (state.activities[activity.id] === "yes" ? activity.cost : 0), 0);
     const total = Number(state.airfare) + 1197 + Number(state.food) + Number(state.airport || 0) + (state.insurance ? 192 : 0) + activityCost;
-    return [`IRELAND 2027 — ${name}`, "", "DATE CHOICES", ...dateLines, "", "ACTIVITIES", ...(activityLines.length ? activityLines : ["- No activity choices yet"]), "", `My working cost: ${money(total)}`, `Airfare target: ${money(Number(state.airfare))}`, "Required trip pool: $1,197", "- Lodging: $882", "- Three-SUV rental: $177", "- Ireland driving fund: $138", "  (includes about $53/person for fuel)", `Food plan: ${money(Number(state.food))}`, `DFW parking/ride: ${money(Number(state.airport || 0))}`, `Insurance allowance shown: ${state.insurance ? "Yes" : "No"}`, "", "Car-seat questions and any special room needs will be handled directly with the organizer."].join("\n");
+    return [`IRELAND 2027 — ${name}`, "", "ACTIVITIES", ...(activityLines.length ? activityLines : ["- No activity choices yet"]), "", `My working cost: ${money(total)}`, `Airfare target: ${money(Number(state.airfare))}`, "Required trip pool: $1,197", "- Lodging: $882", "- Three-SUV rental: $177", "- Ireland driving fund: $138", "  (includes about $53/person for fuel)", `Food plan: ${money(Number(state.food))}`, `DFW parking/ride: ${money(Number(state.airport || 0))}`, `Insurance allowance shown: ${state.insurance ? "Yes" : "No"}`, "", "Car-seat questions and any special room needs will be handled directly with the organizer."].join("\n");
   }
 
   function formatChoice(value) {
@@ -153,7 +148,7 @@
     });
     document.querySelector("#clearChoices").addEventListener("click", () => {
       if (!window.confirm("Clear the choices and calculator saved on this device?")) return;
-      localStorage.removeItem(STORAGE_KEY); state = { ...defaultState, dates: {}, activities: {} }; location.reload();
+      localStorage.removeItem(STORAGE_KEY); state = { ...defaultState, activities: {} }; location.reload();
     });
   }
 
@@ -167,5 +162,5 @@
     document.querySelectorAll("main section[id]").forEach(section => observer.observe(section));
   }
 
-  renderDates(); renderLodging(); renderActivities(); bindChoiceButtons(); bindGallery(); bindControls(); bindNavigation(); updateBudget(); updateSummary();
+  renderLodging(); renderActivities(); bindChoiceButtons(); bindGallery(); bindControls(); bindNavigation(); updateBudget(); updateSummary();
 })();

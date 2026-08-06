@@ -137,30 +137,6 @@ window.TRIP_DATA = {
       ]
     }
   ],
-  "dates": [
-    {
-      "id": "misty-window",
-      "title": "Misty-compatible dates",
-      "badge": "10 nights",
-      "lines": [
-        "Depart DFW: Tuesday, June 1, 2027",
-        "Arrive Dublin: Wednesday, June 2",
-        "Fly home: Saturday, June 12"
-      ],
-      "note": "Fits the May 30–June 13 window, but overlaps Ireland’s June 7 public holiday."
-    },
-    {
-      "id": "after-holiday",
-      "title": "After Ireland’s June holiday",
-      "badge": "10 nights",
-      "lines": [
-        "Depart DFW: Monday, June 7, 2027",
-        "Arrive Dublin: Tuesday, June 8",
-        "Fly home: Friday, June 18"
-      ],
-      "note": "Avoids the holiday after arrival and may be calmer, but it does not fit Misty’s current window."
-    }
-  ],
   "activities": [
     {
       "id": "dodublin",
