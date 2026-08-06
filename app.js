@@ -62,7 +62,7 @@
     const insurance = state.insurance ? 192 : 0;
     const total = Number(state.airfare) + 1197 + Number(state.food) + Number(state.airport || 0) + insurance + activityCost;
     document.querySelector("#personalTotal").textContent = money(total);
-    const lines = [["Airfare", state.airfare], ["Required trip pool", 1197], ["Food", state.food], ["Yes activities", activityCost], ["DFW parking / ride", state.airport || 0], ["Insurance allowance", insurance]];
+    const lines = [["Airfare", state.airfare], ["Lodging pool", 882], ["Three-SUV rental", 177], ["Ireland driving fund", 138], ["Food", state.food], ["Yes activities", activityCost], ["DFW parking / ride", state.airport || 0], ["Insurance allowance", insurance]];
     document.querySelector("#budgetBreakdown").innerHTML = lines.map(([label, value]) => `<div class="breakdown-line"><span>${label}</span><strong>${money(Number(value))}</strong></div>`).join("");
   }
 
@@ -72,7 +72,7 @@
     const activityLines = DATA.activities.filter(activity => state.activities[activity.id]).map(activity => `- ${activity.title}: ${formatChoice(state.activities[activity.id])}`);
     const activityCost = DATA.activities.reduce((sum, activity) => sum + (state.activities[activity.id] === "yes" ? activity.cost : 0), 0);
     const total = Number(state.airfare) + 1197 + Number(state.food) + Number(state.airport || 0) + (state.insurance ? 192 : 0) + activityCost;
-    return [`IRELAND 2027 — ${name}`, "", "DATE CHOICES", ...dateLines, "", "ACTIVITIES", ...(activityLines.length ? activityLines : ["- No activity choices yet"]), "", `My working cost: ${money(total)}`, `Airfare target: ${money(Number(state.airfare))}`, `Food plan: ${money(Number(state.food))}`, `DFW parking/ride: ${money(Number(state.airport || 0))}`, `Insurance allowance shown: ${state.insurance ? "Yes" : "No"}`, "", "Car-seat questions and any special room needs will be handled directly with the organizer."].join("\n");
+    return [`IRELAND 2027 — ${name}`, "", "DATE CHOICES", ...dateLines, "", "ACTIVITIES", ...(activityLines.length ? activityLines : ["- No activity choices yet"]), "", `My working cost: ${money(total)}`, `Airfare target: ${money(Number(state.airfare))}`, "Required trip pool: $1,197", "- Lodging: $882", "- Three-SUV rental: $177", "- Ireland driving fund: $138", "  (includes about $53/person for fuel)", `Food plan: ${money(Number(state.food))}`, `DFW parking/ride: ${money(Number(state.airport || 0))}`, `Insurance allowance shown: ${state.insurance ? "Yes" : "No"}`, "", "Car-seat questions and any special room needs will be handled directly with the organizer."].join("\n");
   }
 
   function formatChoice(value) {
