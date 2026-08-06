@@ -31,7 +31,34 @@
   }
 
   function renderLodging() {
-    document.querySelector("#lodgingList").innerHTML = DATA.stays.map(stay => `<article class="lodging-card"><div class="lodging-copy"><p class="eyebrow">${stay.area}</p><h3>${stay.name}</h3><span class="candidate-pill">${stay.status}</span><p>${stay.roomPlan}</p><p class="photo-source">${stay.sourceNote}</p><div class="lodging-actions"><button class="button primary gallery-open" data-stay="${stay.id}">View all ${stay.photos.length} photos</button><a href="${stay.link}" target="_blank" rel="noreferrer">Open live listing ↗</a></div></div><div class="lodging-preview">${stay.photos.slice(0, 6).map((photo, index) => `<button class="gallery-photo" data-stay="${stay.id}" data-index="${index}" aria-label="Open ${stay.name} photo ${index + 1}"><img src="${photo}" loading="lazy" alt="${stay.name} listing preview ${index + 1}"></button>`).join("")}</div></article>`).join("");
+    document.querySelector("#lodgingList").innerHTML = DATA.stays.map(stay => `<article class="lodging-card"><div class="lodging-copy"><p class="eyebrow">${stay.area}</p><h3>${stay.name}</h3><div class="stay-date"><span>Exact stay dates</span><strong>${stay.dateLabel}</strong><small>${stay.address}</small></div><span class="candidate-pill">${stay.status}</span><p>${stay.roomPlan}</p><p class="photo-source">${stay.sourceNote}</p><div class="date-search-links">${stay.dateLinks.map(item => `<a href="${item.url}" target="_blank" rel="noreferrer">${item.label} availability ↗</a>`).join("")}</div><div class="lodging-actions"><button class="button primary gallery-open" data-stay="${stay.id}">View all ${stay.photos.length} photos</button></div></div><div class="lodging-preview">${stay.photos.slice(0, 6).map((photo, index) => `<button class="gallery-photo" data-stay="${stay.id}" data-index="${index}" aria-label="Open ${stay.name} photo ${index + 1}"><img src="${photo}" loading="lazy" alt="${stay.name} listing preview ${index + 1}"></button>`).join("")}</div></article>`).join("");
+  }
+
+  function initializeRouteMap() {
+    const mapElement = document.querySelector("#tripMap");
+    if (!mapElement) return;
+    if (!window.L) {
+      mapElement.innerHTML = '<div class="map-fallback"><strong>The interactive map could not load.</strong><span>Use the Google Maps route link beside it.</span></div>';
+      return;
+    }
+    mapElement.innerHTML = "";
+    const stops = [
+      { label: "1 & 4", name: "Staycity Dublin City Centre", dates: "June 1–3 and June 9–10", coords: [53.3483945, -6.2699439] },
+      { label: "2", name: "Shangri-La, Killarney", dates: "June 3–7", coords: [52.0620199, -9.5159066] },
+      { label: "3", name: "Atlantic View Cottages, Doolin", dates: "June 7–9", coords: [53.0114089, -9.3573707] }
+    ];
+    const route = [stops[0].coords, stops[1].coords, stops[2].coords, stops[0].coords];
+    const map = L.map(mapElement, { scrollWheelZoom: false });
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+    stops.forEach(stop => {
+      const icon = L.divIcon({ className: "route-marker-shell", html: `<span class="route-marker">${stop.label}</span>`, iconSize: [44, 44], iconAnchor: [22, 22] });
+      L.marker(stop.coords, { icon }).addTo(map).bindPopup(`<strong>${stop.name}</strong><br>${stop.dates}, 2027`);
+    });
+    const line = L.polyline(route, { color: "#0e6651", weight: 4, opacity: 0.8, dashArray: "8 8" }).addTo(map);
+    map.fitBounds(line.getBounds(), { padding: [34, 34] });
   }
 
   function renderActivities() {
@@ -162,5 +189,5 @@
     document.querySelectorAll("main section[id]").forEach(section => observer.observe(section));
   }
 
-  renderLodging(); renderActivities(); bindChoiceButtons(); bindGallery(); bindControls(); bindNavigation(); updateBudget(); updateSummary();
+  renderLodging(); renderActivities(); initializeRouteMap(); bindChoiceButtons(); bindGallery(); bindControls(); bindNavigation(); updateBudget(); updateSummary();
 })();

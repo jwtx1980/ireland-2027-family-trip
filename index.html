@@ -9,22 +9,24 @@
   <meta property="og:description" content="Review the proposed dates, lodging, costs and activities, then text your choices.">
   <meta property="og:image" content="assets/og.png">
   <title>Ireland 2027 Family Trip</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
   <link rel="stylesheet" href="styles.css">
+  <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script defer src="data.js"></script>
-  <script defer src="app.js?v=20260806-3"></script>
+  <script defer src="app.js?v=20260806-4"></script>
 </head>
 <body>
   <header class="topbar">
     <a class="brand" href="#overview" aria-label="Ireland 2027 home"><span class="mark">IE</span><span>Ireland 2027<small>family trip proposal</small></span></a>
     <button class="menu-button" id="menuButton" aria-expanded="false" aria-controls="siteNav">Menu</button>
     <nav id="siteNav" aria-label="Trip sections">
-      <a href="#overview">Overview</a><a href="#lodging">Lodging</a><a href="#activities">Activities</a><a href="#budget">My cost</a><a href="#share">Text choices</a>
+      <a href="#overview">Overview</a><a href="#schedule">Trip dates</a><a href="#route">Map</a><a href="#lodging">Lodging</a><a href="#activities">Activities</a><a href="#budget">My cost</a><a href="#share">Text choices</a>
     </nav>
   </header>
 
   <main>
     <section class="hero section" id="overview">
-      <div><p class="eyebrow">13 travelers · 3 stays · 3 vehicles</p><h1>Ten nights in Ireland, with time to enjoy it.</h1><p class="hero-copy">This is the family review version. Nothing here books, charges or shares information. Choose the activities that interest you, then copy or text your summary.</p><div class="hero-actions"><a class="button primary" href="#lodging">Review the lodging</a><a class="button quiet" href="assets/Ireland_2027_family_pitch_deck.pdf" target="_blank">Open the PDF deck</a></div></div>
+      <div><p class="eyebrow">13 travelers · 9 nights · 3 lodging areas</p><h1>Nine nights in Ireland, with time to enjoy it.</h1><p class="hero-copy">This is the family review version. Nothing here books, charges or shares information. Review the dated lodging plan and choose the activities that interest you, then copy or text your summary.</p><div class="hero-actions"><a class="button primary" href="#schedule">See the exact dates</a><a class="button quiet" href="assets/Ireland_2027_family_pitch_deck.pdf" target="_blank">Open the PDF deck</a></div></div>
       <aside class="hero-total"><span>Expected total expense</span><strong>$2,097–$2,397</strong><small>$900–$1,200 airfare + $1,197 required trip pool. Food and optional choices are shown separately.</small></aside>
     </section>
 
@@ -34,8 +36,33 @@
       <article class="optional"><span>Plan separately</span><strong>Food & choices</strong><p>Food, DFW parking, admissions, insurance and personal shopping are not in the headline.</p></article>
     </section>
 
+    <section class="section narrow schedule-section" id="schedule">
+      <div class="section-heading"><p class="eyebrow">One schedule for every booking</p><h2>Dates the lodging plan requires.</h2><p>These are planning dates, not a second vote. Airfare and every stay need to match this same sequence.</p></div>
+      <div class="trip-window"><strong>Depart DFW Monday, May 31, 2027</strong><span>Overnight flight</span><strong>Arrive Dublin Tuesday, June 1</strong><span>9 nights in Ireland</span><strong>Fly home Thursday, June 10</strong></div>
+      <ol class="stay-timeline">
+        <li><span class="timeline-number">1</span><div><strong>Dublin · Staycity</strong><span>Check in Tue, June 1 · Check out Thu, June 3</span><small>2 nights</small></div></li>
+        <li><span class="timeline-number">2</span><div><strong>Killarney · Shangri-La townhouse</strong><span>Check in Thu, June 3 · Check out Mon, June 7</span><small>4 nights</small></div></li>
+        <li><span class="timeline-number">3</span><div><strong>Doolin · Atlantic View Cottages</strong><span>Check in Mon, June 7 · Check out Wed, June 9</span><small>2 nights</small></div></li>
+        <li><span class="timeline-number">4</span><div><strong>Dublin · Staycity again</strong><span>Check in Wed, June 9 · Check out Thu, June 10</span><small>1 night</small></div></li>
+      </ol>
+      <aside class="availability-warning"><strong>These properties are candidates, not reservations.</strong><p>If one is taken before we book—or its 2027 rooms, price or cancellation terms change—we will need a different property in the same area for the same dates. The photos and room plan would then change. This is a major reason to settle the dates before families commit money.</p></aside>
+    </section>
+
+    <section class="section route-section" id="route">
+      <div class="section-heading narrow"><p class="eyebrow">The route at a glance</p><h2>Where the three bases are.</h2><p>Use the map to zoom, pan and compare the stays. The final Dublin marker is the same Staycity property used at the beginning. Dashed lines show the stop order, not the exact driving roads.</p></div>
+      <div class="route-layout narrow">
+        <div id="tripMap" class="trip-map" aria-label="Interactive map of the Dublin, Killarney and Doolin lodging route"><p>Loading the route map…</p></div>
+        <div class="route-legs">
+          <article><span>June 3</span><strong>Dublin → Killarney</strong><p>About 4 hours driving; allow 5½–6 hours for loading, lunch and breaks.</p></article>
+          <article><span>June 7</span><strong>Killarney → Doolin</strong><p>About 3¼ hours direct; allow 6–7 hours if the group stops at Bunratty.</p></article>
+          <article><span>June 9</span><strong>Doolin → Dublin</strong><p>About 3 hours driving; allow 4½–5 hours with group stops.</p></article>
+          <a class="button quiet" href="https://www.google.com/maps/dir/Staycity+Aparthotels+Dublin+City+Centre/Shangri-La+Large+Family+Townhouse,+New+Road,+Killarney/Atlantic+View+Cottages,+Doolin/Staycity+Aparthotels+Dublin+City+Centre" target="_blank" rel="noreferrer">Open the full route in Google Maps ↗</a>
+        </div>
+      </div>
+    </section>
+
     <section class="section lodging-section" id="lodging">
-      <div class="section-heading narrow"><p class="eyebrow">Three bases, fewer hotel changes</p><h2>See the actual lodging candidates.</h2><p>The photos come from the current public Booking.com listings. Prices, capacity and 2027 availability must be checked again before anyone pays.</p></div>
+      <div class="section-heading narrow"><p class="eyebrow">Three bases, fewer hotel changes</p><h2>See the dated lodging candidates.</h2><p>The photos come from the current public listings. None of these properties is being held. Prices, capacity and availability for the exact June 2027 dates must be checked again before anyone pays.</p></div>
       <div class="lodging-list narrow" id="lodgingList"></div>
     </section>
 

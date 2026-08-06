@@ -3,9 +3,15 @@ window.TRIP_DATA = {
     {
       "id": "staycity",
       "name": "Staycity Aparthotels Dublin City Centre",
-      "area": "Dublin · first nights and final night",
-      "link": "https://www.booking.com/hotel/ie/staycity-aparthotels-dublin-city-centre.html",
-      "status": "Candidate listing · recheck the exact 2027 room mix and price before booking",
+      "area": "Dublin · first 2 nights and final night",
+      "dateLabel": "June 1–3 and June 9–10, 2027 · 3 nights total",
+      "address": "Little Mary Street, Dublin, D07 PKW5",
+      "link": "https://www.booking.com/hotel/ie/staycity-aparthotels-dublin-city-centre.html?checkin=2027-06-01&checkout=2027-06-03&group_adults=10&group_children=3&age=14&age=8&age=5&no_rooms=6&selected_currency=EUR",
+      "dateLinks": [
+        {"label": "Check June 1–3", "url": "https://www.booking.com/hotel/ie/staycity-aparthotels-dublin-city-centre.html?checkin=2027-06-01&checkout=2027-06-03&group_adults=10&group_children=3&age=14&age=8&age=5&no_rooms=6&selected_currency=EUR"},
+        {"label": "Check June 9–10", "url": "https://www.booking.com/hotel/ie/staycity-aparthotels-dublin-city-centre.html?checkin=2027-06-09&checkout=2027-06-10&group_adults=10&group_children=3&age=14&age=8&age=5&no_rooms=6&selected_currency=EUR"}
+      ],
+      "status": "Candidate only · not held or reserved · recheck both date ranges before booking",
       "roomPlan": "Use an efficient mix of studios/accessible studios for the seven-room plan. The final room assignments can move with the family’s preferences.",
       "sourceNote": "55 unique public listing images collected from a 96-entry Booking.com gallery; repeated room-category copies removed.",
       "photos": [
@@ -69,9 +75,14 @@ window.TRIP_DATA = {
     {
       "id": "shangri",
       "name": "Shangri-La Large Family Townhouse",
-      "area": "Killarney · five-night base",
-      "link": "https://www.booking.com/hotel/ie/shangri-la-co-kerry.html",
-      "status": "Candidate listing · capacity, bed map and 2027 availability still need a final booking-page check",
+      "area": "Killarney · four-night base",
+      "dateLabel": "June 3–7, 2027 · 4 nights",
+      "address": "New Road, Killarney, County Kerry",
+      "link": "https://www.booking.com/hotel/ie/shangri-la-co-kerry.html?checkin=2027-06-03&checkout=2027-06-07&group_adults=10&group_children=3&age=14&age=8&age=5&no_rooms=1&selected_currency=EUR",
+      "dateLinks": [
+        {"label": "Check June 3–7", "url": "https://www.booking.com/hotel/ie/shangri-la-co-kerry.html?checkin=2027-06-03&checkout=2027-06-07&group_adults=10&group_children=3&age=14&age=8&age=5&no_rooms=1&selected_currency=EUR"}
+      ],
+      "status": "Candidate only · not held or reserved · confirm capacity, bed map and exact-date availability",
       "roomPlan": "Whole-house candidate for the Killarney base. Confirm every bed and bedroom before anyone pays; “sleeps” is not the same as the family’s preferred room arrangement.",
       "sourceNote": "15 unique public listing images collected from the current Booking.com gallery; repeated display sizes removed.",
       "photos": [
@@ -96,8 +107,13 @@ window.TRIP_DATA = {
       "id": "atlantic",
       "name": "Atlantic View Cottages",
       "area": "Doolin / County Clare · two-night base",
-      "link": "https://www.booking.com/hotel/ie/atlantic-view-cottages.html",
-      "status": "Candidate listing · confirm how many cottages are included and whether the exact 2027 dates are open",
+      "dateLabel": "June 7–9, 2027 · 2 nights",
+      "address": "Atlantic View Cottages, Doolin, County Clare, V95 R5W9",
+      "link": "https://www.booking.com/hotel/ie/atlantic-view-cottages.html?checkin=2027-06-07&checkout=2027-06-09&group_adults=10&group_children=3&age=14&age=8&age=5&no_rooms=3&selected_currency=EUR",
+      "dateLinks": [
+        {"label": "Check June 7–9", "url": "https://www.booking.com/hotel/ie/atlantic-view-cottages.html?checkin=2027-06-07&checkout=2027-06-09&group_adults=10&group_children=3&age=14&age=8&age=5&no_rooms=3&selected_currency=EUR"}
+      ],
+      "status": "Candidate only · not held or reserved · confirm the exact cottage mix and exact-date availability",
       "roomPlan": "Cottage candidate for the Clare stop. Keep the room plan flexible until the listing confirms the exact cottage, bedroom and bathroom mix.",
       "sourceNote": "33 unique public listing images collected from a 37-entry Booking.com gallery; repeated display sizes removed.",
       "photos": [
