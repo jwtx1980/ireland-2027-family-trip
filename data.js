@@ -6,13 +6,13 @@ window.TRIP_DATA = {
       "area": "Dublin · first 2 nights and final night",
       "dateLabel": "June 1–3 and June 9–10, 2027 · 3 nights total",
       "address": "Little Mary Street, Dublin, D07 PKW5",
-      "link": "https://www.booking.com/hotel/ie/staycity-aparthotels-dublin-city-centre.html?checkin=2027-06-01&checkout=2027-06-03&group_adults=10&group_children=3&age=14&age=8&age=5&no_rooms=6&selected_currency=EUR",
+      "link": "https://www.booking.com/hotel/ie/staycity-aparthotels-dublin-city-centre.html?checkin=2027-06-01&checkout=2027-06-03&group_adults=8&group_children=3&age=14&age=8&age=5&no_rooms=6&selected_currency=EUR",
       "dateLinks": [
-        {"label": "Check June 1–3", "url": "https://www.booking.com/hotel/ie/staycity-aparthotels-dublin-city-centre.html?checkin=2027-06-01&checkout=2027-06-03&group_adults=10&group_children=3&age=14&age=8&age=5&no_rooms=6&selected_currency=EUR"},
-        {"label": "Check June 9–10", "url": "https://www.booking.com/hotel/ie/staycity-aparthotels-dublin-city-centre.html?checkin=2027-06-09&checkout=2027-06-10&group_adults=10&group_children=3&age=14&age=8&age=5&no_rooms=6&selected_currency=EUR"}
+        {"label": "Check June 1–3", "url": "https://www.booking.com/hotel/ie/staycity-aparthotels-dublin-city-centre.html?checkin=2027-06-01&checkout=2027-06-03&group_adults=8&group_children=3&age=14&age=8&age=5&no_rooms=6&selected_currency=EUR"},
+        {"label": "Check June 9–10", "url": "https://www.booking.com/hotel/ie/staycity-aparthotels-dublin-city-centre.html?checkin=2027-06-09&checkout=2027-06-10&group_adults=8&group_children=3&age=14&age=8&age=5&no_rooms=6&selected_currency=EUR"}
       ],
       "status": "Candidate only · not held or reserved · recheck both date ranges before booking",
-      "roomPlan": "Use an efficient mix of studios/accessible studios for the seven-room plan. The final room assignments can move with the family’s preferences.",
+      "roomPlan": "Use an efficient mix of studios/accessible studios for the six-room plan. The final room assignments can move with the family’s preferences.",
       "sourceNote": "55 unique public listing images collected from a 96-entry Booking.com gallery; repeated room-category copies removed.",
       "photos": [
         "https://cf.bstatic.com/xdata/images/hotel/max1024x768/389106665.jpg?k=5a26272e6904580b8199e37409f1604773dc1bf376d98be7f96efcf06b12f6bf&o=",
@@ -78,9 +78,9 @@ window.TRIP_DATA = {
       "area": "Killarney · four-night base",
       "dateLabel": "June 3–7, 2027 · 4 nights",
       "address": "New Road, Killarney, County Kerry",
-      "link": "https://www.booking.com/hotel/ie/shangri-la-co-kerry.html?checkin=2027-06-03&checkout=2027-06-07&group_adults=10&group_children=3&age=14&age=8&age=5&no_rooms=1&selected_currency=EUR",
+      "link": "https://www.booking.com/hotel/ie/shangri-la-co-kerry.html?checkin=2027-06-03&checkout=2027-06-07&group_adults=8&group_children=3&age=14&age=8&age=5&no_rooms=1&selected_currency=EUR",
       "dateLinks": [
-        {"label": "Check June 3–7", "url": "https://www.booking.com/hotel/ie/shangri-la-co-kerry.html?checkin=2027-06-03&checkout=2027-06-07&group_adults=10&group_children=3&age=14&age=8&age=5&no_rooms=1&selected_currency=EUR"}
+        {"label": "Check June 3–7", "url": "https://www.booking.com/hotel/ie/shangri-la-co-kerry.html?checkin=2027-06-03&checkout=2027-06-07&group_adults=8&group_children=3&age=14&age=8&age=5&no_rooms=1&selected_currency=EUR"}
       ],
       "status": "Candidate only · not held or reserved · confirm capacity, bed map and exact-date availability",
       "roomPlan": "Whole-house candidate for the Killarney base. Confirm every bed and bedroom before anyone pays; “sleeps” is not the same as the family’s preferred room arrangement.",
@@ -109,9 +109,9 @@ window.TRIP_DATA = {
       "area": "Doolin / County Clare · two-night base",
       "dateLabel": "June 7–9, 2027 · 2 nights",
       "address": "Atlantic View Cottages, Doolin, County Clare, V95 R5W9",
-      "link": "https://www.booking.com/hotel/ie/atlantic-view-cottages.html?checkin=2027-06-07&checkout=2027-06-09&group_adults=10&group_children=3&age=14&age=8&age=5&no_rooms=3&selected_currency=EUR",
+      "link": "https://www.booking.com/hotel/ie/atlantic-view-cottages.html?checkin=2027-06-07&checkout=2027-06-09&group_adults=8&group_children=3&age=14&age=8&age=5&no_rooms=3&selected_currency=EUR",
       "dateLinks": [
-        {"label": "Check June 7–9", "url": "https://www.booking.com/hotel/ie/atlantic-view-cottages.html?checkin=2027-06-07&checkout=2027-06-09&group_adults=10&group_children=3&age=14&age=8&age=5&no_rooms=3&selected_currency=EUR"}
+        {"label": "Check June 7–9", "url": "https://www.booking.com/hotel/ie/atlantic-view-cottages.html?checkin=2027-06-07&checkout=2027-06-09&group_adults=8&group_children=3&age=14&age=8&age=5&no_rooms=3&selected_currency=EUR"}
       ],
       "status": "Candidate only · not held or reserved · confirm the exact cottage mix and exact-date availability",
       "roomPlan": "Cottage candidate for the Clare stop. Keep the room plan flexible until the listing confirms the exact cottage, bedroom and bathroom mix.",
@@ -150,6 +150,34 @@ window.TRIP_DATA = {
         "https://cf.bstatic.com/xdata/images/hotel/max1024x768/782424943.jpg?k=e7c4869b53c46fed68680389645b3f93384630d9cb1de65a9f3695b516795056&o=",
         "https://cf.bstatic.com/xdata/images/hotel/max1024x768/782424944.jpg?k=a69723493a28bce76d99d2540761cd7f0d0ec02adf22b06c4daec2d1b0b4accb&o=",
         "https://cf.bstatic.com/xdata/images/hotel/max1024x768/782425885.jpg?k=d74b1b88da6c73f6fe19644b1865a3501039c4374446c2a4633e143e6c609608&o="
+      ]
+    }
+  ],
+  "alternates": [
+    {
+      "id": "domain-killarney",
+      "area": "Killarney alternative",
+      "name": "The Domain · 6 Bedroom",
+      "dates": "Needed June 3–7, 2027 · 4 nights",
+      "facts": "Sleeps 12 · 6 bedrooms · 8 beds · 6 shower bathrooms",
+      "note": "The cleanest six-room fit found so far: kitchen, washer, parking, a wheelchair-accessible ground-floor bedroom and bathroom, and a 3-minute walk to Killarney National Park. The listing does not currently quote the exact June 2027 stay, so availability and price are not confirmed.",
+      "link": "https://www.vrbo.com/11690768ha",
+      "photos": [
+        "assets/domain-killarney-1.jpg",
+        "assets/domain-killarney-2.jpg"
+      ]
+    },
+    {
+      "id": "cliffhouse",
+      "area": "Doolin alternative",
+      "name": "The Cliffhouse",
+      "dates": "Needed June 7–9, 2027 · 2 nights",
+      "facts": "Sleeps 11 · 5 bedrooms · 7 beds · 5 bathrooms",
+      "note": "Whole-home option about one mile from Doolin with kitchen, washing machine and parking; the listing places the Cliffs of Moher about a 10-minute drive away. Five bedrooms would require at least one of the six preferred sleeping groups to combine. Exact 2027 availability and price are not confirmed.",
+      "link": "https://www.vrbo.com/en-gb/p147991",
+      "photos": [
+        "assets/cliffhouse-1.jpg",
+        "assets/cliffhouse-2.jpg"
       ]
     }
   ],
@@ -296,8 +324,6 @@ window.TRIP_DATA = {
     "Marge",
     "William",
     "Mary",
-    "Diane",
-    "Bill",
     "Misty"
   ]
 };
