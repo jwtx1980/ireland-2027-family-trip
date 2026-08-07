@@ -1,7 +1,7 @@
 (() => {
   const DATA = window.TRIP_DATA;
   const STORAGE_KEY = "ireland-2027-static-choices";
-  const defaultState = { activities: {}, airfare: 900, food: 497, airport: 0, insurance: false, name: "" };
+  const defaultState = { activities: {}, travelerCount: 1, airfare: 900, food: 497, airport: 0, insurance: false, name: "" };
   let state = loadState();
   let galleryStay = null;
   let galleryIndex = 0;
@@ -64,7 +64,7 @@
   function renderActivities() {
     const areas = [...new Set(DATA.activities.map(activity => activity.area))];
     document.querySelector("#activityGroups").innerHTML = areas.map(area => {
-      const cards = DATA.activities.filter(activity => activity.area === area).map(activity => `<article class="activity-card"><div class="activity-top"><span class="day-pill">${activity.day}</span><span class="cost-pill">${activity.cost ? money(activity.cost) : "Free"}</span></div><h3>${activity.title}</h3><p class="activity-meta">${activity.distance} · ${activity.duration}</p><p>${activity.note}</p>${choiceButtons("activities", activity.id)}<a href="${activity.link}" target="_blank" rel="noreferrer">See official details ↗</a></article>`).join("");
+      const cards = DATA.activities.filter(activity => activity.area === area).map(activity => `<article class="activity-card"><div class="activity-top"><span class="day-pill">${activity.day}</span><span class="cost-pill">${activity.cost ? `${money(activity.cost)} / traveler` : "Free / traveler"}</span></div><h3>${activity.title}</h3><p class="activity-meta">${activity.distance} · ${activity.duration}</p><p>${activity.note}</p>${choiceButtons("activities", activity.id)}<a href="${activity.link}" target="_blank" rel="noreferrer">See official details ↗</a></article>`).join("");
       return `<section class="area-block"><div class="area-title"><h3>${area}</h3><span>From the ${area === "Dublin" ? "Dublin stay" : area === "Killarney" ? "Killarney base" : "Doolin / Clare base"}</span></div><div class="activity-grid">${cards}</div></section>`;
     }).join("");
   }
@@ -81,11 +81,16 @@
   }
 
   function updateBudget() {
+    const travelerCount = Math.min(13, Math.max(1, Number(state.travelerCount) || 1));
     const activityCost = DATA.activities.reduce((sum, activity) => sum + (state.activities[activity.id] === "yes" ? activity.cost : 0), 0);
     const insurance = state.insurance ? 192 : 0;
-    const total = Number(state.airfare) + 1197 + Number(state.food) + Number(state.airport || 0) + insurance + activityCost;
+    const perTravelerTotal = Number(state.airfare) + 1197 + Number(state.food) + insurance + activityCost;
+    const total = perTravelerTotal * travelerCount + Number(state.airport || 0);
+    document.querySelector("#budgetTotalLabel").textContent = `Total for ${travelerCount} ${travelerCount === 1 ? "traveler" : "travelers"}`;
     document.querySelector("#personalTotal").textContent = money(total);
-    const lines = [["Airfare", state.airfare], ["Lodging pool", 882], ["Three-SUV rental", 177], ["Ireland driving fund", 138], ["Food", state.food], ["Yes activities", activityCost], ["DFW parking / ride", state.airport || 0], ["Insurance allowance", insurance]];
+    document.querySelector("#budgetScope").textContent = `${money(perTravelerTotal)} per traveler × ${travelerCount}, plus ${money(Number(state.airport || 0))} household DFW cost counted once`;
+    const multiplier = travelerCount > 1 ? ` × ${travelerCount}` : "";
+    const lines = [[`Airfare (${money(Number(state.airfare))}${multiplier})`, Number(state.airfare) * travelerCount], [`Lodging pool (${money(882)}${multiplier})`, 882 * travelerCount], [`SUV rental (${money(177)}${multiplier})`, 177 * travelerCount], [`Driving fund (${money(138)}${multiplier})`, 138 * travelerCount], [`Food (${money(Number(state.food))}${multiplier})`, Number(state.food) * travelerCount], [`Yes activities (${money(activityCost)}${multiplier})`, activityCost * travelerCount], ["Household DFW cost · once", state.airport || 0], [`Insurance (${money(insurance)}${multiplier})`, insurance * travelerCount]];
     document.querySelector("#budgetBreakdown").innerHTML = lines.map(([label, value]) => `<div class="breakdown-line"><span>${label}</span><strong>${money(Number(value))}</strong></div>`).join("");
   }
 
@@ -93,8 +98,10 @@
     const name = state.name || "Name not selected";
     const activityLines = DATA.activities.filter(activity => state.activities[activity.id]).map(activity => `- ${activity.title}: ${formatChoice(state.activities[activity.id])}`);
     const activityCost = DATA.activities.reduce((sum, activity) => sum + (state.activities[activity.id] === "yes" ? activity.cost : 0), 0);
-    const total = Number(state.airfare) + 1197 + Number(state.food) + Number(state.airport || 0) + (state.insurance ? 192 : 0) + activityCost;
-    return [`IRELAND 2027 — ${name}`, "", "ACTIVITIES", ...(activityLines.length ? activityLines : ["- No activity choices yet"]), "", `My working cost: ${money(total)}`, `Airfare target: ${money(Number(state.airfare))}`, "Required trip pool: $1,197", "- Lodging: $882", "- Three-SUV rental: $177", "- Ireland driving fund: $138", "  (includes about $53/person for fuel)", `Food plan: ${money(Number(state.food))}`, `DFW parking/ride: ${money(Number(state.airport || 0))}`, `Insurance allowance shown: ${state.insurance ? "Yes" : "No"}`, "", "Car-seat questions and any special room needs will be handled directly with the organizer."].join("\n");
+    const travelerCount = Math.min(13, Math.max(1, Number(state.travelerCount) || 1));
+    const perTravelerTotal = Number(state.airfare) + 1197 + Number(state.food) + (state.insurance ? 192 : 0) + activityCost;
+    const total = perTravelerTotal * travelerCount + Number(state.airport || 0);
+    return [`IRELAND 2027 — ${name}`, "", `PAYING FOR: ${travelerCount} ${travelerCount === 1 ? "TRAVELER" : "TRAVELERS"}`, "", "ACTIVITIES", ...(activityLines.length ? activityLines : ["- No activity choices yet"]), "", `Per-traveler cost before household DFW amount: ${money(perTravelerTotal)}`, `Combined total for ${travelerCount} ${travelerCount === 1 ? "traveler" : "travelers"}: ${money(total)}`, "", `Airfare per traveler: ${money(Number(state.airfare))}`, "Required trip pool per traveler: $1,197", "- Lodging per traveler: $882", "- Three-SUV rental per traveler: $177", "- Ireland driving fund per traveler: $138", "  (includes about $53 per traveler for fuel; about $685 group fuel total)", `Food per traveler: ${money(Number(state.food))}`, `Household DFW parking/ride counted once: ${money(Number(state.airport || 0))}`, `Insurance allowance per traveler shown: ${state.insurance ? "Yes" : "No"}`, "", "Selected activity costs are multiplied by the number of travelers shown above.", "Car-seat questions and any special room needs will be handled directly with the organizer."].join("\n");
   }
 
   function formatChoice(value) {
@@ -155,14 +162,16 @@
   }
 
   function bindControls() {
+    const travelerCount = document.querySelector("#travelerCount");
     const airfare = document.querySelector("#airfare");
     const food = document.querySelector("#food");
     const airport = document.querySelector("#airport");
     const insurance = document.querySelector("#insurance");
     const travelerName = document.querySelector("#travelerName");
-    airfare.value = String(state.airfare); food.value = String(state.food); airport.value = String(state.airport || 0); insurance.checked = Boolean(state.insurance);
+    travelerCount.value = String(state.travelerCount || 1); airfare.value = String(state.airfare); food.value = String(state.food); airport.value = String(state.airport || 0); insurance.checked = Boolean(state.insurance);
     travelerName.innerHTML = `<option value="">Choose your name</option>${DATA.travelers.map(name => `<option value="${name}">${name}</option>`).join("")}`;
     travelerName.value = state.name;
+    travelerCount.addEventListener("change", () => { state.travelerCount = Math.min(13, Math.max(1, Number(travelerCount.value) || 1)); saveState(); });
     airfare.addEventListener("change", () => { state.airfare = Number(airfare.value); saveState(); });
     food.addEventListener("change", () => { state.food = Number(food.value); saveState(); });
     airport.addEventListener("input", () => { state.airport = Math.max(0, Number(airport.value) || 0); saveState(); });

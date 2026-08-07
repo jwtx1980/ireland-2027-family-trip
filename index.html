@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="styles.css">
   <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script defer src="data.js"></script>
-  <script defer src="app.js?v=20260806-4"></script>
+  <script defer src="app.js?v=20260806-6"></script>
 </head>
 <body>
   <header class="topbar">
@@ -27,14 +27,15 @@
   <main>
     <section class="hero section" id="overview">
       <div><p class="eyebrow">13 travelers · 9 nights · 3 lodging areas</p><h1>Nine nights in Ireland, with time to enjoy it.</h1><p class="hero-copy">This is the family review version. Nothing here books, charges or shares information. Review the dated lodging plan and choose the activities that interest you, then copy or text your summary.</p><div class="hero-actions"><a class="button primary" href="#schedule">See the exact dates</a><a class="button quiet" href="assets/Ireland_2027_family_pitch_deck.pdf" target="_blank">Open the PDF deck</a></div></div>
-      <aside class="hero-total"><span>Expected total expense</span><strong>$2,097–$2,397</strong><small>$900–$1,200 airfare + $1,197 required trip pool. Food and optional choices are shown separately.</small></aside>
+      <aside class="hero-total"><span>Expected expense per traveler</span><strong>$2,097–$2,397</strong><small>Per traveler: $900–$1,200 airfare + $1,197 required trip pool. Food and optional choices are shown separately.</small></aside>
     </section>
 
     <section class="headline-costs section narrow" aria-label="Core costs">
-      <article><span>Airfare</span><strong>$900–$1,200</strong><p>Booked individually after the family locks the dates.</p></article>
-      <article><span>Required trip pool</span><strong>$1,197</strong><p>$882 lodging + $177 three-SUV rental + $138 driving fund. Fuel is about $685 for the group, or $53 per traveler, and is already included in the driving fund.</p></article>
-      <article class="optional"><span>Plan separately</span><strong>Food & choices</strong><p>Food, DFW parking, admissions, insurance and personal shopping are not in the headline.</p></article>
+      <article><span>Airfare per traveler</span><strong>$900–$1,200</strong><p>Each traveler books and pays for their own ticket after the family locks the dates.</p></article>
+      <article><span>Required pool per traveler</span><strong>$1,197</strong><p>Per traveler: $882 lodging + $177 three-SUV rental + $138 driving fund. For all 13 travelers, the pool is $15,561 total. The driving fund includes about $685 total group fuel, equal to about $53 per traveler.</p></article>
+      <article class="optional"><span>Each traveler plans separately</span><strong>Food & choices</strong><p>Food, a personal share of DFW parking or rides, admissions, insurance and shopping are not in the headline.</p></article>
     </section>
+    <aside class="cost-scope-note narrow"><strong>How to read every cost:</strong> Headline amounts and activity badges are <b>per traveler</b> unless they explicitly say “group total.” In the calculator, choose how many travelers you are paying for; it will show the combined total for those people.</aside>
 
     <section class="section narrow schedule-section" id="schedule">
       <div class="section-heading"><p class="eyebrow">One schedule for every booking</p><h2>Dates the lodging plan requires.</h2><p>These are planning dates, not a second vote. Airfare and every stay need to match this same sequence.</p></div>
@@ -72,16 +73,17 @@
     </section>
 
     <section class="section budget-section" id="budget">
-      <div class="section-heading narrow"><p class="eyebrow">Personal planning calculator</p><h2>What should I expect to spend?</h2><p>This calculator is private to your device. It does not collect or transmit amounts.</p></div>
+      <div class="section-heading narrow"><p class="eyebrow">Personal or household calculator</p><h2>What should I expect to spend?</h2><p>Choose the number of travelers you are paying for. Per-traveler costs will be multiplied by that number, while the DFW parking or ride amount is counted once. Your choices stay private to your device.</p></div>
       <div class="budget-layout narrow">
         <div class="budget-controls">
-          <label>Airfare<select id="airfare"><option value="900">Basic target · $900</option><option value="1200">More premium · $1,200</option></select></label>
-          <label>Food plan<select id="food"><option value="456">Lean · $456</option><option value="497" selected>Expected · $497</option><option value="538">Upper · $538</option></select></label>
-          <label>DFW parking or ride<input id="airport" type="number" inputmode="numeric" min="0" step="10" value="0"></label>
-          <label class="check"><input id="insurance" type="checkbox" value="192"><span>Show $192 travel-insurance planning allowance</span></label>
-          <p class="fine">The insurance amount is only a placeholder until an actual policy is selected and quoted.</p>
+          <label>Travelers I am paying for<select id="travelerCount"><option value="1">1 traveler</option><option value="2">2 travelers</option><option value="3">3 travelers</option><option value="4">4 travelers</option><option value="5">5 travelers</option><option value="6">6 travelers</option><option value="7">7 travelers</option><option value="8">8 travelers</option><option value="9">9 travelers</option><option value="10">10 travelers</option><option value="11">11 travelers</option><option value="12">12 travelers</option><option value="13">13 travelers</option></select></label>
+          <label>Airfare per traveler<select id="airfare"><option value="900">Basic target · $900</option><option value="1200">More premium · $1,200</option></select></label>
+          <label>Food per traveler<select id="food"><option value="456">Lean · $456</option><option value="497" selected>Expected · $497</option><option value="538">Upper · $538</option></select></label>
+          <label>Household DFW parking or ride total<input id="airport" type="number" inputmode="numeric" min="0" step="10" value="0"></label>
+          <label class="check"><input id="insurance" type="checkbox" value="192"><span>Show $192 travel-insurance allowance per traveler</span></label>
+          <p class="fine">Selected activity costs apply to every traveler you are paying for. The DFW parking/ride amount is added only once. Insurance is a placeholder until an actual policy is selected and quoted.</p>
         </div>
-        <aside class="budget-total"><span>My working total</span><strong id="personalTotal">$2,594</strong><div id="budgetBreakdown"></div></aside>
+        <aside class="budget-total"><span id="budgetTotalLabel">Total for 1 traveler</span><strong id="personalTotal">$2,594</strong><p class="budget-scope" id="budgetScope">Per-traveler costs plus one household DFW amount</p><div id="budgetBreakdown"></div></aside>
       </div>
     </section>
 
