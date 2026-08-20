@@ -10,10 +10,10 @@
   <meta property="og:image" content="assets/og.png">
   <title>Ireland 2027 Family Trip</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
-  <link rel="stylesheet" href="styles.css?v=20260820-6">
+  <link rel="stylesheet" href="styles.css?v=20260820-7">
   <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-  <script defer src="data.js?v=20260820-6"></script>
-  <script defer src="app.js?v=20260820-6"></script>
+  <script defer src="data.js?v=20260820-7"></script>
+  <script defer src="app.js?v=20260820-7"></script>
 </head>
 <body>
   <header class="topbar">
@@ -100,6 +100,15 @@
           <div class="total"><span>Comfortable working total</span><strong>$8,500</strong></div>
         </div>
       </div>
+      <div class="cook-plan narrow">
+        <div class="cook-plan-copy"><p class="eyebrow">A practical way to lower the total</p><h3>Cook five or six dinners at the houses.</h3><p>Choosing the cooking-heavy plan sets aside <strong>$700 per traveler</strong>, or <strong>$7,000 for all 10</strong>—about $1,500 less than the comfortable default. It still keeps two nicer group dinners, two casual restaurant dinners, sightseeing lunches, breakfasts, snacks and a cushion.</p><a href="#budget">Choose “Cook 5–6 dinners” in my calculator ↓</a></div>
+        <div class="kitchen-status" aria-label="Kitchen availability by stay">
+          <article><span>Confirmed · Killarney</span><strong>Knockmanagh</strong><p>Official layout lists a kitchen/dining room and utility room.</p><a href="https://www.tridentholidayhomes.ie/property/kerry/killarney/knockmanagh-holiday-home/373616/" target="_blank" rel="noreferrer">Property details ↗</a></article>
+          <article><span>Pending · Lahinch</span><strong>Golf-course home</strong><p>Vrbo currently lists a kitchen, refrigerator and microwave.</p><a href="https://www.vrbo.com/4365078" target="_blank" rel="noreferrer">Live listing ↗</a></article>
+          <article><span>Candidate · Dublin</span><strong>Staycity</strong><p>Studios and apartments advertise fully equipped kitchens and a pantry.</p><a href="https://www.staycity.com/dublin/city-centre" target="_blank" rel="noreferrer">Official details ↗</a></article>
+        </div>
+        <p class="cook-caveat"><strong>Before grocery shopping:</strong> confirm the Lahinch request, then check cookware, oven access, refrigerator space and seating with each property. A first-night grocery stop can cover breakfasts, packed snacks and the first house dinner without locking the group into cooking every evening.</p>
+      </div>
       <div class="food-evidence narrow">
         <p><strong>Why this is reasonable:</strong> current menus checked August 20, 2026 show Killarney fish and chips around €21.95 and a two-course early dinner at €32; Lahinch casual mains commonly run about €19.95–€35.95. Tesco currently lists examples such as 2 L milk at €2.25 and 18 eggs at €4.25. Kara is budgeted with an adult appetite, and an additional cushion is included for June 2027 price changes.</p>
         <div class="food-links"><a href="https://croninsrestaurant.com/our-menu/" target="_blank" rel="noreferrer">Cronin’s Killarney menu ↗</a><a href="https://thefleskrestaurant.ie/food-menu/" target="_blank" rel="noreferrer">The Flesk menu ↗</a><a href="https://www.theedgelahinch.ie/lunchedge" target="_blank" rel="noreferrer">The Edge Lahinch menu ↗</a><a href="https://vaughans.ie/" target="_blank" rel="noreferrer">Vaughan’s Lahinch menu ↗</a><a href="https://www.tesco.ie/shop/en-IE/shop/fresh-food/milk-butter-and-eggs" target="_blank" rel="noreferrer">Tesco Ireland groceries ↗</a><a href="https://www.staycity.com/dublin/city-centre" target="_blank" rel="noreferrer">Staycity kitchens and breakfast ↗</a></div>
@@ -112,7 +121,7 @@
         <div class="budget-controls">
           <label>Travelers I am paying for<select id="travelerCount"><option value="1">1 traveler</option><option value="2">2 travelers</option><option value="3">3 travelers</option><option value="4">4 travelers</option><option value="5">5 travelers</option><option value="6">6 travelers</option><option value="7">7 travelers</option><option value="8">8 travelers</option><option value="9">9 travelers</option><option value="10">10 travelers</option></select></label>
           <label>Airfare per traveler<select id="airfare"><option value="1000">Justin-family average · $1,000</option><option value="1200">Higher fare allowance · $1,200</option></select></label>
-          <label>Food per traveler<select id="food"><option value="700">More house meals · $700</option><option value="850" selected>Comfortable reserve · $850</option><option value="1000">Restaurant-heavy · $1,000</option></select></label>
+          <label>Food per traveler<select id="food"><option value="700">Cook 5–6 dinners · $700</option><option value="850" selected>Comfortable reserve · $850</option><option value="1000">Restaurant-heavy · $1,000</option></select></label>
           <label>Household DFW parking or ride total<input id="airport" type="number" inputmode="numeric" min="0" step="10" value="0"></label>
           <label class="check"><input id="insurance" type="checkbox" value="192"><span>Show $192 travel-insurance allowance per traveler</span></label>
           <p class="fine">Food is an on-site personal or household expense, not money due to the shared pot. The calculator also includes the current $568 share of known land commitments. Dublin lodging, fuel, extra mileage, tolls and Ireland parking are not yet included. Selected activity costs apply to every traveler shown.</p>

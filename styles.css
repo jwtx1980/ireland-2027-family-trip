@@ -70,3 +70,11 @@
 .food-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:13px}.food-links a{border-radius:999px;background:var(--green2);color:var(--green);padding:8px 11px;text-decoration:none;font-size:11px;font-weight:850}
 @media(max-width:900px){.food-layout{grid-template-columns:1fr}}
 @media(max-width:640px){.food-breakdown>div{padding:14px}.food-total strong{font-size:31px}}
+
+/* Cooking-at-home option */
+.cook-plan{margin-top:28px;border:1px solid var(--line);border-radius:22px;background:#fff;padding:26px;box-shadow:0 12px 32px rgba(31,61,51,.07)}
+.cook-plan-copy{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 28px;align-items:end}
+.cook-plan-copy .eyebrow,.cook-plan-copy p{grid-column:1}.cook-plan-copy h3{grid-column:1;font-family:Georgia,serif;font-size:34px;margin:0 0 8px}.cook-plan-copy>p:not(.eyebrow){color:var(--muted);line-height:1.6;margin:0}.cook-plan-copy>a{grid-column:2;grid-row:1/5;align-self:center;border-radius:12px;background:var(--green);color:#fff;padding:12px 15px;text-decoration:none;font-size:12px;font-weight:850;max-width:210px;text-align:center}
+.kitchen-status{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:22px}.kitchen-status article{border-radius:14px;background:var(--cream);padding:16px}.kitchen-status span{color:var(--green);text-transform:uppercase;letter-spacing:.07em;font-size:9px;font-weight:900}.kitchen-status strong{display:block;font-family:Georgia,serif;font-size:21px;margin:5px 0}.kitchen-status p{color:var(--muted);font-size:12px;line-height:1.45;margin-bottom:9px}.kitchen-status a{color:var(--green);font-size:11px;font-weight:850}
+.cook-caveat{margin:18px 0 0;border-left:4px solid var(--gold);padding:5px 0 5px 13px;color:var(--muted);font-size:12px;line-height:1.55}.cook-caveat strong{color:var(--ink)}
+@media(max-width:820px){.cook-plan-copy{grid-template-columns:1fr}.cook-plan-copy>a{grid-column:1;grid-row:auto;margin-top:14px;max-width:none}.kitchen-status{grid-template-columns:1fr}}

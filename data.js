@@ -28,7 +28,7 @@ window.TRIP_DATA = {
         { label: "Check June 9–10", url: "https://www.booking.com/hotel/ie/staycity-aparthotels-dublin-city-centre.html?checkin=2027-06-09&checkout=2027-06-10&group_adults=7&group_children=3&age=14&age=8&age=5&no_rooms=6&selected_currency=EUR" }
       ],
       status: "Not booked · current Dublin candidate only",
-      roomPlan: "Three Dublin nights remain to be reserved: two nights on arrival and the final night. Search is set for 7 adults, 3 children and a flexible six-room mix.",
+      roomPlan: "Three Dublin nights remain to be reserved: two nights on arrival and the final night. Search is set for 7 adults, 3 children and a flexible six-room mix. This candidate advertises fully equipped kitchens in its studios and apartments.",
       sourceNote: "Public Booking.com listing. Price and exact June 2027 availability must be rechecked before booking.",
       photos: ["assets/staycity-1.jpg", "assets/staycity-2.jpg"]
     },
@@ -43,7 +43,7 @@ window.TRIP_DATA = {
         { label: "Open official property", url: "https://www.tridentholidayhomes.ie/property/kerry/killarney/knockmanagh-holiday-home/373616/" }
       ],
       status: "Confirmed reservation · booked by Cameron family",
-      roomPlan: "Capacity 10: five bedrooms with 3 double beds and 4 single beds. One double bedroom and a separate toilet are on the ground floor; the other four bedrooms and both full bathrooms are upstairs.",
+      roomPlan: "Capacity 10: five bedrooms with 3 double beds and 4 single beds. One double bedroom and a separate toilet are on the ground floor; the other four bedrooms and both full bathrooms are upstairs. The official layout confirms a kitchen/dining room and utility room.",
       sourceNote: "Confirmed total €1,122.06 (about $1,311 at €1 = $1.1681). The email says a €112.21 confirmation charge will be made; verify the posted charge and remaining balance. A refundable €200 security hold is separate. Check-in is 5–7 PM and checkout is 10 AM.",
       photos: ["assets/knockmanagh-1.jpg", "assets/knockmanagh-2.jpg"]
     },
