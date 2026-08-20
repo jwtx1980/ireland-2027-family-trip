@@ -40,16 +40,32 @@
     return `<div class="choice-row" role="group" aria-label="Choose plan it, interested or skip">${["yes", "maybe", "no"].map(choice => `<button data-kind="${kind}" data-id="${id}" data-choice="${choice}" class="${selected === choice ? "selected" : ""}">${labels[choice]}</button>`).join("")}</div>`;
   }
 
-  function renderLodging() {
-    document.querySelector("#lodgingList").innerHTML = DATA.stays.map(stay => `<article class="lodging-card"><div class="lodging-copy"><p class="eyebrow">${stay.area}</p><h3>${stay.name}</h3><div class="stay-date"><span>Exact stay dates</span><strong>${stay.dateLabel}</strong><small>${stay.address}</small></div><span class="candidate-pill">${stay.status}</span><p>${stay.roomPlan}</p><p class="photo-source">${stay.sourceNote}</p><div class="date-search-links">${stay.dateLinks.map(item => `<a href="${item.url}" target="_blank" rel="noreferrer">${item.label} ↗</a>`).join("")}</div><div class="lodging-actions"><button class="button primary gallery-open" data-stay="${stay.id}">View ${stay.photos.length === 2 ? "preview photos" : `all ${stay.photos.length} photos`}</button></div></div><div class="lodging-preview ${stay.photos.length <= 2 ? "few-photos" : ""}">${stay.photos.slice(0, 6).map((photo, index) => `<button class="gallery-photo" data-stay="${stay.id}" data-index="${index}" aria-label="Open ${stay.name} photo ${index + 1}"><img src="${photo}" loading="lazy" alt="${stay.name} listing preview ${index + 1}"></button>`).join("")}</div></article>`).join("");
+  function activityCard(activity) {
+    return `<article class="activity-card"><div class="activity-top"><span class="day-pill">${activity.day}</span><span class="cost-pill">${activity.cost ? `Adds ${money(activity.cost)} / traveler` : "Adds $0 / traveler"}</span></div><h3>${activity.title}</h3><p class="activity-meta">${activity.distance} · ${activity.duration}</p><p>${activity.note}</p><div class="activity-impact" data-activity-impact="${activity.id}">${activity.cost ? `${money(activity.cost)} for 1 traveler if selected` : "Free activity—selecting it adds no admission cost"}</div>${choiceButtons("activities", activity.id)}<a href="${activity.link}" target="_blank" rel="noreferrer">${activity.linkLabel || "See official details ↗"}</a></article>`;
+  }
+
+  function renderTripChapters() {
+    const container = document.querySelector("#tripChapters");
+    if (!container) return;
+    const chapters = [
+      { area: "Dublin", stay: DATA.stays[0], number: "01", title: "Ease into Dublin", intro: "Land, recover and explore the city at a pace that works for each vehicle-free group." },
+      { area: "Killarney", stay: DATA.stays[1], number: "02", title: "Settle into Kerry", intro: "Three nights in one confirmed house for national-park scenery, Dingle and a flexible rest day." },
+      { area: "Clare", stay: DATA.stays[2], number: "03", title: "Finish on the Atlantic coast", intro: "Lahinch puts golf, the Cliffs, the Burren and an optional sheepdog demonstration within reach." }
+    ];
+    container.innerHTML = chapters.map(chapter => {
+      const stay = chapter.stay;
+      const activities = DATA.activities.filter(activity => activity.area === chapter.area).map(activityCard).join("");
+      const dining = DATA.dining.filter(item => item.area === chapter.area).map(item => `<article class="dining-card"><span>${item.label}</span><h4>${item.title}</h4><p>${item.note}</p><a href="${item.link}" target="_blank" rel="noreferrer">See menu or details ↗</a></article>`).join("");
+      const missingNote = stay.statusType === "missing" ? `<aside class="chapter-alert"><strong>Dublin lodging is not booked yet.</strong><p>Staycity is the working candidate, not a reservation. Keep June 1–3 and June 9–10 together when comparing replacements.</p></aside>` : "";
+      return `<section class="trip-chapter" aria-labelledby="chapter-${stay.id}"><div class="chapter-heading"><span>${chapter.number}</span><div><p class="eyebrow">${stay.area}</p><h2 id="chapter-${stay.id}">${chapter.title}</h2><p>${chapter.intro}</p></div></div><div class="chapter-layout"><article class="chapter-stay status-${stay.statusType}"><div class="chapter-photos">${stay.photos.slice(0, 2).map((photo, index) => `<button class="gallery-photo" data-stay="${stay.id}" data-index="${index}" aria-label="Open ${stay.name} photo ${index + 1}"><img src="${photo}" loading="lazy" alt="${stay.name} listing preview ${index + 1}"></button>`).join("")}</div><div class="chapter-stay-copy"><span class="chapter-status ${stay.statusType}">${stay.status}</span><h3>${stay.name}</h3><div class="stay-date"><span>Exact stay dates</span><strong>${stay.dateLabel}</strong><small>${stay.address}</small></div>${missingNote}<p>${stay.roomPlan}</p><p class="photo-source">${stay.sourceNote}</p><div class="chapter-actions"><button class="button primary gallery-open" data-stay="${stay.id}">View preview photos</button>${stay.dateLinks.map(item => `<a class="button quiet" href="${item.url}" target="_blank" rel="noreferrer">${item.label} ↗</a>`).join("")}</div></div></article><div class="chapter-possibilities"><div class="possibilities-heading"><p class="eyebrow">Choose what sounds good</p><h3>Things we could do from this base</h3><p>“Plan it” adds the displayed amount to your calculator. “Interested” remembers the idea without charging it yet.</p></div><div class="activity-grid chapter-activity-grid">${activities}</div><div class="dining-board"><div class="dining-heading"><p class="eyebrow">Meals near this stay</p><h3>Dinner ideas, including a night at home</h3><p>These are already covered by whichever food reserve you choose later, so they are not added twice.</p></div><div class="dining-grid">${dining}</div></div></div></div></section>`;
+    }).join("");
   }
 
   function renderBookings() {
     const summary = document.querySelector("#bookingSummary");
     const list = document.querySelector("#bookingList");
     const ledger = document.querySelector("#contributionTable");
-    const positionSummary = document.querySelector("#potPositionSummary");
-    if (!summary || !list || !ledger || !positionSummary) return;
+    if (!summary || !list || !ledger) return;
     summary.innerHTML = [
       ["Estimated airfare for 10", money(DATA.costs.airfareEstimatedAll), "Justin exact · other 7 assumed"],
       ["Confirmed shared land", money(DATA.costs.confirmedShared), "Two SUVs + Killarney"],
@@ -58,13 +74,6 @@
     ].map(([label, value, note]) => `<article><span>${label}</span><strong>${value}</strong><small>${note}</small></article>`).join("");
 
     list.innerHTML = DATA.bookings.map(item => `<article class="booking-item"><div class="booking-icon">${item.category.slice(0, 1)}</div><div class="booking-copy"><div class="booking-top"><span>${item.category} · ${item.family}</span><span class="status-chip ${item.status}">${item.statusLabel}</span></div><h3>${item.title}</h3><p>${item.detail}</p></div><div class="booking-amount">${item.amount == null ? "<strong>Cost needed</strong>" : `<strong>${moneyExact(item.amount)}</strong>${item.original ? `<small>${item.original}</small>` : ""}`}</div></article>`).join("");
-
-    positionSummary.innerHTML = DATA.families.map(family => {
-      const share = family.travelers * (DATA.costs.knownShared / TOTAL_TRAVELERS);
-      const contribution = family.sharedConfirmed + family.pending;
-      const position = contribution - share;
-      return `<article class="${position >= 0 ? "ahead-card" : "due-card"}"><span>${family.name}</span><strong>${position >= 0 ? `${money(position)} ahead` : `${money(Math.abs(position))} due`}</strong><small>${position >= 0 ? "currently paid beyond their equal share" : "currently needed to reach their equal share"}</small></article>`;
-    }).join("");
 
     ledger.innerHTML = `<div class="contribution-table"><div class="contribution-head"><span>Family</span><span>Travelers</span><span>Flight reference</span><span>Land confirmed</span><span>Land pending</span><span>Equal land share*</span></div>${DATA.families.map(family => {
       const share = family.travelers * (DATA.costs.knownShared / TOTAL_TRAVELERS);
@@ -105,14 +114,6 @@
     });
     const line = L.polyline(route, { color: "#0e6651", weight: 4, opacity: 0.8, dashArray: "8 8" }).addTo(map);
     map.fitBounds(line.getBounds(), { padding: [34, 34] });
-  }
-
-  function renderActivities() {
-    const areas = [...new Set(DATA.activities.map(activity => activity.area))];
-    document.querySelector("#activityGroups").innerHTML = areas.map(area => {
-      const cards = DATA.activities.filter(activity => activity.area === area).map(activity => `<article class="activity-card"><div class="activity-top"><span class="day-pill">${activity.day}</span><span class="cost-pill">${activity.cost ? `Adds ${money(activity.cost)} / traveler` : "Adds $0 / traveler"}</span></div><h3>${activity.title}</h3><p class="activity-meta">${activity.distance} · ${activity.duration}</p><p>${activity.note}</p><div class="activity-impact" data-activity-impact="${activity.id}">${activity.cost ? `${money(activity.cost)} for 1 traveler if selected` : "Free activity—selecting it adds no admission cost"}</div>${choiceButtons("activities", activity.id)}<a href="${activity.link}" target="_blank" rel="noreferrer">${activity.linkLabel || "See official details ↗"}</a></article>`).join("");
-      return `<section class="area-block"><div class="area-title"><h3>${area}</h3><span>From the ${area === "Dublin" ? "Dublin stay" : area === "Killarney" ? "Knockmanagh base" : "Lahinch base"}</span></div><div class="activity-grid">${cards}</div></section>`;
-    }).join("");
   }
 
   function bindChoiceButtons() {
@@ -253,5 +254,5 @@
     document.querySelectorAll("main section[id]").forEach(section => observer.observe(section));
   }
 
-  renderLodging(); renderBookings(); renderAlternates(); renderActivities(); initializeRouteMap(); bindChoiceButtons(); bindGallery(); bindControls(); bindNavigation(); updateBudget(); updateSummary();
+  renderTripChapters(); renderBookings(); renderAlternates(); initializeRouteMap(); bindChoiceButtons(); bindGallery(); bindControls(); bindNavigation(); updateBudget(); updateSummary();
 })();

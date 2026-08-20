@@ -21,6 +21,7 @@ window.TRIP_DATA = {
       name: "Staycity Aparthotels Dublin City Centre",
       area: "Dublin · first 2 nights and final night",
       dateLabel: "June 1–3 and June 9–10, 2027 · 3 nights total",
+      statusType: "missing",
       address: "Little Mary Street, Dublin, D07 PKW5",
       link: "https://www.booking.com/hotel/ie/staycity-aparthotels-dublin-city-centre.html?checkin=2027-06-01&checkout=2027-06-03&group_adults=7&group_children=3&age=14&age=8&age=5&no_rooms=6&selected_currency=EUR",
       dateLinks: [
@@ -37,6 +38,7 @@ window.TRIP_DATA = {
       name: "Knockmanagh Holiday Home",
       area: "Killarney area · confirmed",
       dateLabel: "June 3–6, 2027 · 3 nights",
+      statusType: "confirmed",
       address: "Knockmanagh, Kilcummin, County Kerry · about 11 km from Killarney",
       link: "https://www.tridentholidayhomes.ie/property/kerry/killarney/knockmanagh-holiday-home/373616/",
       dateLinks: [
@@ -52,6 +54,7 @@ window.TRIP_DATA = {
       name: "Luxury 7-Bed Golf Home",
       area: "Lahinch · host acceptance pending",
       dateLabel: "June 6–9, 2027 · 3 nights",
+      statusType: "pending",
       address: "On Lahinch Golf Course · walkable to golf club, promenade and town",
       link: "https://www.vrbo.com/4365078",
       dateLinks: [
@@ -62,6 +65,15 @@ window.TRIP_DATA = {
       sourceNote: "$2,921 requested total for 7 adults and 3 children. Do not count it as confirmed or paid until Vrbo shows host acceptance. The public listing says check-in begins at 2 PM and checkout is 10:30 AM; its two reviews give an 8/10 overall score, with one June 2026 review flagging cleanliness.",
       photos: ["assets/lahinch-golf-home-1.jpg", "assets/lahinch-golf-home-2.jpg"]
     }
+  ],
+  dining: [
+    { area: "Dublin", title: "The Woollen Mills", label: "First- or final-night dinner · roughly $35–$55 per adult", note: "A lively modern-Irish option across from Ha’penny Bridge. Current mains run about €23–€38, plus a 12.5% service charge. Reserve for a group this size after the Dublin lodging is fixed.", link: "https://www.thewoollenmills.com/menus.htm" },
+    { area: "Dublin", title: "Aparthotel pantry meal", label: "Lower-cost arrival option · inside the food reserve", note: "If Staycity remains the choice, its kitchen makes a grocery breakfast or simple first-night meal possible. Keep this flexible until the Dublin rooms are actually booked.", link: "https://www.staycity.com/dublin/city-centre" },
+    { area: "Killarney", title: "Cronin’s Restaurant", label: "Casual Irish dinner · roughly $30–$50 per adult", note: "A family-run Killarney option for fish and chips, shepherd’s pie, burgers and local dishes. Current mains are mostly €18.95–€33; booking is recommended.", link: "https://croninsrestaurant.com/our-menu/" },
+    { area: "Killarney", title: "Dinner at Knockmanagh", label: "Cook together · already covered by the $700–$850 food reserve", note: "The confirmed house has a kitchen and utility room. A grocery stop can cover breakfast, packed snacks and one or two relaxed dinners without another drive into town.", link: "https://www.tridentholidayhomes.ie/property/kerry/killarney/knockmanagh-holiday-home/373616/" },
+    { area: "Clare", title: "The Edge, Lahinch", label: "Relaxed seafront meal · roughly $30–$50 per adult", note: "A flexible choice for burgers, fish, curry and salads. Current larger dishes are commonly €16–€27, with options suitable for children and mixed appetites.", link: "https://www.theedgelahinch.ie/lunchedge" },
+    { area: "Clare", title: "Vaughan’s Anchor Inn", label: "Nicer seafood dinner · roughly $45–$75 per adult", note: "A strong candidate for one memorable group dinner. Current dinner mains range from about €20 for a burger to €49 for fillet of beef; reserve early for ten.", link: "https://vaughans.ie/" },
+    { area: "Clare", title: "Dinner at the golf-course home", label: "Cook together · already covered by the $700–$850 food reserve", note: "The pending Vrbo lists a kitchen. If the host accepts, this is a good base for an easy dinner on the golf or Cliffs day while the second vehicle goes elsewhere if needed.", link: "https://www.vrbo.com/4365078" }
   ],
   alternates: [],
   bookings: [

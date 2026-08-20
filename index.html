@@ -4,66 +4,34 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0e6651">
-  <meta name="description" content="Ireland 2027 family trip reservations, lodging, contributions, costs and activity choices.">
+  <meta name="description" content="Explore the Ireland 2027 family route, stays, activities, dining ideas, personal costs and shared-trip progress.">
   <meta property="og:title" content="Ireland 2027 Family Trip">
-  <meta property="og:description" content="Review what is reserved, what remains, family contributions and activity choices.">
+  <meta property="og:description" content="Explore our route, stays and possible days—then build a personal trip estimate.">
   <meta property="og:image" content="assets/og.png">
   <title>Ireland 2027 Family Trip</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
-  <link rel="stylesheet" href="styles.css?v=20260820-8">
+  <link rel="stylesheet" href="styles.css?v=20260820-9">
   <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-  <script defer src="data.js?v=20260820-8"></script>
-  <script defer src="app.js?v=20260820-8"></script>
+  <script defer src="data.js?v=20260820-9"></script>
+  <script defer src="app.js?v=20260820-9"></script>
 </head>
 <body>
   <header class="topbar">
     <a class="brand" href="#overview" aria-label="Ireland 2027 home"><span class="mark">IE</span><span>Ireland 2027<small>family trip proposal</small></span></a>
     <button class="menu-button" id="menuButton" aria-expanded="false" aria-controls="siteNav">Menu</button>
     <nav id="siteNav" aria-label="Trip sections">
-      <a href="#overview">Overview</a><a href="#bookings">Who paid</a><a href="#schedule">Trip dates</a><a href="#route">Map</a><a href="#lodging">Lodging</a><a href="#activities">Activity costs</a><a href="#food-plan">Food</a><a href="#budget">My cost</a><a href="#share">Text choices</a>
+      <a href="#overview">Overview</a><a href="#route">Route</a><a href="#places">Places & choices</a><a href="#budget">My cost</a><a href="#share">Text my plan</a><a href="#bookings">Payments</a>
     </nav>
   </header>
 
   <main>
     <section class="hero section" id="overview">
-      <div class="hero-story"><p class="eyebrow">10 travelers · 9 nights · 3 unforgettable bases</p><h1>Three corners of Ireland. One family adventure.</h1><p class="hero-copy">Dublin streets, Killarney’s lakes and the wild Atlantic coast—linked by two vehicles and enough flexibility for every generation to make the trip their own.</p><div class="hero-actions"><a class="button primary" href="#route">Explore the route</a><a class="button quiet" href="#lodging">See where we’ll stay</a></div><div class="hero-status"><span><b>May 31</b> depart DFW</span><span><b>June 1–10</b> in Ireland</span><span><b>2 vehicles</b> confirmed</span></div></div>
-      <a class="hero-visual" href="#lodging" aria-label="See the Ireland lodging photos"><img class="hero-photo-main" src="assets/lahinch-golf-home-1.jpg" alt="Lahinch golf-course home"><img class="hero-photo-small top" src="assets/knockmanagh-1.jpg" alt="Knockmanagh Holiday Home near Killarney"><img class="hero-photo-small bottom" src="assets/staycity-1.jpg" alt="Dublin lodging candidate"><span class="hero-route-chip">Dublin → Killarney → Lahinch</span></a>
-    </section>
-
-    <section class="headline-costs section narrow" aria-label="Core costs">
-      <article><span>Flights · paid individually</span><strong>Neutral to the pot</strong><p>Every traveler is assumed to have paid about the same $999.93 airfare. Flights are shown for total-trip awareness but do not affect who owes the shared pot.</p></article>
-      <article><span>Known land pot</span><strong>About $568 / traveler</strong><p>This is the amount families are balancing: two booked SUVs, confirmed Killarney lodging and pending Lahinch lodging.</p></article>
-      <article class="optional"><span>Food · paid during the trip</span><strong>Plan $850 / traveler</strong><p>A generous working reserve for groceries, lunches, restaurant dinners, two nicer meals, snacks and nonalcoholic drinks. See the full assumptions below.</p></article>
-    </section>
-    <aside class="cost-scope-note narrow"><strong>How to read every cost:</strong> Headline amounts and activity badges are <b>per traveler</b> unless they explicitly say “group total.” Points are credited at the booking’s stated dollar value. The $568 share is a progress snapshot—not a final family settlement.</aside>
-
-    <section class="section narrow booking-section" id="bookings">
-      <div class="section-heading"><p class="eyebrow">Reservation and contribution tracker</p><h2>What is booked, pending and still missing.</h2><p>Updated August 20, 2026. Private confirmation codes and account-management links are intentionally not published here.</p></div>
-      <div class="booking-summary" id="bookingSummary"></div>
-      <p class="booking-source-note">Euro conversions use the <a href="https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-usd.en.html" target="_blank" rel="noreferrer">European Central Bank reference rate</a> for August 20, 2026: €1 = $1.1681. Card-network exchange rates can differ.</p>
-      <div class="booking-list" id="bookingList"></div>
-      <div class="contribution-panel">
-        <div class="section-heading compact"><p class="eyebrow">Shared lodging and vehicle pot</p><h2>Who is ahead—and who still owes the pot.</h2><p>Airfare is intentionally excluded from these balances because each traveler is assumed to have paid about the same amount. Points used for shared reservations count at their stated dollar value.</p></div>
-        <div class="pot-position-summary" id="potPositionSummary"></div>
-        <div id="contributionTable"></div>
-        <aside class="ledger-warning"><strong>Current pot position—not a final settlement.</strong> These figures assume the Lahinch request is accepted. Dublin lodging, fuel, mileage, tolls and parking will change the balances when they are assigned.</aside>
-      </div>
-    </section>
-
-    <section class="section narrow schedule-section" id="schedule">
-      <div class="section-heading"><p class="eyebrow">American nonstop schedule</p><h2>Dates and times every booking must match.</h2><p>The exact Justin-family receipt establishes the group’s planned arrival and departure window.</p></div>
-      <div class="trip-window"><strong>AA 132 · Depart DFW Monday, May 31 at 7:00 PM</strong><span>Nonstop overnight flight</span><strong>Arrive Dublin Tuesday, June 1 at 9:45 AM</strong><span>9 nights in Ireland</span><strong>AA 133 · Depart Dublin Thursday, June 10 at 11:45 AM · arrive DFW 3:30 PM</strong></div>
-      <ol class="stay-timeline">
-        <li><span class="timeline-number">1</span><div><strong>Dublin · Staycity</strong><span>Check in Tue, June 1 · Check out Thu, June 3</span><small>2 nights</small></div></li>
-        <li><span class="timeline-number">2</span><div><strong>Killarney · Knockmanagh Holiday Home</strong><span>Check in Thu, June 3 · Check out Sun, June 6</span><small>3 nights · confirmed</small></div></li>
-        <li><span class="timeline-number">3</span><div><strong>Lahinch · 7-bedroom golf home</strong><span>Check in Sun, June 6 · Check out Wed, June 9</span><small>3 nights · host acceptance pending</small></div></li>
-        <li><span class="timeline-number">4</span><div><strong>Dublin · Staycity again</strong><span>Check in Wed, June 9 · Check out Thu, June 10</span><small>1 night</small></div></li>
-      </ol>
-      <aside class="availability-warning"><strong>Dublin is the remaining lodging gap.</strong><p>Knockmanagh is confirmed. Lahinch has been requested and is awaiting the host. The Dublin beginning and final night still need to be reserved for the same dates shown above.</p></aside>
+      <div class="hero-story"><p class="eyebrow">10 travelers · 9 nights · 3 memorable bases</p><h1>Three corners of Ireland. One family adventure.</h1><p class="hero-copy">Dublin streets, Killarney’s lakes and the wild Atlantic coast—with enough flexibility for each vehicle to follow a different kind of day.</p><div class="hero-actions"><a class="button primary" href="#route">See the route</a><a class="button quiet" href="#places">Explore the stays and days</a></div><div class="hero-status"><span><b>May 31</b> depart DFW</span><span><b>June 1–10</b> in Ireland</span><span><b>2 vehicles</b> confirmed</span></div></div>
+      <a class="hero-visual" href="#places" aria-label="See the Ireland lodging photos and plans"><img class="hero-photo-main" src="assets/lahinch-golf-home-1.jpg" alt="Lahinch golf-course home"><img class="hero-photo-small top" src="assets/knockmanagh-1.jpg" alt="Knockmanagh Holiday Home near Killarney"><img class="hero-photo-small bottom" src="assets/staycity-1.jpg" alt="Dublin lodging candidate that is not yet booked"><span class="hero-route-chip">Dublin → Killarney → Lahinch</span><span class="hero-dublin-chip">Dublin stay · not booked yet</span></a>
     </section>
 
     <section class="section route-section" id="route">
-      <div class="section-heading narrow"><p class="eyebrow">The route at a glance</p><h2>Dublin → Killarney → Lahinch → Dublin.</h2><p>Use the map to zoom and compare the stays. The final Dublin marker is the same area used at the beginning. Dashed lines show stop order, not exact driving roads.</p></div>
+      <div class="section-heading narrow"><p class="eyebrow">Start with the shape of the trip</p><h2>Dublin → Killarney → Lahinch → Dublin.</h2><p>We change bases only twice after Dublin. The map shows where the stays sit and the realistic time each transfer will take with ten people, luggage, meals and breaks.</p></div>
       <div class="route-layout narrow">
         <div id="tripMap" class="trip-map" aria-label="Interactive map of the Dublin, Killarney and Lahinch lodging route"><p>Loading the route map…</p></div>
         <div class="route-legs">
@@ -73,58 +41,34 @@
           <a class="button quiet" href="https://www.google.com/maps/dir/Dublin,+Ireland/Knockmanagh,+Kilcummin,+County+Kerry/Lahinch,+County+Clare/Dublin,+Ireland" target="_blank" rel="noreferrer">Open the full route in Google Maps ↗</a>
         </div>
       </div>
+      <div class="route-dates narrow">
+        <div class="trip-window"><strong>AA 132 · DFW May 31 at 7:00 PM</strong><span>Nonstop overnight</span><strong>Arrive Dublin June 1 at 9:45 AM</strong><span>9 nights</span><strong>AA 133 · Dublin June 10 at 11:45 AM</strong></div>
+        <ol class="stay-timeline">
+          <li class="timeline-open"><span class="timeline-number">1</span><div><strong>Dublin lodging · not yet booked</strong><span>June 1–3</span><small>2 nights · Staycity is a candidate</small></div></li>
+          <li><span class="timeline-number">2</span><div><strong>Knockmanagh Holiday Home</strong><span>June 3–6</span><small>3 nights · confirmed</small></div></li>
+          <li><span class="timeline-number">3</span><div><strong>Lahinch golf home</strong><span>June 6–9</span><small>3 nights · host acceptance pending</small></div></li>
+          <li class="timeline-open"><span class="timeline-number">4</span><div><strong>Dublin lodging · not yet booked</strong><span>June 9–10</span><small>1 night · same candidate area</small></div></li>
+        </ol>
+      </div>
     </section>
 
-    <section class="section lodging-section" id="lodging">
-      <div class="section-heading narrow"><p class="eyebrow">Three bases, fewer hotel changes</p><h2>See the current lodging status.</h2><p>Knockmanagh is confirmed, Lahinch is pending host acceptance, and Dublin remains to be booked. Public listing links are provided for photos and property details.</p></div>
-      <div class="lodging-list narrow" id="lodgingList"></div>
-    </section>
-
-    <section class="section narrow" id="activities">
-      <div class="section-heading"><p class="eyebrow">Build your activity budget</p><h2>See what each day adds before choosing it.</h2><p>Every card shows the drive from the relevant lodging base, time commitment and estimated admission per traveler. “Plan it” adds that activity to your personal cost estimate; “Interested” records interest without adding cost yet. Distances will be refreshed if the Dublin candidate or pending Lahinch home changes.</p></div>
-      <aside class="activity-budget-banner"><div><span>Activities currently added</span><strong id="activityRunningTotal">$0 per traveler</strong></div><p>This updates your calculator below. Free activities still appear in your plan but add $0.</p><a href="#budget">See my full trip estimate ↓</a></aside>
-      <div id="activityGroups"></div>
-    </section>
-
-    <section class="section food-section" id="food-plan">
-      <div class="food-layout narrow">
-        <div class="food-story"><p class="eyebrow">Eat well without worrying about every receipt</p><h2>Set aside $850 per traveler for food.</h2><p>This is intentionally comfortable rather than optimistic. It allows for easy breakfasts, casual lunches while sightseeing, several pub or restaurant dinners, three meals cooked at the houses, two memorable group dinners, and plenty of coffees, snacks and nonalcoholic drinks.</p><div class="food-total"><span>Recommended reserve</span><strong>$8,500 group total</strong><small>$850 per traveler · spent as we go, not paid into the shared lodging-and-vehicle pot</small></div><p class="food-range"><b>Likely range:</b> about $700 per traveler with more house meals, or roughly $1,000 with frequent restaurants, desserts and café stops. Alcohol and personal shopping remain separate.</p></div>
-        <div class="food-breakdown" aria-label="Recommended group food budget breakdown">
-          <div><span>House breakfasts and basic groceries</span><strong>$1,200</strong></div>
-          <div><span>Nine casual sightseeing lunches</span><strong>$2,150</strong></div>
-          <div><span>Four casual restaurant dinners</span><strong>$1,500</strong></div>
-          <div><span>Two nicer group dinners</span><strong>$1,250</strong></div>
-          <div><span>Three dinners prepared at the houses</span><strong>$500</strong></div>
-          <div><span>Coffee, snacks and nonalcoholic drinks</span><strong>$1,250</strong></div>
-          <div class="cushion"><span>2027 price and currency cushion</span><strong>$650</strong></div>
-          <div class="total"><span>Comfortable working total</span><strong>$8,500</strong></div>
-        </div>
-      </div>
-      <div class="cook-plan narrow">
-        <div class="cook-plan-copy"><p class="eyebrow">A practical way to lower the total</p><h3>Cook five or six dinners at the houses.</h3><p>Choosing the cooking-heavy plan sets aside <strong>$700 per traveler</strong>, or <strong>$7,000 for all 10</strong>—about $1,500 less than the comfortable default. It still keeps two nicer group dinners, two casual restaurant dinners, sightseeing lunches, breakfasts, snacks and a cushion.</p><a href="#budget">Choose “Cook 5–6 dinners” in my calculator ↓</a></div>
-        <div class="kitchen-status" aria-label="Kitchen availability by stay">
-          <article><span>Confirmed · Killarney</span><strong>Knockmanagh</strong><p>Official layout lists a kitchen/dining room and utility room.</p><a href="https://www.tridentholidayhomes.ie/property/kerry/killarney/knockmanagh-holiday-home/373616/" target="_blank" rel="noreferrer">Property details ↗</a></article>
-          <article><span>Pending · Lahinch</span><strong>Golf-course home</strong><p>Vrbo currently lists a kitchen, refrigerator and microwave.</p><a href="https://www.vrbo.com/4365078" target="_blank" rel="noreferrer">Live listing ↗</a></article>
-          <article><span>Candidate · Dublin</span><strong>Staycity</strong><p>Studios and apartments advertise fully equipped kitchens and a pantry.</p><a href="https://www.staycity.com/dublin/city-centre" target="_blank" rel="noreferrer">Official details ↗</a></article>
-        </div>
-        <p class="cook-caveat"><strong>Before grocery shopping:</strong> confirm the Lahinch request, then check cookware, oven access, refrigerator space and seating with each property. A first-night grocery stop can cover breakfasts, packed snacks and the first house dinner without locking the group into cooking every evening.</p>
-      </div>
-      <div class="food-evidence narrow">
-        <p><strong>Why this is reasonable:</strong> current menus checked August 20, 2026 show Killarney fish and chips around €21.95 and a two-course early dinner at €32; Lahinch casual mains commonly run about €19.95–€35.95. Tesco currently lists examples such as 2 L milk at €2.25 and 18 eggs at €4.25. Kara is budgeted with an adult appetite, and an additional cushion is included for June 2027 price changes.</p>
-        <div class="food-links"><a href="https://croninsrestaurant.com/our-menu/" target="_blank" rel="noreferrer">Cronin’s Killarney menu ↗</a><a href="https://thefleskrestaurant.ie/food-menu/" target="_blank" rel="noreferrer">The Flesk menu ↗</a><a href="https://www.theedgelahinch.ie/lunchedge" target="_blank" rel="noreferrer">The Edge Lahinch menu ↗</a><a href="https://vaughans.ie/" target="_blank" rel="noreferrer">Vaughan’s Lahinch menu ↗</a><a href="https://www.tesco.ie/shop/en-IE/shop/fresh-food/milk-butter-and-eggs" target="_blank" rel="noreferrer">Tesco Ireland groceries ↗</a><a href="https://www.staycity.com/dublin/city-centre" target="_blank" rel="noreferrer">Staycity kitchens and breakfast ↗</a></div>
-      </div>
+    <section class="section journey-section" id="places">
+      <div class="section-heading narrow"><p class="eyebrow">One base at a time</p><h2>See where we stay, then choose what sounds fun nearby.</h2><p>Each chapter keeps the lodging, photos, driving commitment, activities and meal ideas together. Activity prices are per traveler; dinner ideas are already covered by the food reserve you select later.</p></div>
+      <aside class="activity-budget-banner narrow"><div><span>Activities currently added</span><strong id="activityRunningTotal">$0 per traveler</strong></div><p>“Plan it” adds the cost. “Interested” saves the idea without charging it.</p><a href="#budget">See my total ↓</a></aside>
+      <div id="tripChapters"></div>
     </section>
 
     <section class="section budget-section" id="budget">
-      <div class="section-heading narrow"><p class="eyebrow">Personal or household calculator</p><h2>Know the plan—and your comfortable total.</h2><p>Choose the number of travelers you are paying for. Per-traveler costs will be multiplied by that number, while the DFW parking or ride amount is counted once. The recommended food setting includes a healthy cushion, and your choices stay private to your device.</p></div>
+      <div class="section-heading narrow"><p class="eyebrow">Your personal or household total</p><h2>Turn the ideas above into a comfortable trip budget.</h2><p>Choose how many people you are paying for, your food style and any optional insurance. Every activity marked “Plan it” is included automatically.</p></div>
+      <div class="meal-range-strip narrow" aria-label="Food budget choices"><article><span>Cook more often</span><strong>$700 per traveler</strong><p>House breakfasts, sightseeing lunches, five or six cooked dinners and two nicer meals.</p></article><article class="recommended"><span>Comfortable plan</span><strong>$850 per traveler</strong><p>Three cooked dinners, four casual restaurant dinners, two nicer dinners, snacks and cushion.</p></article><article><span>Restaurant-heavy</span><strong>$1,000 per traveler</strong><p>More meals out, desserts and café stops. Alcohol and personal shopping remain separate.</p></article></div>
       <div class="budget-layout narrow">
         <div class="budget-controls">
           <label>Travelers I am paying for<select id="travelerCount"><option value="1">1 traveler</option><option value="2">2 travelers</option><option value="3">3 travelers</option><option value="4">4 travelers</option><option value="5">5 travelers</option><option value="6">6 travelers</option><option value="7">7 travelers</option><option value="8">8 travelers</option><option value="9">9 travelers</option><option value="10">10 travelers</option></select></label>
-          <label>Airfare per traveler<select id="airfare"><option value="1000">Justin-family average · $1,000</option><option value="1200">Higher fare allowance · $1,200</option></select></label>
-          <label>Food per traveler<select id="food"><option value="700">Cook 5–6 dinners · $700</option><option value="850" selected>Comfortable reserve · $850</option><option value="1000">Restaurant-heavy · $1,000</option></select></label>
+          <label>Airfare per traveler<select id="airfare"><option value="1000">Current family average · $1,000</option><option value="1200">Higher fare allowance · $1,200</option></select></label>
+          <label>Food per traveler<select id="food"><option value="700">Cook more often · $700</option><option value="850" selected>Comfortable reserve · $850</option><option value="1000">Restaurant-heavy · $1,000</option></select></label>
           <label>Household DFW parking or ride total<input id="airport" type="number" inputmode="numeric" min="0" step="10" value="0"></label>
-          <label class="check"><input id="insurance" type="checkbox" value="192"><span>Show $192 travel-insurance allowance per traveler</span></label>
-          <p class="fine">Food is an on-site personal or household expense, not money due to the shared pot. The calculator also includes the current $568 share of known land commitments. Dublin lodging, fuel, extra mileage, tolls and Ireland parking are not yet included. Selected activity costs apply to every traveler shown.</p>
+          <label class="check"><input id="insurance" type="checkbox" value="192"><span>Add a $192 travel-insurance allowance per traveler</span></label>
+          <p class="fine">Food is spent during the trip rather than paid to the shared pot. The current land share includes the two SUVs, confirmed Killarney house and pending Lahinch home. Dublin lodging, fuel, extra mileage, tolls and Ireland parking remain to be added. Activity costs apply to every traveler selected here, so adjust the traveler count if only part of your household will do an activity such as golf.</p>
         </div>
         <aside class="budget-total"><span id="budgetTotalLabel">Total for 1 traveler</span><strong id="personalTotal">$2,594</strong><p class="budget-scope" id="budgetScope">Per-traveler costs plus one household DFW amount</p><div id="budgetBreakdown"></div></aside>
       </div>
@@ -132,11 +76,23 @@
 
     <section class="section share-section" id="share">
       <div class="share-card narrow">
-        <div><p class="eyebrow">Coordinate by text message</p><h2>Send your choices to the organizer.</h2><p>Select your name, review the summary and copy it into the family text thread. Nothing is sent automatically.</p></div>
+        <div><p class="eyebrow">Coordinate by text message</p><h2>Send the plan you are leaning toward.</h2><p>Select your name, review the summary and copy it into the family text thread. Nothing is sent automatically.</p></div>
         <label>Your name<select id="travelerName"></select></label>
         <textarea id="choiceSummary" rows="12" readonly aria-label="My trip choices"></textarea>
         <div class="share-actions"><button class="button primary" id="copyChoices">Copy my choices</button><a class="button quiet" id="textChoices" href="#">Open text message</a><button class="button text-button" id="clearChoices">Clear this device</button></div>
         <p class="copy-status" id="copyStatus" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section class="section narrow booking-section" id="bookings">
+      <div class="section-heading"><p class="eyebrow">The practical part, after the trip ideas</p><h2>What is paid, what is pending and what still needs a booking.</h2><p>Airfare is shown for total-trip awareness but is excluded from the shared-pot balance because we assume each traveler paid about the same amount. Updated August 20, 2026.</p></div>
+      <div class="booking-summary" id="bookingSummary"></div>
+      <p class="booking-source-note">Euro conversions use the <a href="https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-usd.en.html" target="_blank" rel="noreferrer">European Central Bank reference rate</a> for August 20, 2026: €1 = $1.1681. Card-network exchange rates can differ.</p>
+      <div class="booking-list" id="bookingList"></div>
+      <div class="contribution-panel">
+        <div class="section-heading compact"><p class="eyebrow">Shared lodging and vehicle pot</p><h2>Family contributions and the remaining shared balance.</h2><p>This detailed view keeps the useful family-by-family information without treating a temporary balance as a judgment. Points used for shared reservations count at their stated dollar value.</p></div>
+        <div id="contributionTable"></div>
+        <aside class="ledger-warning"><strong>This is a progress snapshot, not a final settlement.</strong> The figures assume the Lahinch request is accepted. Dublin lodging, fuel, mileage, tolls and parking will change the equal share when they are assigned.</aside>
       </div>
     </section>
   </main>
