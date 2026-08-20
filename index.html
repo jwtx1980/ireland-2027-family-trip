@@ -10,29 +10,29 @@
   <meta property="og:image" content="assets/og.png">
   <title>Ireland 2027 Family Trip</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
-  <link rel="stylesheet" href="styles.css?v=20260820-2">
+  <link rel="stylesheet" href="styles.css?v=20260820-3">
   <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-  <script defer src="data.js?v=20260820-2"></script>
-  <script defer src="app.js?v=20260820-2"></script>
+  <script defer src="data.js?v=20260820-3"></script>
+  <script defer src="app.js?v=20260820-3"></script>
 </head>
 <body>
   <header class="topbar">
     <a class="brand" href="#overview" aria-label="Ireland 2027 home"><span class="mark">IE</span><span>Ireland 2027<small>family trip proposal</small></span></a>
     <button class="menu-button" id="menuButton" aria-expanded="false" aria-controls="siteNav">Menu</button>
     <nav id="siteNav" aria-label="Trip sections">
-      <a href="#overview">Overview</a><a href="#bookings">Reservations</a><a href="#schedule">Trip dates</a><a href="#route">Map</a><a href="#lodging">Lodging</a><a href="#activities">Activities</a><a href="#budget">My cost</a><a href="#share">Text choices</a>
+      <a href="#overview">Overview</a><a href="#bookings">Who paid</a><a href="#schedule">Trip dates</a><a href="#route">Map</a><a href="#lodging">Lodging</a><a href="#activities">Activity costs</a><a href="#budget">My cost</a><a href="#share">Text choices</a>
     </nav>
   </header>
 
   <main>
     <section class="hero section" id="overview">
-      <div><p class="eyebrow">10 travelers · 9 nights · 3 family groups</p><h1>Ireland is moving from a proposal to a booked trip.</h1><p class="hero-copy">Two vehicles and the Killarney house are confirmed. The Lahinch house is awaiting host acceptance. Dublin lodging is the largest remaining reservation.</p><div class="hero-actions"><a class="button primary" href="#bookings">See what is reserved</a><a class="button quiet" href="#lodging">See the stays</a></div></div>
-      <aside class="hero-total"><span>Current known trip commitments</span><strong>$15,684</strong><small>About $9,999 airfare + $2,763 confirmed land + $2,921 pending Lahinch. That is about $1,568 per traveler before Dublin lodging, food and driving costs. Justin-family airfare is exact; the other seven tickets are estimated.</small></aside>
+      <div class="hero-story"><p class="eyebrow">10 travelers · 9 nights · 3 unforgettable bases</p><h1>Three corners of Ireland. One family adventure.</h1><p class="hero-copy">Dublin streets, Killarney’s lakes and the wild Atlantic coast—linked by two vehicles and enough flexibility for every generation to make the trip their own.</p><div class="hero-actions"><a class="button primary" href="#route">Explore the route</a><a class="button quiet" href="#lodging">See where we’ll stay</a></div><div class="hero-status"><span><b>May 31</b> depart DFW</span><span><b>June 1–10</b> in Ireland</span><span><b>2 vehicles</b> confirmed</span></div></div>
+      <a class="hero-visual" href="#lodging" aria-label="See the Ireland lodging photos"><img class="hero-photo-main" src="assets/lahinch-golf-home-1.jpg" alt="Lahinch golf-course home"><img class="hero-photo-small top" src="assets/knockmanagh-1.jpg" alt="Knockmanagh Holiday Home near Killarney"><img class="hero-photo-small bottom" src="assets/staycity-1.jpg" alt="Dublin lodging candidate"><span class="hero-route-chip">Dublin → Killarney → Lahinch</span></a>
     </section>
 
     <section class="headline-costs section narrow" aria-label="Core costs">
-      <article><span>Flights</span><strong>About $1,000 / traveler</strong><p>Justin, Jamie and Kara paid exactly $2,999.78 total. The other seven travelers are estimated at the same $999.93 average until their receipts are provided.</p></article>
-      <article><span>Known land share</span><strong>About $568 / traveler</strong><p>Includes two booked SUVs, confirmed Killarney lodging and pending Lahinch lodging. It does not include Dublin lodging or driving expenses.</p></article>
+      <article><span>Flights · paid individually</span><strong>Neutral to the pot</strong><p>Every traveler is assumed to have paid about the same $999.93 airfare. Flights are shown for total-trip awareness but do not affect who owes the shared pot.</p></article>
+      <article><span>Known land pot</span><strong>About $568 / traveler</strong><p>This is the amount families are balancing: two booked SUVs, confirmed Killarney lodging and pending Lahinch lodging.</p></article>
       <article class="optional"><span>Still outside this amount</span><strong>Dublin + trip spending</strong><p>Dublin lodging, fuel, extra mileage, tolls, parking, food, admissions, insurance and shopping remain separate.</p></article>
     </section>
     <aside class="cost-scope-note narrow"><strong>How to read every cost:</strong> Headline amounts and activity badges are <b>per traveler</b> unless they explicitly say “group total.” Points are credited at the booking’s stated dollar value. The $568 share is a progress snapshot—not a final family settlement.</aside>
@@ -43,9 +43,10 @@
       <p class="booking-source-note">Euro conversions use the <a href="https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-usd.en.html" target="_blank" rel="noreferrer">European Central Bank reference rate</a> for August 20, 2026: €1 = $1.1681. Card-network exchange rates can differ.</p>
       <div class="booking-list" id="bookingList"></div>
       <div class="contribution-panel">
-        <div class="section-heading compact"><p class="eyebrow">Family contribution ledger</p><h2>Who has taken responsibility for what.</h2><p>Purchased airfare and confirmed reservation value count as contributions, including points at their stated dollar value. Pending requests remain separate until accepted.</p></div>
+        <div class="section-heading compact"><p class="eyebrow">Shared lodging and vehicle pot</p><h2>Who is ahead—and who still owes the pot.</h2><p>Airfare is intentionally excluded from these balances because each traveler is assumed to have paid about the same amount. Points used for shared reservations count at their stated dollar value.</p></div>
+        <div class="pot-position-summary" id="potPositionSummary"></div>
         <div id="contributionTable"></div>
-        <aside class="ledger-warning"><strong>Do not settle balances yet.</strong> Cameron and Williams airfare is estimated, and Dublin lodging, fuel, mileage, tolls and parking are still incomplete. The family position will change as receipts and reservations are added.</aside>
+        <aside class="ledger-warning"><strong>Current pot position—not a final settlement.</strong> These figures assume the Lahinch request is accepted. Dublin lodging, fuel, mileage, tolls and parking will change the balances when they are assigned.</aside>
       </div>
     </section>
 
@@ -80,7 +81,8 @@
     </section>
 
     <section class="section narrow" id="activities">
-      <div class="section-heading"><p class="eyebrow">Two vehicles can split directions</p><h2>Choose the days worth your time.</h2><p>Distance is measured from the relevant lodging base. Mark yes, maybe or no; the organizer can form vehicle groups from the text replies.</p></div>
+      <div class="section-heading"><p class="eyebrow">Build your activity budget</p><h2>See what each day adds before choosing it.</h2><p>Every card shows the drive from the relevant lodging base, time commitment and estimated admission per traveler. “Plan it” adds that activity to your personal cost estimate; “Interested” records interest without adding cost yet. Distances will be refreshed if the Dublin candidate or pending Lahinch home changes.</p></div>
+      <aside class="activity-budget-banner"><div><span>Activities currently added</span><strong id="activityRunningTotal">$0 per traveler</strong></div><p>This updates your calculator below. Free activities still appear in your plan but add $0.</p><a href="#budget">See my full trip estimate ↓</a></aside>
       <div id="activityGroups"></div>
     </section>
 

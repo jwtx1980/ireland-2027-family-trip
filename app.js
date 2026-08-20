@@ -35,7 +35,8 @@
 
   function choiceButtons(kind, id) {
     const selected = state[kind][id] || "";
-    return `<div class="choice-row" role="group" aria-label="Choose yes, maybe or no">${["yes", "maybe", "no"].map(choice => `<button data-kind="${kind}" data-id="${id}" data-choice="${choice}" class="${selected === choice ? "selected" : ""}">${choice}</button>`).join("")}</div>`;
+    const labels = kind === "activities" ? { yes: "Plan it", maybe: "Interested", no: "Skip" } : { yes: "Yes", maybe: "Maybe", no: "No" };
+    return `<div class="choice-row" role="group" aria-label="Choose plan it, interested or skip">${["yes", "maybe", "no"].map(choice => `<button data-kind="${kind}" data-id="${id}" data-choice="${choice}" class="${selected === choice ? "selected" : ""}">${labels[choice]}</button>`).join("")}</div>`;
   }
 
   function renderLodging() {
@@ -46,7 +47,8 @@
     const summary = document.querySelector("#bookingSummary");
     const list = document.querySelector("#bookingList");
     const ledger = document.querySelector("#contributionTable");
-    if (!summary || !list || !ledger) return;
+    const positionSummary = document.querySelector("#potPositionSummary");
+    if (!summary || !list || !ledger || !positionSummary) return;
     summary.innerHTML = [
       ["Estimated airfare for 10", money(DATA.costs.airfareEstimatedAll), "Justin exact · other 7 assumed"],
       ["Confirmed shared land", money(DATA.costs.confirmedShared), "Two SUVs + Killarney"],
@@ -56,12 +58,19 @@
 
     list.innerHTML = DATA.bookings.map(item => `<article class="booking-item"><div class="booking-icon">${item.category.slice(0, 1)}</div><div class="booking-copy"><div class="booking-top"><span>${item.category} · ${item.family}</span><span class="status-chip ${item.status}">${item.statusLabel}</span></div><h3>${item.title}</h3><p>${item.detail}</p></div><div class="booking-amount">${item.amount == null ? "<strong>Cost needed</strong>" : `<strong>${moneyExact(item.amount)}</strong>${item.original ? `<small>${item.original}</small>` : ""}`}</div></article>`).join("");
 
-    ledger.innerHTML = `<div class="contribution-table"><div class="contribution-head"><span>Family</span><span>Travelers</span><span>Airfare</span><span>Shared confirmed</span><span>Pending</span><span>Current known share*</span></div>${DATA.families.map(family => {
-      const share = family.travelers * (DATA.costs.overallKnown / TOTAL_TRAVELERS);
-      const contribution = family.airfare + family.sharedConfirmed + family.pending;
+    positionSummary.innerHTML = DATA.families.map(family => {
+      const share = family.travelers * (DATA.costs.knownShared / TOTAL_TRAVELERS);
+      const contribution = family.sharedConfirmed + family.pending;
       const position = contribution - share;
-      return `<article><div class="family-cell"><strong>${family.name}</strong><small>${family.members}</small><p>${family.items}</p></div><span class="ledger-cell"><small>Travelers</small><strong>${family.travelers}</strong></span><span class="ledger-cell"><small>Airfare</small><strong>${moneyExact(family.airfare)}</strong><small>${family.airfareBasis}</small></span><span class="ledger-cell"><small>Shared confirmed</small><strong>${moneyExact(family.sharedConfirmed)}</strong></span><span class="ledger-cell"><small>Pending</small><strong>${moneyExact(family.pending)}</strong></span><span class="ledger-cell"><small>Current known share</small><strong>${money(share)}</strong><small class="${position >= 0 ? "ahead" : "behind"}">${position >= 0 ? `${money(position)} ahead` : `${money(Math.abs(position))} not yet covered`}</small></span></article>`;
-    }).join("")}</div><p class="ledger-footnote">*Equal split of the current ${money(DATA.costs.overallKnown)} known trip commitments: exact Justin-family airfare, estimated airfare of ${moneyExact(DATA.costs.airfarePerTraveler)} per traveler for the other seven people, confirmed shared land and pending Lahinch. This is not the final amount owed.</p>`;
+      return `<article class="${position >= 0 ? "ahead-card" : "due-card"}"><span>${family.name}</span><strong>${position >= 0 ? `${money(position)} ahead` : `${money(Math.abs(position))} due`}</strong><small>${position >= 0 ? "currently paid beyond their equal share" : "currently needed to reach their equal share"}</small></article>`;
+    }).join("");
+
+    ledger.innerHTML = `<div class="contribution-table"><div class="contribution-head"><span>Family</span><span>Travelers</span><span>Flight reference</span><span>Land confirmed</span><span>Land pending</span><span>Equal land share*</span></div>${DATA.families.map(family => {
+      const share = family.travelers * (DATA.costs.knownShared / TOTAL_TRAVELERS);
+      const contribution = family.sharedConfirmed + family.pending;
+      const position = contribution - share;
+      return `<article><div class="family-cell"><strong>${family.name}</strong><small>${family.members}</small><p>${family.items}</p></div><span class="ledger-cell"><small>Travelers</small><strong>${family.travelers}</strong></span><span class="ledger-cell airfare-neutral"><small>Flight reference</small><strong>${moneyExact(family.airfare)}</strong><small>${family.airfareBasis} · excluded from pot</small></span><span class="ledger-cell"><small>Land confirmed</small><strong>${moneyExact(family.sharedConfirmed)}</strong></span><span class="ledger-cell"><small>Land pending</small><strong>${moneyExact(family.pending)}</strong></span><span class="ledger-cell"><small>Equal land share</small><strong>${money(share)}</strong><small class="${position >= 0 ? "ahead" : "behind"}">${position >= 0 ? `${money(position)} ahead` : `${money(Math.abs(position))} due to pot`}</small></span></article>`;
+    }).join("")}</div><p class="ledger-footnote">*Airfare cancels out of this calculation. The equal land share divides the current ${money(DATA.costs.knownShared)} of known vehicle and lodging commitments by all 10 travelers, including pending Lahinch.</p>`;
   }
 
   function renderAlternates() {
@@ -100,7 +109,7 @@
   function renderActivities() {
     const areas = [...new Set(DATA.activities.map(activity => activity.area))];
     document.querySelector("#activityGroups").innerHTML = areas.map(area => {
-      const cards = DATA.activities.filter(activity => activity.area === area).map(activity => `<article class="activity-card"><div class="activity-top"><span class="day-pill">${activity.day}</span><span class="cost-pill">${activity.cost ? `${money(activity.cost)} / traveler` : "Free / traveler"}</span></div><h3>${activity.title}</h3><p class="activity-meta">${activity.distance} · ${activity.duration}</p><p>${activity.note}</p>${choiceButtons("activities", activity.id)}<a href="${activity.link}" target="_blank" rel="noreferrer">See official details ↗</a></article>`).join("");
+      const cards = DATA.activities.filter(activity => activity.area === area).map(activity => `<article class="activity-card"><div class="activity-top"><span class="day-pill">${activity.day}</span><span class="cost-pill">${activity.cost ? `Adds ${money(activity.cost)} / traveler` : "Adds $0 / traveler"}</span></div><h3>${activity.title}</h3><p class="activity-meta">${activity.distance} · ${activity.duration}</p><p>${activity.note}</p><div class="activity-impact" data-activity-impact="${activity.id}">${activity.cost ? `${money(activity.cost)} for 1 traveler if selected` : "Free activity—selecting it adds no admission cost"}</div>${choiceButtons("activities", activity.id)}<a href="${activity.link}" target="_blank" rel="noreferrer">See official details ↗</a></article>`).join("");
       return `<section class="area-block"><div class="area-title"><h3>${area}</h3><span>From the ${area === "Dublin" ? "Dublin stay" : area === "Killarney" ? "Knockmanagh base" : "Lahinch base"}</span></div><div class="activity-grid">${cards}</div></section>`;
     }).join("");
   }
@@ -128,6 +137,13 @@
     const multiplier = travelerCount > 1 ? ` × ${travelerCount}` : "";
     const lines = [[`Flight amount (${money(Number(state.airfare))}${multiplier})`, Number(state.airfare) * travelerCount], [`Current known land share (${money(KNOWN_LAND_PER_TRAVELER)}${multiplier})`, KNOWN_LAND_PER_TRAVELER * travelerCount], [`Food (${money(Number(state.food))}${multiplier})`, Number(state.food) * travelerCount], [`Yes activities (${money(activityCost)}${multiplier})`, activityCost * travelerCount], ["Household DFW cost · once", state.airport || 0], [`Insurance (${money(insurance)}${multiplier})`, insurance * travelerCount]];
     document.querySelector("#budgetBreakdown").innerHTML = lines.map(([label, value]) => `<div class="breakdown-line"><span>${label}</span><strong>${money(Number(value))}</strong></div>`).join("");
+    const activityRunningTotal = document.querySelector("#activityRunningTotal");
+    if (activityRunningTotal) activityRunningTotal.textContent = `${money(activityCost)} per traveler · ${money(activityCost * travelerCount)} for ${travelerCount}`;
+    DATA.activities.forEach(activity => {
+      const impact = document.querySelector(`[data-activity-impact="${activity.id}"]`);
+      if (!impact) return;
+      impact.textContent = activity.cost ? `${money(activity.cost)} per traveler · ${money(activity.cost * travelerCount)} for ${travelerCount} if selected` : "Free activity—selecting it adds no admission cost";
+    });
   }
 
   function buildSummary() {
