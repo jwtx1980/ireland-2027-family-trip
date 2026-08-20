@@ -4,73 +4,83 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0e6651">
-  <meta name="description" content="Ireland 2027 family trip proposal, lodging galleries, costs and activity choices.">
+  <meta name="description" content="Ireland 2027 family trip reservations, lodging, contributions, costs and activity choices.">
   <meta property="og:title" content="Ireland 2027 Family Trip">
-  <meta property="og:description" content="Review the proposed dates, lodging, costs and activities, then text your choices.">
+  <meta property="og:description" content="Review what is reserved, what remains, family contributions and activity choices.">
   <meta property="og:image" content="assets/og.png">
   <title>Ireland 2027 Family Trip</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
-  <link rel="stylesheet" href="styles.css?v=20260806-7">
+  <link rel="stylesheet" href="styles.css?v=20260820-1">
   <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-  <script defer src="data.js?v=20260806-7"></script>
-  <script defer src="app.js?v=20260806-7"></script>
+  <script defer src="data.js?v=20260820-1"></script>
+  <script defer src="app.js?v=20260820-1"></script>
 </head>
 <body>
   <header class="topbar">
     <a class="brand" href="#overview" aria-label="Ireland 2027 home"><span class="mark">IE</span><span>Ireland 2027<small>family trip proposal</small></span></a>
     <button class="menu-button" id="menuButton" aria-expanded="false" aria-controls="siteNav">Menu</button>
     <nav id="siteNav" aria-label="Trip sections">
-      <a href="#overview">Overview</a><a href="#schedule">Trip dates</a><a href="#route">Map</a><a href="#lodging">Lodging</a><a href="#activities">Activities</a><a href="#budget">My cost</a><a href="#share">Text choices</a>
+      <a href="#overview">Overview</a><a href="#bookings">Reservations</a><a href="#schedule">Trip dates</a><a href="#route">Map</a><a href="#lodging">Lodging</a><a href="#activities">Activities</a><a href="#budget">My cost</a><a href="#share">Text choices</a>
     </nav>
   </header>
 
   <main>
     <section class="hero section" id="overview">
-      <div><p class="eyebrow">11 travelers · 9 nights · 3 lodging areas</p><h1>Nine nights in Ireland, with time to enjoy it.</h1><p class="hero-copy">This is the family review version. Nothing here books, charges or shares information. Review the dated lodging plan and choose the activities that interest you, then copy or text your summary.</p><div class="hero-actions"><a class="button primary" href="#schedule">See the exact dates</a><a class="button quiet" href="assets/Ireland_2027_family_pitch_deck.pdf" target="_blank">Open the PDF deck</a></div></div>
-      <aside class="hero-total"><span>Working expense per traveler</span><strong>$2,315–$2,615</strong><small>Per traveler: $900–$1,200 airfare + about $1,415 required trip pool. Food and optional choices are separate. The pool will be repriced if lodging changes.</small></aside>
+      <div><p class="eyebrow">10 travelers · 9 nights · 3 family groups</p><h1>Ireland is moving from a proposal to a booked trip.</h1><p class="hero-copy">Two vehicles and the Killarney house are confirmed. The Lahinch house is awaiting host acceptance. Dublin lodging is the largest remaining reservation.</p><div class="hero-actions"><a class="button primary" href="#bookings">See what is reserved</a><a class="button quiet" href="#lodging">See the stays</a></div></div>
+      <aside class="hero-total"><span>Known shared land commitments</span><strong>$5,684</strong><small>$2,763 confirmed + $2,921 pending. This equals about $568 per traveler if split evenly. Flights, Dublin lodging, food and on-site choices are not included.</small></aside>
     </section>
 
     <section class="headline-costs section narrow" aria-label="Core costs">
-      <article><span>Airfare per traveler</span><strong>$900–$1,200</strong><p>Each traveler books and pays for their own ticket after the family locks the dates.</p></article>
-      <article><span>Working pool per traveler</span><strong>About $1,415</strong><p>Using the same $15,561 group budget for 11 travelers: about $1,042 lodging + $209 three-SUV rental + $163 driving fund per traveler. Fuel remains about $685 group total, or about $62 per traveler. Reprice this after choosing the houses.</p></article>
-      <article class="optional"><span>Each traveler plans separately</span><strong>Food & choices</strong><p>Food, a personal share of DFW parking or rides, admissions, insurance and shopping are not in the headline.</p></article>
+      <article><span>Flights</span><strong>Reported purchased</strong><p>Justin and Cameron families report tickets purchased. Williams family is likely purchased but still needs confirmation and cost details.</p></article>
+      <article><span>Known land share</span><strong>About $568 / traveler</strong><p>Includes two booked SUVs, confirmed Killarney lodging and pending Lahinch lodging. It does not include Dublin lodging or driving expenses.</p></article>
+      <article class="optional"><span>Still outside this amount</span><strong>Dublin + trip spending</strong><p>Dublin lodging, fuel, extra mileage, tolls, parking, food, admissions, insurance and shopping remain separate.</p></article>
     </section>
-    <aside class="cost-scope-note narrow"><strong>How to read every cost:</strong> Headline amounts and activity badges are <b>per traveler</b> unless they explicitly say “group total.” In the calculator, choose how many of the 11 travelers you are paying for. The lodging share is a conservative placeholder until an 11-person property is selected and priced.</aside>
+    <aside class="cost-scope-note narrow"><strong>How to read every cost:</strong> Headline amounts and activity badges are <b>per traveler</b> unless they explicitly say “group total.” Points are credited at the booking’s stated dollar value. The $568 share is a progress snapshot—not a final family settlement.</aside>
+
+    <section class="section narrow booking-section" id="bookings">
+      <div class="section-heading"><p class="eyebrow">Reservation and contribution tracker</p><h2>What is booked, pending and still missing.</h2><p>Updated August 20, 2026. Private confirmation codes and account-management links are intentionally not published here.</p></div>
+      <div class="booking-summary" id="bookingSummary"></div>
+      <p class="booking-source-note">Euro conversions use the <a href="https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-usd.en.html" target="_blank" rel="noreferrer">European Central Bank reference rate</a> for August 20, 2026: €1 = $1.1681. Card-network exchange rates can differ.</p>
+      <div class="booking-list" id="bookingList"></div>
+      <div class="contribution-panel">
+        <div class="section-heading compact"><p class="eyebrow">Family contribution ledger</p><h2>Who has taken responsibility for what.</h2><p>Confirmed reservation value counts as a contribution even when points were used. Pending requests are shown separately and do not become credit until accepted.</p></div>
+        <div id="contributionTable"></div>
+        <aside class="ledger-warning"><strong>Do not settle balances yet.</strong> Dublin lodging, flight values, fuel, mileage, tolls and parking are still incomplete. The family position will change as those items are assigned.</aside>
+      </div>
+    </section>
 
     <section class="section narrow schedule-section" id="schedule">
       <div class="section-heading"><p class="eyebrow">One schedule for every booking</p><h2>Dates the lodging plan requires.</h2><p>These are planning dates, not a second vote. Airfare and every stay need to match this same sequence.</p></div>
       <div class="trip-window"><strong>Depart DFW Monday, May 31, 2027</strong><span>Overnight flight</span><strong>Arrive Dublin Tuesday, June 1</strong><span>9 nights in Ireland</span><strong>Fly home Thursday, June 10</strong></div>
       <ol class="stay-timeline">
         <li><span class="timeline-number">1</span><div><strong>Dublin · Staycity</strong><span>Check in Tue, June 1 · Check out Thu, June 3</span><small>2 nights</small></div></li>
-        <li><span class="timeline-number">2</span><div><strong>Killarney · Shangri-La townhouse</strong><span>Check in Thu, June 3 · Check out Mon, June 7</span><small>4 nights</small></div></li>
-        <li><span class="timeline-number">3</span><div><strong>Doolin · Atlantic View Cottages</strong><span>Check in Mon, June 7 · Check out Wed, June 9</span><small>2 nights</small></div></li>
+        <li><span class="timeline-number">2</span><div><strong>Killarney · Knockmanagh Holiday Home</strong><span>Check in Thu, June 3 · Check out Sun, June 6</span><small>3 nights · confirmed</small></div></li>
+        <li><span class="timeline-number">3</span><div><strong>Lahinch · 7-bedroom golf home</strong><span>Check in Sun, June 6 · Check out Wed, June 9</span><small>3 nights · host acceptance pending</small></div></li>
         <li><span class="timeline-number">4</span><div><strong>Dublin · Staycity again</strong><span>Check in Wed, June 9 · Check out Thu, June 10</span><small>1 night</small></div></li>
       </ol>
-      <aside class="availability-warning"><strong>These properties are candidates, not reservations.</strong><p>If one is taken before we book—or its 2027 rooms, price or cancellation terms change—we will need a different property in the same area for the same dates. The photos and room plan would then change. This is a major reason to settle the dates before families commit money.</p></aside>
+      <aside class="availability-warning"><strong>Dublin is the remaining lodging gap.</strong><p>Knockmanagh is confirmed. Lahinch has been requested and is awaiting the host. The Dublin beginning and final night still need to be reserved for the same dates shown above.</p></aside>
     </section>
 
     <section class="section route-section" id="route">
-      <div class="section-heading narrow"><p class="eyebrow">The route at a glance</p><h2>Where the three bases are.</h2><p>Use the map to zoom, pan and compare the stays. The final Dublin marker is the same Staycity property used at the beginning. Dashed lines show the stop order, not the exact driving roads.</p></div>
+      <div class="section-heading narrow"><p class="eyebrow">The route at a glance</p><h2>Dublin → Killarney → Lahinch → Dublin.</h2><p>Use the map to zoom and compare the stays. The final Dublin marker is the same area used at the beginning. Dashed lines show stop order, not exact driving roads.</p></div>
       <div class="route-layout narrow">
-        <div id="tripMap" class="trip-map" aria-label="Interactive map of the Dublin, Killarney and Doolin lodging route"><p>Loading the route map…</p></div>
+        <div id="tripMap" class="trip-map" aria-label="Interactive map of the Dublin, Killarney and Lahinch lodging route"><p>Loading the route map…</p></div>
         <div class="route-legs">
           <article><span>June 3</span><strong>Dublin → Killarney</strong><p>About 4 hours driving; allow 5½–6 hours for loading, lunch and breaks.</p></article>
-          <article><span>June 7</span><strong>Killarney → Doolin</strong><p>About 3¼ hours direct; allow 6–7 hours if the group stops at Bunratty.</p></article>
-          <article><span>June 9</span><strong>Doolin → Dublin</strong><p>About 3 hours driving; allow 4½–5 hours with group stops.</p></article>
-          <a class="button quiet" href="https://www.google.com/maps/dir/Staycity+Aparthotels+Dublin+City+Centre/Shangri-La+Large+Family+Townhouse,+New+Road,+Killarney/Atlantic+View+Cottages,+Doolin/Staycity+Aparthotels+Dublin+City+Centre" target="_blank" rel="noreferrer">Open the full route in Google Maps ↗</a>
+          <article><span>June 6</span><strong>Knockmanagh → Lahinch</strong><p>Roughly 3 hours direct; allow 4–5 hours with loading, lunch and breaks.</p></article>
+          <article><span>June 9</span><strong>Lahinch → Dublin</strong><p>About 3 hours driving; allow 4½–5 hours with group stops.</p></article>
+          <a class="button quiet" href="https://www.google.com/maps/dir/Dublin,+Ireland/Knockmanagh,+Kilcummin,+County+Kerry/Lahinch,+County+Clare/Dublin,+Ireland" target="_blank" rel="noreferrer">Open the full route in Google Maps ↗</a>
         </div>
       </div>
     </section>
 
     <section class="section lodging-section" id="lodging">
-      <div class="section-heading narrow"><p class="eyebrow">Three bases, fewer hotel changes</p><h2>See the dated lodging candidates.</h2><p>The photos come from the current public listings. None of these properties is being held. Prices, capacity and availability for the exact June 2027 dates must be checked again before anyone pays.</p></div>
+      <div class="section-heading narrow"><p class="eyebrow">Three bases, fewer hotel changes</p><h2>See the current lodging status.</h2><p>Knockmanagh is confirmed, Lahinch is pending host acceptance, and Dublin remains to be booked. Public listing links are provided for photos and property details.</p></div>
       <div class="lodging-list narrow" id="lodgingList"></div>
-      <div class="alternate-heading narrow"><p class="eyebrow">Right-sized possibilities for 11 travelers</p><h2>Two whole-home alternatives to investigate.</h2><p>These are comparison candidates, not confirmed availability or quotes. A few photos are shown for interest; use the live listing to see the complete gallery and enter the exact dates.</p></div>
-      <div class="alternate-grid narrow" id="alternateList"></div>
     </section>
 
     <section class="section narrow" id="activities">
-      <div class="section-heading"><p class="eyebrow">Three vehicles can split directions</p><h2>Choose the days worth your time.</h2><p>Distance is measured from the relevant lodging base. Mark yes, maybe or no; the organizer can form vehicle groups from the text replies.</p></div>
+      <div class="section-heading"><p class="eyebrow">Two vehicles can split directions</p><h2>Choose the days worth your time.</h2><p>Distance is measured from the relevant lodging base. Mark yes, maybe or no; the organizer can form vehicle groups from the text replies.</p></div>
       <div id="activityGroups"></div>
     </section>
 
@@ -78,12 +88,12 @@
       <div class="section-heading narrow"><p class="eyebrow">Personal or household calculator</p><h2>What should I expect to spend?</h2><p>Choose the number of travelers you are paying for. Per-traveler costs will be multiplied by that number, while the DFW parking or ride amount is counted once. Your choices stay private to your device.</p></div>
       <div class="budget-layout narrow">
         <div class="budget-controls">
-          <label>Travelers I am paying for<select id="travelerCount"><option value="1">1 traveler</option><option value="2">2 travelers</option><option value="3">3 travelers</option><option value="4">4 travelers</option><option value="5">5 travelers</option><option value="6">6 travelers</option><option value="7">7 travelers</option><option value="8">8 travelers</option><option value="9">9 travelers</option><option value="10">10 travelers</option><option value="11">11 travelers</option></select></label>
+          <label>Travelers I am paying for<select id="travelerCount"><option value="1">1 traveler</option><option value="2">2 travelers</option><option value="3">3 travelers</option><option value="4">4 travelers</option><option value="5">5 travelers</option><option value="6">6 travelers</option><option value="7">7 travelers</option><option value="8">8 travelers</option><option value="9">9 travelers</option><option value="10">10 travelers</option></select></label>
           <label>Airfare per traveler<select id="airfare"><option value="900">Basic target · $900</option><option value="1200">More premium · $1,200</option></select></label>
           <label>Food per traveler<select id="food"><option value="456">Lean · $456</option><option value="497" selected>Expected · $497</option><option value="538">Upper · $538</option></select></label>
           <label>Household DFW parking or ride total<input id="airport" type="number" inputmode="numeric" min="0" step="10" value="0"></label>
           <label class="check"><input id="insurance" type="checkbox" value="192"><span>Show $192 travel-insurance allowance per traveler</span></label>
-          <p class="fine">Selected activity costs apply to every traveler you are paying for. The DFW parking/ride amount is added only once. Insurance is a placeholder until an actual policy is selected and quoted.</p>
+          <p class="fine">The calculator includes only the current $568 share of known land commitments. Dublin lodging, fuel, extra mileage, tolls and Ireland parking are not yet included. Selected activity costs apply to every traveler shown.</p>
         </div>
         <aside class="budget-total"><span id="budgetTotalLabel">Total for 1 traveler</span><strong id="personalTotal">$2,594</strong><p class="budget-scope" id="budgetScope">Per-traveler costs plus one household DFW amount</p><div id="budgetBreakdown"></div></aside>
       </div>

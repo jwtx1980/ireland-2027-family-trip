@@ -1,15 +1,8 @@
 (() => {
   const DATA = window.TRIP_DATA;
   const STORAGE_KEY = "ireland-2027-static-choices";
-  const TOTAL_TRAVELERS = 11;
-  const GROUP_COSTS = { lodging: 11466, suv: 2301, driving: 1794 };
-  const GROUP_POOL = GROUP_COSTS.lodging + GROUP_COSTS.suv + GROUP_COSTS.driving;
-  const PER_TRAVELER = {
-    lodging: GROUP_COSTS.lodging / TOTAL_TRAVELERS,
-    suv: GROUP_COSTS.suv / TOTAL_TRAVELERS,
-    driving: GROUP_COSTS.driving / TOTAL_TRAVELERS,
-    pool: GROUP_POOL / TOTAL_TRAVELERS
-  };
+  const TOTAL_TRAVELERS = 10;
+  const KNOWN_LAND_PER_TRAVELER = DATA.costs.perTravelerKnown;
   const defaultState = { activities: {}, travelerCount: 1, airfare: 900, food: 497, airport: 0, insurance: false, name: "" };
   let state = loadState();
   let galleryStay = null;
@@ -34,13 +27,38 @@
     return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(value);
   }
 
+  function moneyExact(value) {
+    return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(value);
+  }
+
   function choiceButtons(kind, id) {
     const selected = state[kind][id] || "";
     return `<div class="choice-row" role="group" aria-label="Choose yes, maybe or no">${["yes", "maybe", "no"].map(choice => `<button data-kind="${kind}" data-id="${id}" data-choice="${choice}" class="${selected === choice ? "selected" : ""}">${choice}</button>`).join("")}</div>`;
   }
 
   function renderLodging() {
-    document.querySelector("#lodgingList").innerHTML = DATA.stays.map(stay => `<article class="lodging-card"><div class="lodging-copy"><p class="eyebrow">${stay.area}</p><h3>${stay.name}</h3><div class="stay-date"><span>Exact stay dates</span><strong>${stay.dateLabel}</strong><small>${stay.address}</small></div><span class="candidate-pill">${stay.status}</span><p>${stay.roomPlan}</p><p class="photo-source">${stay.sourceNote}</p><div class="date-search-links">${stay.dateLinks.map(item => `<a href="${item.url}" target="_blank" rel="noreferrer">${item.label} availability ↗</a>`).join("")}</div><div class="lodging-actions"><button class="button primary gallery-open" data-stay="${stay.id}">View all ${stay.photos.length} photos</button></div></div><div class="lodging-preview">${stay.photos.slice(0, 6).map((photo, index) => `<button class="gallery-photo" data-stay="${stay.id}" data-index="${index}" aria-label="Open ${stay.name} photo ${index + 1}"><img src="${photo}" loading="lazy" alt="${stay.name} listing preview ${index + 1}"></button>`).join("")}</div></article>`).join("");
+    document.querySelector("#lodgingList").innerHTML = DATA.stays.map(stay => `<article class="lodging-card"><div class="lodging-copy"><p class="eyebrow">${stay.area}</p><h3>${stay.name}</h3><div class="stay-date"><span>Exact stay dates</span><strong>${stay.dateLabel}</strong><small>${stay.address}</small></div><span class="candidate-pill">${stay.status}</span><p>${stay.roomPlan}</p><p class="photo-source">${stay.sourceNote}</p><div class="date-search-links">${stay.dateLinks.map(item => `<a href="${item.url}" target="_blank" rel="noreferrer">${item.label} ↗</a>`).join("")}</div><div class="lodging-actions"><button class="button primary gallery-open" data-stay="${stay.id}">View ${stay.photos.length === 2 ? "preview photos" : `all ${stay.photos.length} photos`}</button></div></div><div class="lodging-preview ${stay.photos.length <= 2 ? "few-photos" : ""}">${stay.photos.slice(0, 6).map((photo, index) => `<button class="gallery-photo" data-stay="${stay.id}" data-index="${index}" aria-label="Open ${stay.name} photo ${index + 1}"><img src="${photo}" loading="lazy" alt="${stay.name} listing preview ${index + 1}"></button>`).join("")}</div></article>`).join("");
+  }
+
+  function renderBookings() {
+    const summary = document.querySelector("#bookingSummary");
+    const list = document.querySelector("#bookingList");
+    const ledger = document.querySelector("#contributionTable");
+    if (!summary || !list || !ledger) return;
+    summary.innerHTML = [
+      ["Confirmed shared reservations", money(DATA.costs.confirmedShared), "Two SUVs + Killarney"],
+      ["Pending request", money(DATA.costs.pendingShared), "Lahinch · not yet accepted"],
+      ["Known if pending confirms", money(DATA.costs.knownShared), `${money(DATA.costs.perTravelerKnown)} per traveler`],
+      ["Still unpriced", "Dublin + driving", "Also need verified flight values"]
+    ].map(([label, value, note]) => `<article><span>${label}</span><strong>${value}</strong><small>${note}</small></article>`).join("");
+
+    list.innerHTML = DATA.bookings.map(item => `<article class="booking-item"><div class="booking-icon">${item.category.slice(0, 1)}</div><div class="booking-copy"><div class="booking-top"><span>${item.category} · ${item.family}</span><span class="status-chip ${item.status}">${item.statusLabel}</span></div><h3>${item.title}</h3><p>${item.detail}</p></div><div class="booking-amount">${item.amount == null ? "<strong>Cost needed</strong>" : `<strong>${moneyExact(item.amount)}</strong>${item.original ? `<small>${item.original}</small>` : ""}`}</div></article>`).join("");
+
+    ledger.innerHTML = `<div class="contribution-table"><div class="contribution-head"><span>Family</span><span>Travelers</span><span>Confirmed credit</span><span>Pending credit</span><span>Current known share*</span></div>${DATA.families.map(family => {
+      const share = family.travelers * DATA.costs.perTravelerKnown;
+      const position = family.confirmed + family.pending - share;
+      return `<article><div class="family-cell"><strong>${family.name}</strong><small>${family.members}</small><p>${family.items}</p></div><span class="ledger-cell"><small>Travelers</small><strong>${family.travelers}</strong></span><span class="ledger-cell"><small>Confirmed credit</small><strong>${moneyExact(family.confirmed)}</strong></span><span class="ledger-cell"><small>Pending credit</small><strong>${moneyExact(family.pending)}</strong></span><span class="ledger-cell"><small>Current known share</small><strong>${money(share)}</strong><small class="${position >= 0 ? "ahead" : "behind"}">${position >= 0 ? `${money(position)} ahead` : `${money(Math.abs(position))} not yet covered`}</small></span></article>`;
+    }).join("")}</div><p class="ledger-footnote">*Equal split of the current ${money(DATA.costs.knownShared)} known land commitments only, including the pending Lahinch request. This is not the final amount owed.</p>`;
   }
 
   function renderAlternates() {
@@ -59,8 +77,8 @@
     mapElement.innerHTML = "";
     const stops = [
       { label: "1 & 4", name: "Staycity Dublin City Centre", dates: "June 1–3 and June 9–10", coords: [53.3483945, -6.2699439] },
-      { label: "2", name: "Shangri-La, Killarney", dates: "June 3–7", coords: [52.0620199, -9.5159066] },
-      { label: "3", name: "Atlantic View Cottages, Doolin", dates: "June 7–9", coords: [53.0114089, -9.3573707] }
+      { label: "2", name: "Knockmanagh Holiday Home", dates: "June 3–6", coords: [52.108, -9.47] },
+      { label: "3", name: "Lahinch Golf Home", dates: "June 6–9", coords: [52.935, -9.346] }
     ];
     const route = [stops[0].coords, stops[1].coords, stops[2].coords, stops[0].coords];
     const map = L.map(mapElement, { scrollWheelZoom: false });
@@ -80,7 +98,7 @@
     const areas = [...new Set(DATA.activities.map(activity => activity.area))];
     document.querySelector("#activityGroups").innerHTML = areas.map(area => {
       const cards = DATA.activities.filter(activity => activity.area === area).map(activity => `<article class="activity-card"><div class="activity-top"><span class="day-pill">${activity.day}</span><span class="cost-pill">${activity.cost ? `${money(activity.cost)} / traveler` : "Free / traveler"}</span></div><h3>${activity.title}</h3><p class="activity-meta">${activity.distance} · ${activity.duration}</p><p>${activity.note}</p>${choiceButtons("activities", activity.id)}<a href="${activity.link}" target="_blank" rel="noreferrer">See official details ↗</a></article>`).join("");
-      return `<section class="area-block"><div class="area-title"><h3>${area}</h3><span>From the ${area === "Dublin" ? "Dublin stay" : area === "Killarney" ? "Killarney base" : "Doolin / Clare base"}</span></div><div class="activity-grid">${cards}</div></section>`;
+      return `<section class="area-block"><div class="area-title"><h3>${area}</h3><span>From the ${area === "Dublin" ? "Dublin stay" : area === "Killarney" ? "Knockmanagh base" : "Lahinch base"}</span></div><div class="activity-grid">${cards}</div></section>`;
     }).join("");
   }
 
@@ -99,13 +117,13 @@
     const travelerCount = Math.min(TOTAL_TRAVELERS, Math.max(1, Number(state.travelerCount) || 1));
     const activityCost = DATA.activities.reduce((sum, activity) => sum + (state.activities[activity.id] === "yes" ? activity.cost : 0), 0);
     const insurance = state.insurance ? 192 : 0;
-    const perTravelerTotal = Number(state.airfare) + PER_TRAVELER.pool + Number(state.food) + insurance + activityCost;
+    const perTravelerTotal = Number(state.airfare) + KNOWN_LAND_PER_TRAVELER + Number(state.food) + insurance + activityCost;
     const total = perTravelerTotal * travelerCount + Number(state.airport || 0);
     document.querySelector("#budgetTotalLabel").textContent = `Total for ${travelerCount} ${travelerCount === 1 ? "traveler" : "travelers"}`;
     document.querySelector("#personalTotal").textContent = money(total);
     document.querySelector("#budgetScope").textContent = `${money(perTravelerTotal)} per traveler × ${travelerCount}, plus ${money(Number(state.airport || 0))} household DFW cost counted once`;
     const multiplier = travelerCount > 1 ? ` × ${travelerCount}` : "";
-    const lines = [[`Airfare (${money(Number(state.airfare))}${multiplier})`, Number(state.airfare) * travelerCount], [`Lodging placeholder (${money(PER_TRAVELER.lodging)}${multiplier})`, PER_TRAVELER.lodging * travelerCount], [`SUV rental (${money(PER_TRAVELER.suv)}${multiplier})`, PER_TRAVELER.suv * travelerCount], [`Driving fund (${money(PER_TRAVELER.driving)}${multiplier})`, PER_TRAVELER.driving * travelerCount], [`Food (${money(Number(state.food))}${multiplier})`, Number(state.food) * travelerCount], [`Yes activities (${money(activityCost)}${multiplier})`, activityCost * travelerCount], ["Household DFW cost · once", state.airport || 0], [`Insurance (${money(insurance)}${multiplier})`, insurance * travelerCount]];
+    const lines = [[`Airfare allowance (${money(Number(state.airfare))}${multiplier})`, Number(state.airfare) * travelerCount], [`Current known land share (${money(KNOWN_LAND_PER_TRAVELER)}${multiplier})`, KNOWN_LAND_PER_TRAVELER * travelerCount], [`Food (${money(Number(state.food))}${multiplier})`, Number(state.food) * travelerCount], [`Yes activities (${money(activityCost)}${multiplier})`, activityCost * travelerCount], ["Household DFW cost · once", state.airport || 0], [`Insurance (${money(insurance)}${multiplier})`, insurance * travelerCount]];
     document.querySelector("#budgetBreakdown").innerHTML = lines.map(([label, value]) => `<div class="breakdown-line"><span>${label}</span><strong>${money(Number(value))}</strong></div>`).join("");
   }
 
@@ -114,9 +132,9 @@
     const activityLines = DATA.activities.filter(activity => state.activities[activity.id]).map(activity => `- ${activity.title}: ${formatChoice(state.activities[activity.id])}`);
     const activityCost = DATA.activities.reduce((sum, activity) => sum + (state.activities[activity.id] === "yes" ? activity.cost : 0), 0);
     const travelerCount = Math.min(TOTAL_TRAVELERS, Math.max(1, Number(state.travelerCount) || 1));
-    const perTravelerTotal = Number(state.airfare) + PER_TRAVELER.pool + Number(state.food) + (state.insurance ? 192 : 0) + activityCost;
+    const perTravelerTotal = Number(state.airfare) + KNOWN_LAND_PER_TRAVELER + Number(state.food) + (state.insurance ? 192 : 0) + activityCost;
     const total = perTravelerTotal * travelerCount + Number(state.airport || 0);
-    return [`IRELAND 2027 — ${name}`, "", `PAYING FOR: ${travelerCount} ${travelerCount === 1 ? "TRAVELER" : "TRAVELERS"}`, "", "ACTIVITIES", ...(activityLines.length ? activityLines : ["- No activity choices yet"]), "", `Per-traveler cost before household DFW amount: ${money(perTravelerTotal)}`, `Combined total for ${travelerCount} ${travelerCount === 1 ? "traveler" : "travelers"}: ${money(total)}`, "", `Airfare per traveler: ${money(Number(state.airfare))}`, `Working trip pool per traveler: about ${money(PER_TRAVELER.pool)}`, `- Lodging placeholder per traveler: about ${money(PER_TRAVELER.lodging)}`, `- Three-SUV rental per traveler: about ${money(PER_TRAVELER.suv)}`, `- Ireland driving fund per traveler: about ${money(PER_TRAVELER.driving)}`, "  (includes about $62 per traveler for fuel; about $685 group fuel total)", "Lodging must be repriced after the 11-person property is selected.", `Food per traveler: ${money(Number(state.food))}`, `Household DFW parking/ride counted once: ${money(Number(state.airport || 0))}`, `Insurance allowance per traveler shown: ${state.insurance ? "Yes" : "No"}`, "", "Selected activity costs are multiplied by the number of travelers shown above.", "Car-seat questions and any special room needs will be handled directly with the organizer."].join("\n");
+    return [`IRELAND 2027 — ${name}`, "", `PAYING FOR: ${travelerCount} ${travelerCount === 1 ? "TRAVELER" : "TRAVELERS"}`, "", "ACTIVITIES", ...(activityLines.length ? activityLines : ["- No activity choices yet"]), "", `Current subtotal per traveler: ${money(perTravelerTotal)}`, `Combined current subtotal for ${travelerCount} ${travelerCount === 1 ? "traveler" : "travelers"}: ${money(total)}`, "", `Airfare allowance per traveler: ${money(Number(state.airfare))}`, `Known shared land commitments per traveler: about ${money(KNOWN_LAND_PER_TRAVELER)}`, "  (two SUVs + confirmed Killarney + pending Lahinch)", `Food per traveler: ${money(Number(state.food))}`, `Household DFW parking/ride counted once: ${money(Number(state.airport || 0))}`, `Insurance allowance per traveler shown: ${state.insurance ? "Yes" : "No"}`, "", "NOT YET INCLUDED: Dublin lodging, fuel, extra rental mileage, tolls and Ireland parking.", "Selected activity costs are multiplied by the number of travelers shown above.", "Car-seat questions and any special room needs will be handled directly with the organizer."].join("\n");
   }
 
   function formatChoice(value) {
@@ -215,5 +233,5 @@
     document.querySelectorAll("main section[id]").forEach(section => observer.observe(section));
   }
 
-  renderLodging(); renderAlternates(); renderActivities(); initializeRouteMap(); bindChoiceButtons(); bindGallery(); bindControls(); bindNavigation(); updateBudget(); updateSummary();
+  renderLodging(); renderBookings(); renderAlternates(); renderActivities(); initializeRouteMap(); bindChoiceButtons(); bindGallery(); bindControls(); bindNavigation(); updateBudget(); updateSummary();
 })();
