@@ -2,10 +2,16 @@ window.TRIP_DATA = {
   updated: "August 20, 2026",
   fx: { date: "August 20, 2026", eurUsd: 1.1681, source: "European Central Bank" },
   costs: {
+    airfareExactJustin: 2999.78,
+    airfarePerTraveler: 999.93,
+    airfareEstimatedAll: 9999.27,
     confirmedShared: 2763.48,
     pendingShared: 2921,
     knownShared: 5684.48,
     perTravelerKnown: 568.45,
+    overallConfirmedEstimated: 12762.75,
+    overallKnown: 15683.75,
+    perTravelerOverallKnown: 1568.38,
     carsConfirmed: 1452.80,
     killarneyConfirmed: 1310.68
   },
@@ -59,9 +65,9 @@ window.TRIP_DATA = {
   ],
   alternates: [],
   bookings: [
-    { category: "Flight", title: "Justin family airfare", family: "Justin family", status: "reported", statusLabel: "Reported purchased", amount: null, detail: "Ticket cost, airline and flight details still needed." },
-    { category: "Flight", title: "Cameron family airfare", family: "Cameron family", status: "reported", statusLabel: "Reported purchased", amount: null, detail: "Ticket cost, airline and flight details still needed." },
-    { category: "Flight", title: "Williams family airfare", family: "Williams family", status: "verify", statusLabel: "Likely purchased · verify", amount: null, detail: "Confirm that all three tickets are issued and provide the total value." },
+    { category: "Flight", title: "American Airlines nonstop · Justin family", family: "Justin family", status: "confirmed", statusLabel: "Purchased · exact receipt", amount: 2999.78, detail: "3 travelers · AA 132 departs DFW May 31 at 7:00 PM and arrives Dublin June 1 at 9:45 AM · AA 133 departs Dublin June 10 at 11:45 AM and arrives DFW at 3:30 PM. Economy (B). Total includes $164.09 in selected-seat fees. First checked bag is free; a second is $100. One personal item and one carry-on are allowed." },
+    { category: "Flight", title: "Airfare estimate · Cameron family", family: "Cameron family", status: "assumed", statusLabel: "Estimated from Justin receipt", amount: 3999.71, detail: "4 travelers × the Justin family’s exact $999.93 per-traveler average. Tickets were reported purchased, but this is an estimate until the Cameron family receipt is provided." },
+    { category: "Flight", title: "Airfare estimate · Williams family", family: "Williams family", status: "assumed", statusLabel: "Estimated from Justin receipt", amount: 2999.78, detail: "3 travelers × the Justin family’s exact $999.93 per-traveler average. Confirm that all three tickets are issued and provide the receipt to replace this estimate." },
     { category: "Vehicle", title: "Hertz · Skoda Kodiaq or similar", family: "Cameron family", status: "confirmed", statusLabel: "Confirmed · paid with points", amount: 726.40, detail: "June 3 at 10:00 AM through June 9 at 4:00 PM · Dublin Baggot Street · driver Cameron · 72,640 Chase points · free cancellation through May 31, 2027. Two vehicles should give 10 travelers more luggage room, but confirm seat count and that the earlier 900-km allowance applies to this booked rate." },
     { category: "Vehicle", title: "Hertz · Skoda Kodiaq or similar", family: "Justin family", status: "confirmed", statusLabel: "Confirmed · paid with points", amount: 726.40, detail: "June 3 at 10:00 AM through June 9 at 4:00 PM · Dublin Baggot Street · driver Justin · 63,722 Chase points · free cancellation through May 31, 2027. Confirm seat count, luggage capacity and that the earlier 900-km allowance applies to this booked rate." },
     { category: "Lodging", title: "Knockmanagh Holiday Home", family: "Cameron family", status: "confirmed", statusLabel: "Confirmed", amount: 1310.68, original: "€1,122.06", detail: "June 3–6 · 3 nights · 7 adults + 3 children. Includes booking fee and fixed electricity charge. Refundable €200 security hold is not counted as trip expense." },
@@ -69,9 +75,9 @@ window.TRIP_DATA = {
     { category: "Lodging", title: "Dublin arrival + final night", family: "Unassigned", status: "missing", statusLabel: "Not booked", amount: null, detail: "Still need June 1–3 and June 9–10 for all 10 travelers." }
   ],
   families: [
-    { name: "Justin family", members: "Justin, Jamie, Kara", travelers: 3, confirmed: 726.40, pending: 2921, items: "Justin SUV confirmed; Lahinch request pending; flights reported purchased." },
-    { name: "Cameron family", members: "Cameron, Laney, Liam, Arlo", travelers: 4, confirmed: 2037.08, pending: 0, items: "Cameron SUV and Knockmanagh confirmed; flights reported purchased." },
-    { name: "Williams family", members: "William, Mary, Misti", travelers: 3, confirmed: 0, pending: 0, items: "Flights likely purchased; no shared land reservation assigned yet." }
+    { name: "Justin family", members: "Justin, Jamie, Kara", travelers: 3, airfare: 2999.78, airfareBasis: "Exact receipt", sharedConfirmed: 726.40, pending: 2921, items: "Exact airfare receipt and Justin SUV confirmed; Lahinch request pending." },
+    { name: "Cameron family", members: "Cameron, Laney, Liam, Arlo", travelers: 4, airfare: 3999.71, airfareBasis: "Estimated", sharedConfirmed: 2037.08, pending: 0, items: "Airfare estimated from the Justin-family average; Cameron SUV and Knockmanagh confirmed." },
+    { name: "Williams family", members: "William, Mary, Misti", travelers: 3, airfare: 2999.78, airfareBasis: "Estimated", sharedConfirmed: 0, pending: 0, items: "Airfare estimated from the Justin-family average; receipt confirmation is still needed." }
   ],
   activities: [
     { id: "dodublin", area: "Dublin", day: "Dublin day", title: "DoDublin hop-on / hop-off", distance: "0.5 mi · 10-minute walk", duration: "2–6 hours", cost: 29, note: "Flexible sightseeing with an easy return to the hotel.", link: "https://dodublin.ie/city-sightseeing-tours/hop-on-hop-off-24-hour" },

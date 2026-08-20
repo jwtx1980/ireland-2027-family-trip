@@ -3,7 +3,7 @@
   const STORAGE_KEY = "ireland-2027-static-choices";
   const TOTAL_TRAVELERS = 10;
   const KNOWN_LAND_PER_TRAVELER = DATA.costs.perTravelerKnown;
-  const defaultState = { activities: {}, travelerCount: 1, airfare: 900, food: 497, airport: 0, insurance: false, name: "" };
+  const defaultState = { activities: {}, travelerCount: 1, airfare: 1000, food: 497, airport: 0, insurance: false, name: "" };
   let state = loadState();
   let galleryStay = null;
   let galleryIndex = 0;
@@ -11,7 +11,9 @@
   function loadState() {
     try {
       const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
-      return { ...defaultState, ...saved, activities: saved.activities || {} };
+      const merged = { ...defaultState, ...saved, activities: saved.activities || {} };
+      if (merged.airfare === 900) merged.airfare = 1000;
+      return merged;
     } catch {
       return { ...defaultState };
     }
@@ -46,19 +48,20 @@
     const ledger = document.querySelector("#contributionTable");
     if (!summary || !list || !ledger) return;
     summary.innerHTML = [
-      ["Confirmed shared reservations", money(DATA.costs.confirmedShared), "Two SUVs + Killarney"],
-      ["Pending request", money(DATA.costs.pendingShared), "Lahinch · not yet accepted"],
-      ["Known if pending confirms", money(DATA.costs.knownShared), `${money(DATA.costs.perTravelerKnown)} per traveler`],
-      ["Still unpriced", "Dublin + driving", "Also need verified flight values"]
+      ["Estimated airfare for 10", money(DATA.costs.airfareEstimatedAll), "Justin exact · other 7 assumed"],
+      ["Confirmed shared land", money(DATA.costs.confirmedShared), "Two SUVs + Killarney"],
+      ["Pending Lahinch", money(DATA.costs.pendingShared), "Not counted as confirmed yet"],
+      ["Known if pending confirms", money(DATA.costs.overallKnown), `${money(DATA.costs.perTravelerOverallKnown)} per traveler`]
     ].map(([label, value, note]) => `<article><span>${label}</span><strong>${value}</strong><small>${note}</small></article>`).join("");
 
     list.innerHTML = DATA.bookings.map(item => `<article class="booking-item"><div class="booking-icon">${item.category.slice(0, 1)}</div><div class="booking-copy"><div class="booking-top"><span>${item.category} · ${item.family}</span><span class="status-chip ${item.status}">${item.statusLabel}</span></div><h3>${item.title}</h3><p>${item.detail}</p></div><div class="booking-amount">${item.amount == null ? "<strong>Cost needed</strong>" : `<strong>${moneyExact(item.amount)}</strong>${item.original ? `<small>${item.original}</small>` : ""}`}</div></article>`).join("");
 
-    ledger.innerHTML = `<div class="contribution-table"><div class="contribution-head"><span>Family</span><span>Travelers</span><span>Confirmed credit</span><span>Pending credit</span><span>Current known share*</span></div>${DATA.families.map(family => {
-      const share = family.travelers * DATA.costs.perTravelerKnown;
-      const position = family.confirmed + family.pending - share;
-      return `<article><div class="family-cell"><strong>${family.name}</strong><small>${family.members}</small><p>${family.items}</p></div><span class="ledger-cell"><small>Travelers</small><strong>${family.travelers}</strong></span><span class="ledger-cell"><small>Confirmed credit</small><strong>${moneyExact(family.confirmed)}</strong></span><span class="ledger-cell"><small>Pending credit</small><strong>${moneyExact(family.pending)}</strong></span><span class="ledger-cell"><small>Current known share</small><strong>${money(share)}</strong><small class="${position >= 0 ? "ahead" : "behind"}">${position >= 0 ? `${money(position)} ahead` : `${money(Math.abs(position))} not yet covered`}</small></span></article>`;
-    }).join("")}</div><p class="ledger-footnote">*Equal split of the current ${money(DATA.costs.knownShared)} known land commitments only, including the pending Lahinch request. This is not the final amount owed.</p>`;
+    ledger.innerHTML = `<div class="contribution-table"><div class="contribution-head"><span>Family</span><span>Travelers</span><span>Airfare</span><span>Shared confirmed</span><span>Pending</span><span>Current known share*</span></div>${DATA.families.map(family => {
+      const share = family.travelers * (DATA.costs.overallKnown / TOTAL_TRAVELERS);
+      const contribution = family.airfare + family.sharedConfirmed + family.pending;
+      const position = contribution - share;
+      return `<article><div class="family-cell"><strong>${family.name}</strong><small>${family.members}</small><p>${family.items}</p></div><span class="ledger-cell"><small>Travelers</small><strong>${family.travelers}</strong></span><span class="ledger-cell"><small>Airfare</small><strong>${moneyExact(family.airfare)}</strong><small>${family.airfareBasis}</small></span><span class="ledger-cell"><small>Shared confirmed</small><strong>${moneyExact(family.sharedConfirmed)}</strong></span><span class="ledger-cell"><small>Pending</small><strong>${moneyExact(family.pending)}</strong></span><span class="ledger-cell"><small>Current known share</small><strong>${money(share)}</strong><small class="${position >= 0 ? "ahead" : "behind"}">${position >= 0 ? `${money(position)} ahead` : `${money(Math.abs(position))} not yet covered`}</small></span></article>`;
+    }).join("")}</div><p class="ledger-footnote">*Equal split of the current ${money(DATA.costs.overallKnown)} known trip commitments: exact Justin-family airfare, estimated airfare of ${moneyExact(DATA.costs.airfarePerTraveler)} per traveler for the other seven people, confirmed shared land and pending Lahinch. This is not the final amount owed.</p>`;
   }
 
   function renderAlternates() {
@@ -123,7 +126,7 @@
     document.querySelector("#personalTotal").textContent = money(total);
     document.querySelector("#budgetScope").textContent = `${money(perTravelerTotal)} per traveler × ${travelerCount}, plus ${money(Number(state.airport || 0))} household DFW cost counted once`;
     const multiplier = travelerCount > 1 ? ` × ${travelerCount}` : "";
-    const lines = [[`Airfare allowance (${money(Number(state.airfare))}${multiplier})`, Number(state.airfare) * travelerCount], [`Current known land share (${money(KNOWN_LAND_PER_TRAVELER)}${multiplier})`, KNOWN_LAND_PER_TRAVELER * travelerCount], [`Food (${money(Number(state.food))}${multiplier})`, Number(state.food) * travelerCount], [`Yes activities (${money(activityCost)}${multiplier})`, activityCost * travelerCount], ["Household DFW cost · once", state.airport || 0], [`Insurance (${money(insurance)}${multiplier})`, insurance * travelerCount]];
+    const lines = [[`Flight amount (${money(Number(state.airfare))}${multiplier})`, Number(state.airfare) * travelerCount], [`Current known land share (${money(KNOWN_LAND_PER_TRAVELER)}${multiplier})`, KNOWN_LAND_PER_TRAVELER * travelerCount], [`Food (${money(Number(state.food))}${multiplier})`, Number(state.food) * travelerCount], [`Yes activities (${money(activityCost)}${multiplier})`, activityCost * travelerCount], ["Household DFW cost · once", state.airport || 0], [`Insurance (${money(insurance)}${multiplier})`, insurance * travelerCount]];
     document.querySelector("#budgetBreakdown").innerHTML = lines.map(([label, value]) => `<div class="breakdown-line"><span>${label}</span><strong>${money(Number(value))}</strong></div>`).join("");
   }
 
@@ -134,7 +137,7 @@
     const travelerCount = Math.min(TOTAL_TRAVELERS, Math.max(1, Number(state.travelerCount) || 1));
     const perTravelerTotal = Number(state.airfare) + KNOWN_LAND_PER_TRAVELER + Number(state.food) + (state.insurance ? 192 : 0) + activityCost;
     const total = perTravelerTotal * travelerCount + Number(state.airport || 0);
-    return [`IRELAND 2027 — ${name}`, "", `PAYING FOR: ${travelerCount} ${travelerCount === 1 ? "TRAVELER" : "TRAVELERS"}`, "", "ACTIVITIES", ...(activityLines.length ? activityLines : ["- No activity choices yet"]), "", `Current subtotal per traveler: ${money(perTravelerTotal)}`, `Combined current subtotal for ${travelerCount} ${travelerCount === 1 ? "traveler" : "travelers"}: ${money(total)}`, "", `Airfare allowance per traveler: ${money(Number(state.airfare))}`, `Known shared land commitments per traveler: about ${money(KNOWN_LAND_PER_TRAVELER)}`, "  (two SUVs + confirmed Killarney + pending Lahinch)", `Food per traveler: ${money(Number(state.food))}`, `Household DFW parking/ride counted once: ${money(Number(state.airport || 0))}`, `Insurance allowance per traveler shown: ${state.insurance ? "Yes" : "No"}`, "", "NOT YET INCLUDED: Dublin lodging, fuel, extra rental mileage, tolls and Ireland parking.", "Selected activity costs are multiplied by the number of travelers shown above.", "Car-seat questions and any special room needs will be handled directly with the organizer."].join("\n");
+    return [`IRELAND 2027 — ${name}`, "", `PAYING FOR: ${travelerCount} ${travelerCount === 1 ? "TRAVELER" : "TRAVELERS"}`, "", "ACTIVITIES", ...(activityLines.length ? activityLines : ["- No activity choices yet"]), "", `Current subtotal per traveler: ${money(perTravelerTotal)}`, `Combined current subtotal for ${travelerCount} ${travelerCount === 1 ? "traveler" : "travelers"}: ${money(total)}`, "", `Flight amount per traveler: ${money(Number(state.airfare))}`, `Known shared land commitments per traveler: about ${money(KNOWN_LAND_PER_TRAVELER)}`, "  (two SUVs + confirmed Killarney + pending Lahinch)", `Food per traveler: ${money(Number(state.food))}`, `Household DFW parking/ride counted once: ${money(Number(state.airport || 0))}`, `Insurance allowance per traveler shown: ${state.insurance ? "Yes" : "No"}`, "", "NOT YET INCLUDED: Dublin lodging, fuel, extra rental mileage, tolls and Ireland parking.", "Selected activity costs are multiplied by the number of travelers shown above.", "Car-seat questions and any special room needs will be handled directly with the organizer."].join("\n");
   }
 
   function formatChoice(value) {

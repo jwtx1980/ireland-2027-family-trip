@@ -10,10 +10,10 @@
   <meta property="og:image" content="assets/og.png">
   <title>Ireland 2027 Family Trip</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
-  <link rel="stylesheet" href="styles.css?v=20260820-1">
+  <link rel="stylesheet" href="styles.css?v=20260820-2">
   <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-  <script defer src="data.js?v=20260820-1"></script>
-  <script defer src="app.js?v=20260820-1"></script>
+  <script defer src="data.js?v=20260820-2"></script>
+  <script defer src="app.js?v=20260820-2"></script>
 </head>
 <body>
   <header class="topbar">
@@ -27,11 +27,11 @@
   <main>
     <section class="hero section" id="overview">
       <div><p class="eyebrow">10 travelers · 9 nights · 3 family groups</p><h1>Ireland is moving from a proposal to a booked trip.</h1><p class="hero-copy">Two vehicles and the Killarney house are confirmed. The Lahinch house is awaiting host acceptance. Dublin lodging is the largest remaining reservation.</p><div class="hero-actions"><a class="button primary" href="#bookings">See what is reserved</a><a class="button quiet" href="#lodging">See the stays</a></div></div>
-      <aside class="hero-total"><span>Known shared land commitments</span><strong>$5,684</strong><small>$2,763 confirmed + $2,921 pending. This equals about $568 per traveler if split evenly. Flights, Dublin lodging, food and on-site choices are not included.</small></aside>
+      <aside class="hero-total"><span>Current known trip commitments</span><strong>$15,684</strong><small>About $9,999 airfare + $2,763 confirmed land + $2,921 pending Lahinch. That is about $1,568 per traveler before Dublin lodging, food and driving costs. Justin-family airfare is exact; the other seven tickets are estimated.</small></aside>
     </section>
 
     <section class="headline-costs section narrow" aria-label="Core costs">
-      <article><span>Flights</span><strong>Reported purchased</strong><p>Justin and Cameron families report tickets purchased. Williams family is likely purchased but still needs confirmation and cost details.</p></article>
+      <article><span>Flights</span><strong>About $1,000 / traveler</strong><p>Justin, Jamie and Kara paid exactly $2,999.78 total. The other seven travelers are estimated at the same $999.93 average until their receipts are provided.</p></article>
       <article><span>Known land share</span><strong>About $568 / traveler</strong><p>Includes two booked SUVs, confirmed Killarney lodging and pending Lahinch lodging. It does not include Dublin lodging or driving expenses.</p></article>
       <article class="optional"><span>Still outside this amount</span><strong>Dublin + trip spending</strong><p>Dublin lodging, fuel, extra mileage, tolls, parking, food, admissions, insurance and shopping remain separate.</p></article>
     </section>
@@ -43,15 +43,15 @@
       <p class="booking-source-note">Euro conversions use the <a href="https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-usd.en.html" target="_blank" rel="noreferrer">European Central Bank reference rate</a> for August 20, 2026: €1 = $1.1681. Card-network exchange rates can differ.</p>
       <div class="booking-list" id="bookingList"></div>
       <div class="contribution-panel">
-        <div class="section-heading compact"><p class="eyebrow">Family contribution ledger</p><h2>Who has taken responsibility for what.</h2><p>Confirmed reservation value counts as a contribution even when points were used. Pending requests are shown separately and do not become credit until accepted.</p></div>
+        <div class="section-heading compact"><p class="eyebrow">Family contribution ledger</p><h2>Who has taken responsibility for what.</h2><p>Purchased airfare and confirmed reservation value count as contributions, including points at their stated dollar value. Pending requests remain separate until accepted.</p></div>
         <div id="contributionTable"></div>
-        <aside class="ledger-warning"><strong>Do not settle balances yet.</strong> Dublin lodging, flight values, fuel, mileage, tolls and parking are still incomplete. The family position will change as those items are assigned.</aside>
+        <aside class="ledger-warning"><strong>Do not settle balances yet.</strong> Cameron and Williams airfare is estimated, and Dublin lodging, fuel, mileage, tolls and parking are still incomplete. The family position will change as receipts and reservations are added.</aside>
       </div>
     </section>
 
     <section class="section narrow schedule-section" id="schedule">
-      <div class="section-heading"><p class="eyebrow">One schedule for every booking</p><h2>Dates the lodging plan requires.</h2><p>These are planning dates, not a second vote. Airfare and every stay need to match this same sequence.</p></div>
-      <div class="trip-window"><strong>Depart DFW Monday, May 31, 2027</strong><span>Overnight flight</span><strong>Arrive Dublin Tuesday, June 1</strong><span>9 nights in Ireland</span><strong>Fly home Thursday, June 10</strong></div>
+      <div class="section-heading"><p class="eyebrow">American nonstop schedule</p><h2>Dates and times every booking must match.</h2><p>The exact Justin-family receipt establishes the group’s planned arrival and departure window.</p></div>
+      <div class="trip-window"><strong>AA 132 · Depart DFW Monday, May 31 at 7:00 PM</strong><span>Nonstop overnight flight</span><strong>Arrive Dublin Tuesday, June 1 at 9:45 AM</strong><span>9 nights in Ireland</span><strong>AA 133 · Depart Dublin Thursday, June 10 at 11:45 AM · arrive DFW 3:30 PM</strong></div>
       <ol class="stay-timeline">
         <li><span class="timeline-number">1</span><div><strong>Dublin · Staycity</strong><span>Check in Tue, June 1 · Check out Thu, June 3</span><small>2 nights</small></div></li>
         <li><span class="timeline-number">2</span><div><strong>Killarney · Knockmanagh Holiday Home</strong><span>Check in Thu, June 3 · Check out Sun, June 6</span><small>3 nights · confirmed</small></div></li>
@@ -89,7 +89,7 @@
       <div class="budget-layout narrow">
         <div class="budget-controls">
           <label>Travelers I am paying for<select id="travelerCount"><option value="1">1 traveler</option><option value="2">2 travelers</option><option value="3">3 travelers</option><option value="4">4 travelers</option><option value="5">5 travelers</option><option value="6">6 travelers</option><option value="7">7 travelers</option><option value="8">8 travelers</option><option value="9">9 travelers</option><option value="10">10 travelers</option></select></label>
-          <label>Airfare per traveler<select id="airfare"><option value="900">Basic target · $900</option><option value="1200">More premium · $1,200</option></select></label>
+          <label>Airfare per traveler<select id="airfare"><option value="1000">Justin-family average · $1,000</option><option value="1200">Higher fare allowance · $1,200</option></select></label>
           <label>Food per traveler<select id="food"><option value="456">Lean · $456</option><option value="497" selected>Expected · $497</option><option value="538">Upper · $538</option></select></label>
           <label>Household DFW parking or ride total<input id="airport" type="number" inputmode="numeric" min="0" step="10" value="0"></label>
           <label class="check"><input id="insurance" type="checkbox" value="192"><span>Show $192 travel-insurance allowance per traveler</span></label>
