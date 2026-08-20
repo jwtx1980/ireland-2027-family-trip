@@ -3,7 +3,7 @@
   const STORAGE_KEY = "ireland-2027-static-choices";
   const TOTAL_TRAVELERS = 10;
   const KNOWN_LAND_PER_TRAVELER = DATA.costs.perTravelerKnown;
-  const defaultState = { activities: {}, travelerCount: 1, airfare: 1000, food: 497, airport: 0, insurance: false, name: "" };
+  const defaultState = { activities: {}, travelerCount: 1, airfare: 1000, food: 850, airport: 0, insurance: false, name: "" };
   let state = loadState();
   let galleryStay = null;
   let galleryIndex = 0;
@@ -13,6 +13,7 @@
       const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
       const merged = { ...defaultState, ...saved, activities: saved.activities || {} };
       if (merged.airfare === 900) merged.airfare = 1000;
+      if ([456, 497, 538].includes(merged.food)) merged.food = 850;
       return merged;
     } catch {
       return { ...defaultState };
@@ -135,7 +136,7 @@
     document.querySelector("#personalTotal").textContent = money(total);
     document.querySelector("#budgetScope").textContent = `${money(perTravelerTotal)} per traveler × ${travelerCount}, plus ${money(Number(state.airport || 0))} household DFW cost counted once`;
     const multiplier = travelerCount > 1 ? ` × ${travelerCount}` : "";
-    const lines = [[`Flight amount (${money(Number(state.airfare))}${multiplier})`, Number(state.airfare) * travelerCount], [`Current known land share (${money(KNOWN_LAND_PER_TRAVELER)}${multiplier})`, KNOWN_LAND_PER_TRAVELER * travelerCount], [`Food (${money(Number(state.food))}${multiplier})`, Number(state.food) * travelerCount], [`Yes activities (${money(activityCost)}${multiplier})`, activityCost * travelerCount], ["Household DFW cost · once", state.airport || 0], [`Insurance (${money(insurance)}${multiplier})`, insurance * travelerCount]];
+    const lines = [[`Flight amount (${money(Number(state.airfare))}${multiplier})`, Number(state.airfare) * travelerCount], [`Current known land share (${money(KNOWN_LAND_PER_TRAVELER)}${multiplier})`, KNOWN_LAND_PER_TRAVELER * travelerCount], [`Food reserve (${money(Number(state.food))}${multiplier})`, Number(state.food) * travelerCount], [`Planned activities (${money(activityCost)}${multiplier})`, activityCost * travelerCount], ["Household DFW cost · once", state.airport || 0], [`Insurance (${money(insurance)}${multiplier})`, insurance * travelerCount]];
     document.querySelector("#budgetBreakdown").innerHTML = lines.map(([label, value]) => `<div class="breakdown-line"><span>${label}</span><strong>${money(Number(value))}</strong></div>`).join("");
     const activityRunningTotal = document.querySelector("#activityRunningTotal");
     if (activityRunningTotal) activityRunningTotal.textContent = `${money(activityCost)} per traveler · ${money(activityCost * travelerCount)} for ${travelerCount}`;
@@ -153,7 +154,7 @@
     const travelerCount = Math.min(TOTAL_TRAVELERS, Math.max(1, Number(state.travelerCount) || 1));
     const perTravelerTotal = Number(state.airfare) + KNOWN_LAND_PER_TRAVELER + Number(state.food) + (state.insurance ? 192 : 0) + activityCost;
     const total = perTravelerTotal * travelerCount + Number(state.airport || 0);
-    return [`IRELAND 2027 — ${name}`, "", `PAYING FOR: ${travelerCount} ${travelerCount === 1 ? "TRAVELER" : "TRAVELERS"}`, "", "ACTIVITIES", ...(activityLines.length ? activityLines : ["- No activity choices yet"]), "", `Current subtotal per traveler: ${money(perTravelerTotal)}`, `Combined current subtotal for ${travelerCount} ${travelerCount === 1 ? "traveler" : "travelers"}: ${money(total)}`, "", `Flight amount per traveler: ${money(Number(state.airfare))}`, `Known shared land commitments per traveler: about ${money(KNOWN_LAND_PER_TRAVELER)}`, "  (two SUVs + confirmed Killarney + pending Lahinch)", `Food per traveler: ${money(Number(state.food))}`, `Household DFW parking/ride counted once: ${money(Number(state.airport || 0))}`, `Insurance allowance per traveler shown: ${state.insurance ? "Yes" : "No"}`, "", "NOT YET INCLUDED: Dublin lodging, fuel, extra rental mileage, tolls and Ireland parking.", "Selected activity costs are multiplied by the number of travelers shown above.", "Car-seat questions and any special room needs will be handled directly with the organizer."].join("\n");
+    return [`IRELAND 2027 — ${name}`, "", `PAYING FOR: ${travelerCount} ${travelerCount === 1 ? "TRAVELER" : "TRAVELERS"}`, "", "ACTIVITIES", ...(activityLines.length ? activityLines : ["- No activity choices yet"]), "", `Current subtotal per traveler: ${money(perTravelerTotal)}`, `Combined current subtotal for ${travelerCount} ${travelerCount === 1 ? "traveler" : "travelers"}: ${money(total)}`, "", `Flight amount per traveler: ${money(Number(state.airfare))}`, `Known shared land commitments per traveler: about ${money(KNOWN_LAND_PER_TRAVELER)}`, "  (two SUVs + confirmed Killarney + pending Lahinch)", `Comfortable food reserve per traveler: ${money(Number(state.food))}`, "  (paid during the trip; not part of the shared pot)", `Household DFW parking/ride counted once: ${money(Number(state.airport || 0))}`, `Insurance allowance per traveler shown: ${state.insurance ? "Yes" : "No"}`, "", "NOT YET INCLUDED: Dublin lodging, fuel, extra rental mileage, tolls and Ireland parking.", "Selected activity costs are multiplied by the number of travelers shown above.", "Alcohol, personal shopping, car-seat questions and special room needs remain separate."].join("\n");
   }
 
   function formatChoice(value) {

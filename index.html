@@ -10,17 +10,17 @@
   <meta property="og:image" content="assets/og.png">
   <title>Ireland 2027 Family Trip</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
-  <link rel="stylesheet" href="styles.css?v=20260820-3">
+  <link rel="stylesheet" href="styles.css?v=20260820-4">
   <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-  <script defer src="data.js?v=20260820-3"></script>
-  <script defer src="app.js?v=20260820-3"></script>
+  <script defer src="data.js?v=20260820-4"></script>
+  <script defer src="app.js?v=20260820-4"></script>
 </head>
 <body>
   <header class="topbar">
     <a class="brand" href="#overview" aria-label="Ireland 2027 home"><span class="mark">IE</span><span>Ireland 2027<small>family trip proposal</small></span></a>
     <button class="menu-button" id="menuButton" aria-expanded="false" aria-controls="siteNav">Menu</button>
     <nav id="siteNav" aria-label="Trip sections">
-      <a href="#overview">Overview</a><a href="#bookings">Who paid</a><a href="#schedule">Trip dates</a><a href="#route">Map</a><a href="#lodging">Lodging</a><a href="#activities">Activity costs</a><a href="#budget">My cost</a><a href="#share">Text choices</a>
+      <a href="#overview">Overview</a><a href="#bookings">Who paid</a><a href="#schedule">Trip dates</a><a href="#route">Map</a><a href="#lodging">Lodging</a><a href="#activities">Activity costs</a><a href="#food-plan">Food</a><a href="#budget">My cost</a><a href="#share">Text choices</a>
     </nav>
   </header>
 
@@ -33,7 +33,7 @@
     <section class="headline-costs section narrow" aria-label="Core costs">
       <article><span>Flights · paid individually</span><strong>Neutral to the pot</strong><p>Every traveler is assumed to have paid about the same $999.93 airfare. Flights are shown for total-trip awareness but do not affect who owes the shared pot.</p></article>
       <article><span>Known land pot</span><strong>About $568 / traveler</strong><p>This is the amount families are balancing: two booked SUVs, confirmed Killarney lodging and pending Lahinch lodging.</p></article>
-      <article class="optional"><span>Still outside this amount</span><strong>Dublin + trip spending</strong><p>Dublin lodging, fuel, extra mileage, tolls, parking, food, admissions, insurance and shopping remain separate.</p></article>
+      <article class="optional"><span>Food · paid during the trip</span><strong>Plan $850 / traveler</strong><p>A generous working reserve for groceries, lunches, restaurant dinners, two nicer meals, snacks and nonalcoholic drinks. See the full assumptions below.</p></article>
     </section>
     <aside class="cost-scope-note narrow"><strong>How to read every cost:</strong> Headline amounts and activity badges are <b>per traveler</b> unless they explicitly say “group total.” Points are credited at the booking’s stated dollar value. The $568 share is a progress snapshot—not a final family settlement.</aside>
 
@@ -86,16 +86,36 @@
       <div id="activityGroups"></div>
     </section>
 
+    <section class="section food-section" id="food-plan">
+      <div class="food-layout narrow">
+        <div class="food-story"><p class="eyebrow">Eat well without worrying about every receipt</p><h2>Set aside $850 per traveler for food.</h2><p>This is intentionally comfortable rather than optimistic. It allows for easy breakfasts, casual lunches while sightseeing, several pub or restaurant dinners, three meals cooked at the houses, two memorable group dinners, and plenty of coffees, snacks and nonalcoholic drinks.</p><div class="food-total"><span>Recommended reserve</span><strong>$8,500 group total</strong><small>$850 per traveler · spent as we go, not paid into the shared lodging-and-vehicle pot</small></div><p class="food-range"><b>Likely range:</b> about $700 per traveler with more house meals, or roughly $1,000 with frequent restaurants, desserts and café stops. Alcohol and personal shopping remain separate.</p></div>
+        <div class="food-breakdown" aria-label="Recommended group food budget breakdown">
+          <div><span>House breakfasts and basic groceries</span><strong>$1,200</strong></div>
+          <div><span>Nine casual sightseeing lunches</span><strong>$2,150</strong></div>
+          <div><span>Four casual restaurant dinners</span><strong>$1,500</strong></div>
+          <div><span>Two nicer group dinners</span><strong>$1,250</strong></div>
+          <div><span>Three dinners prepared at the houses</span><strong>$500</strong></div>
+          <div><span>Coffee, snacks and nonalcoholic drinks</span><strong>$1,250</strong></div>
+          <div class="cushion"><span>2027 price and currency cushion</span><strong>$650</strong></div>
+          <div class="total"><span>Comfortable working total</span><strong>$8,500</strong></div>
+        </div>
+      </div>
+      <div class="food-evidence narrow">
+        <p><strong>Why this is reasonable:</strong> current menus checked August 20, 2026 show Killarney fish and chips around €21.95 and a two-course early dinner at €32; Lahinch casual mains commonly run about €19.95–€35.95. Tesco currently lists examples such as 2 L milk at €2.25 and 18 eggs at €4.25. Kara is budgeted with an adult appetite, and an additional cushion is included for June 2027 price changes.</p>
+        <div class="food-links"><a href="https://croninsrestaurant.com/our-menu/" target="_blank" rel="noreferrer">Cronin’s Killarney menu ↗</a><a href="https://thefleskrestaurant.ie/food-menu/" target="_blank" rel="noreferrer">The Flesk menu ↗</a><a href="https://www.theedgelahinch.ie/lunchedge" target="_blank" rel="noreferrer">The Edge Lahinch menu ↗</a><a href="https://vaughans.ie/" target="_blank" rel="noreferrer">Vaughan’s Lahinch menu ↗</a><a href="https://www.tesco.ie/shop/en-IE/shop/fresh-food/milk-butter-and-eggs" target="_blank" rel="noreferrer">Tesco Ireland groceries ↗</a><a href="https://www.staycity.com/dublin/city-centre" target="_blank" rel="noreferrer">Staycity kitchens and breakfast ↗</a></div>
+      </div>
+    </section>
+
     <section class="section budget-section" id="budget">
-      <div class="section-heading narrow"><p class="eyebrow">Personal or household calculator</p><h2>What should I expect to spend?</h2><p>Choose the number of travelers you are paying for. Per-traveler costs will be multiplied by that number, while the DFW parking or ride amount is counted once. Your choices stay private to your device.</p></div>
+      <div class="section-heading narrow"><p class="eyebrow">Personal or household calculator</p><h2>Know the plan—and your comfortable total.</h2><p>Choose the number of travelers you are paying for. Per-traveler costs will be multiplied by that number, while the DFW parking or ride amount is counted once. The recommended food setting includes a healthy cushion, and your choices stay private to your device.</p></div>
       <div class="budget-layout narrow">
         <div class="budget-controls">
           <label>Travelers I am paying for<select id="travelerCount"><option value="1">1 traveler</option><option value="2">2 travelers</option><option value="3">3 travelers</option><option value="4">4 travelers</option><option value="5">5 travelers</option><option value="6">6 travelers</option><option value="7">7 travelers</option><option value="8">8 travelers</option><option value="9">9 travelers</option><option value="10">10 travelers</option></select></label>
           <label>Airfare per traveler<select id="airfare"><option value="1000">Justin-family average · $1,000</option><option value="1200">Higher fare allowance · $1,200</option></select></label>
-          <label>Food per traveler<select id="food"><option value="456">Lean · $456</option><option value="497" selected>Expected · $497</option><option value="538">Upper · $538</option></select></label>
+          <label>Food per traveler<select id="food"><option value="700">More house meals · $700</option><option value="850" selected>Comfortable reserve · $850</option><option value="1000">Restaurant-heavy · $1,000</option></select></label>
           <label>Household DFW parking or ride total<input id="airport" type="number" inputmode="numeric" min="0" step="10" value="0"></label>
           <label class="check"><input id="insurance" type="checkbox" value="192"><span>Show $192 travel-insurance allowance per traveler</span></label>
-          <p class="fine">The calculator includes only the current $568 share of known land commitments. Dublin lodging, fuel, extra mileage, tolls and Ireland parking are not yet included. Selected activity costs apply to every traveler shown.</p>
+          <p class="fine">Food is an on-site personal or household expense, not money due to the shared pot. The calculator also includes the current $568 share of known land commitments. Dublin lodging, fuel, extra mileage, tolls and Ireland parking are not yet included. Selected activity costs apply to every traveler shown.</p>
         </div>
         <aside class="budget-total"><span id="budgetTotalLabel">Total for 1 traveler</span><strong id="personalTotal">$2,594</strong><p class="budget-scope" id="budgetScope">Per-traveler costs plus one household DFW amount</p><div id="budgetBreakdown"></div></aside>
       </div>

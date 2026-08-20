@@ -47,3 +47,26 @@
 .activity-impact{border-left:3px solid var(--gold);background:#fff8e8;color:#6d5320;padding:9px 11px;margin-top:15px;border-radius:0 9px 9px 0;font-size:12px;font-weight:800}
 .choice-row button{font-size:12px}
 @media(max-width:760px){.pot-position-summary{grid-template-columns:1fr}.activity-budget-banner{position:static;grid-template-columns:1fr;gap:8px}}
+
+/* Generous, source-grounded food plan */
+.food-section{background:linear-gradient(145deg,#f6f1e7,#eef5f1)}
+.food-layout{display:grid;grid-template-columns:minmax(0,.9fr) minmax(420px,1.1fr);gap:28px;align-items:start}
+.food-story h2{font-size:clamp(44px,5vw,66px);margin-bottom:18px}
+.food-story>p:not(.eyebrow){color:var(--muted);font-size:17px;line-height:1.65}
+.food-total{margin:28px 0 18px;border-radius:20px;background:var(--ink);color:#fff;padding:24px}
+.food-total span{display:block;color:#bcd1c9;text-transform:uppercase;letter-spacing:.1em;font-size:10px;font-weight:900}
+.food-total strong{display:block;font-family:Georgia,serif;font-size:36px;margin:7px 0}
+.food-total small{color:#d6e2dd;line-height:1.5}
+.food-range{border-left:4px solid var(--gold);padding:4px 0 4px 14px}
+.food-breakdown{overflow:hidden;border:1px solid var(--line);border-radius:20px;background:#fff;box-shadow:var(--shadow)}
+.food-breakdown>div{display:flex;justify-content:space-between;gap:20px;align-items:center;padding:16px 20px;border-bottom:1px solid var(--line)}
+.food-breakdown span{color:var(--muted);line-height:1.35}
+.food-breakdown strong{font-family:Georgia,serif;font-size:22px;white-space:nowrap}
+.food-breakdown .cushion{background:#fff8e8}
+.food-breakdown .total{border-bottom:0;background:var(--green);color:#fff}
+.food-breakdown .total span{color:#d6eae2;font-weight:850}.food-breakdown .total strong{font-size:28px}
+.food-evidence{margin-top:28px;border-radius:16px;background:rgba(255,255,255,.72);border:1px solid var(--line);padding:18px 20px}
+.food-evidence p{margin:0;color:var(--muted);font-size:13px;line-height:1.6}.food-evidence p strong{color:var(--ink)}
+.food-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:13px}.food-links a{border-radius:999px;background:var(--green2);color:var(--green);padding:8px 11px;text-decoration:none;font-size:11px;font-weight:850}
+@media(max-width:900px){.food-layout{grid-template-columns:1fr}}
+@media(max-width:640px){.food-breakdown>div{padding:14px}.food-total strong{font-size:31px}}
