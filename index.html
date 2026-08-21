@@ -10,10 +10,10 @@
   <meta property="og:image" content="assets/og.png">
   <title>Ireland 2027 Family Trip</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
-  <link rel="stylesheet" href="styles.css?v=20260820-9">
+  <link rel="stylesheet" href="styles.css?v=20260821-1">
   <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-  <script defer src="data.js?v=20260820-9"></script>
-  <script defer src="app.js?v=20260820-9"></script>
+  <script defer src="data.js?v=20260821-1"></script>
+  <script defer src="app.js?v=20260821-1"></script>
 </head>
 <body>
   <header class="topbar">
@@ -46,7 +46,7 @@
         <ol class="stay-timeline">
           <li class="timeline-open"><span class="timeline-number">1</span><div><strong>Dublin lodging · not yet booked</strong><span>June 1–3</span><small>2 nights · Staycity is a candidate</small></div></li>
           <li><span class="timeline-number">2</span><div><strong>Knockmanagh Holiday Home</strong><span>June 3–6</span><small>3 nights · confirmed</small></div></li>
-          <li><span class="timeline-number">3</span><div><strong>Lahinch golf home</strong><span>June 6–9</span><small>3 nights · host acceptance pending</small></div></li>
+          <li><span class="timeline-number">3</span><div><strong>Lahinch golf home</strong><span>June 6–9</span><small>3 nights · confirmed</small></div></li>
           <li class="timeline-open"><span class="timeline-number">4</span><div><strong>Dublin lodging · not yet booked</strong><span>June 9–10</span><small>1 night · same candidate area</small></div></li>
         </ol>
       </div>
@@ -68,7 +68,7 @@
           <label>Food per traveler<select id="food"><option value="700">Cook more often · $700</option><option value="850" selected>Comfortable reserve · $850</option><option value="1000">Restaurant-heavy · $1,000</option></select></label>
           <label>Household DFW parking or ride total<input id="airport" type="number" inputmode="numeric" min="0" step="10" value="0"></label>
           <label class="check"><input id="insurance" type="checkbox" value="192"><span>Add a $192 travel-insurance allowance per traveler</span></label>
-          <p class="fine">Food is spent during the trip rather than paid to the shared pot. The current land share includes the two SUVs, confirmed Killarney house and pending Lahinch home. Dublin lodging, fuel, extra mileage, tolls and Ireland parking remain to be added. Activity costs apply to every traveler selected here, so adjust the traveler count if only part of your household will do an activity such as golf.</p>
+          <p class="fine">Food is spent during the trip rather than paid to the shared pot. The current land share includes the two SUVs and both confirmed houses. Dublin lodging, fuel, extra mileage, tolls and Ireland parking remain to be added. Activity costs apply to every traveler selected here, so adjust the traveler count if only part of your household will do an activity such as golf.</p>
         </div>
         <aside class="budget-total"><span id="budgetTotalLabel">Total for 1 traveler</span><strong id="personalTotal">$2,594</strong><p class="budget-scope" id="budgetScope">Per-traveler costs plus one household DFW amount</p><div id="budgetBreakdown"></div></aside>
       </div>
@@ -85,14 +85,14 @@
     </section>
 
     <section class="section narrow booking-section" id="bookings">
-      <div class="section-heading"><p class="eyebrow">The practical part, after the trip ideas</p><h2>What is paid, what is pending and what still needs a booking.</h2><p>Airfare is shown for total-trip awareness but is excluded from the shared-pot balance because we assume each traveler paid about the same amount. Updated August 20, 2026.</p></div>
+      <div class="section-heading"><p class="eyebrow">The practical part, after the trip ideas</p><h2>What is confirmed, what remains due and what still needs a booking.</h2><p>Airfare is shown for total-trip awareness but is excluded from the shared-pot balance because we assume each traveler paid about the same amount. Updated August 21, 2026.</p></div>
       <div class="booking-summary" id="bookingSummary"></div>
       <p class="booking-source-note">Euro conversions use the <a href="https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-usd.en.html" target="_blank" rel="noreferrer">European Central Bank reference rate</a> for August 20, 2026: €1 = $1.1681. Card-network exchange rates can differ.</p>
       <div class="booking-list" id="bookingList"></div>
       <div class="contribution-panel">
         <div class="section-heading compact"><p class="eyebrow">Shared lodging and vehicle pot</p><h2>Family contributions and the remaining shared balance.</h2><p>This detailed view keeps the useful family-by-family information without treating a temporary balance as a judgment. Points used for shared reservations count at their stated dollar value.</p></div>
         <div id="contributionTable"></div>
-        <aside class="ledger-warning"><strong>This is a progress snapshot, not a final settlement.</strong> The figures assume the Lahinch request is accepted. Dublin lodging, fuel, mileage, tolls and parking will change the equal share when they are assigned.</aside>
+        <aside class="ledger-warning"><strong>This is a progress snapshot, not a final settlement.</strong> Killarney and Lahinch are now confirmed. Dublin lodging, fuel, mileage, tolls and parking will change the equal share when they are assigned.</aside>
       </div>
     </section>
   </main>

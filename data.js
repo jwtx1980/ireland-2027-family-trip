@@ -1,19 +1,22 @@
 window.TRIP_DATA = {
-  updated: "August 20, 2026",
+  updated: "August 21, 2026",
   fx: { date: "August 20, 2026", eurUsd: 1.1681, source: "European Central Bank" },
   costs: {
     airfareExactJustin: 2999.78,
     airfarePerTraveler: 999.93,
     airfareEstimatedAll: 9999.27,
-    confirmedShared: 2763.48,
-    pendingShared: 2921,
+    confirmedShared: 5684.48,
+    pendingShared: 0,
     knownShared: 5684.48,
     perTravelerKnown: 568.45,
-    overallConfirmedEstimated: 12762.75,
+    overallConfirmedEstimated: 15683.75,
     overallKnown: 15683.75,
     perTravelerOverallKnown: 1568.38,
     carsConfirmed: 1452.80,
-    killarneyConfirmed: 1310.68
+    killarneyConfirmed: 1310.68,
+    lahinchTotalEur: 2502.28,
+    lahinchRemainingEur: 1668.75,
+    lahinchRemainingUsd: 1949.27
   },
   stays: [
     {
@@ -42,27 +45,28 @@ window.TRIP_DATA = {
       address: "Knockmanagh, Kilcummin, County Kerry · about 11 km from Killarney",
       link: "https://www.tridentholidayhomes.ie/property/kerry/killarney/knockmanagh-holiday-home/373616/",
       dateLinks: [
-        { label: "Open official property", url: "https://www.tridentholidayhomes.ie/property/kerry/killarney/knockmanagh-holiday-home/373616/" }
+        { label: "Open official property", url: "https://www.tridentholidayhomes.ie/property/kerry/killarney/knockmanagh-holiday-home/373616/" },
+        { label: "See the public Vrbo listing", url: "https://www.vrbo.com/10978632ha?dateless=true" }
       ],
       status: "Confirmed reservation · booked by Cameron family",
       roomPlan: "Capacity 10: five bedrooms with 3 double beds and 4 single beds. One double bedroom and a separate toilet are on the ground floor; the other four bedrooms and both full bathrooms are upstairs. The official layout confirms a kitchen/dining room and utility room.",
-      sourceNote: "Confirmed total €1,122.06 (about $1,311 at €1 = $1.1681). The email says a €112.21 confirmation charge will be made; verify the posted charge and remaining balance. A refundable €200 security hold is separate. Check-in is 5–7 PM and checkout is 10 AM.",
+      sourceNote: "Confirmed total €1,122.06 (about $1,311 at €1 = $1.1681). The joined Vrbo trip also shows the stay as booked by Laney for 7 adults and 3 children; only Laney can change or cancel it. The original email says a €112.21 confirmation charge will be made, so verify the posted charge and remaining balance with Laney. A refundable €200 security hold is separate. Check-in is 5–7 PM and checkout is 10 AM.",
       photos: ["assets/knockmanagh-1.jpg", "assets/knockmanagh-2.jpg"]
     },
     {
       id: "lahinch-golf",
       name: "Luxury 7-Bed Golf Home",
-      area: "Lahinch · host acceptance pending",
+      area: "Lahinch · confirmed",
       dateLabel: "June 6–9, 2027 · 3 nights",
-      statusType: "pending",
+      statusType: "confirmed",
       address: "On Lahinch Golf Course · walkable to golf club, promenade and town",
       link: "https://www.vrbo.com/4365078",
       dateLinks: [
         { label: "Open live Vrbo listing", url: "https://www.vrbo.com/4365078" }
       ],
-      status: "Request sent · not confirmed until host accepts",
+      status: "Booked · confirmed in Vrbo",
       roomPlan: "Sleeps 17 across 7 bedrooms and 8 beds: 6 double beds and 2 twin beds. The listing states 6 full bathrooms plus 2 half bathrooms, a kitchen and washing machine.",
-      sourceNote: "$2,921 requested total for 7 adults and 3 children. Do not count it as confirmed or paid until Vrbo shows host acceptance. The public listing says check-in begins at 2 PM and checkout is 10:30 AM; its two reviews give an 8/10 overall score, with one June 2026 review flagging cleanliness.",
+      sourceNote: "Vrbo now shows this stay as booked for 7 adults and 3 children. Exact total: €2,502.28; the family’s working USD amount remains $2,921. Payment 2 of 2 is €1,668.75 (about $1,949 at the planning exchange rate) and is due April 27, 2027. Check-in is 2 PM and checkout is 10:30 AM. The public listing’s two reviews give an 8/10 overall score, with one June 2026 review flagging cleanliness.",
       photos: ["assets/lahinch-golf-home-1.jpg", "assets/lahinch-golf-home-2.jpg"]
     }
   ],
@@ -73,7 +77,7 @@ window.TRIP_DATA = {
     { area: "Killarney", title: "Dinner at Knockmanagh", label: "Cook together · already covered by the $700–$850 food reserve", note: "The confirmed house has a kitchen and utility room. A grocery stop can cover breakfast, packed snacks and one or two relaxed dinners without another drive into town.", link: "https://www.tridentholidayhomes.ie/property/kerry/killarney/knockmanagh-holiday-home/373616/" },
     { area: "Clare", title: "The Edge, Lahinch", label: "Relaxed seafront meal · roughly $30–$50 per adult", note: "A flexible choice for burgers, fish, curry and salads. Current larger dishes are commonly €16–€27, with options suitable for children and mixed appetites.", link: "https://www.theedgelahinch.ie/lunchedge" },
     { area: "Clare", title: "Vaughan’s Anchor Inn", label: "Nicer seafood dinner · roughly $45–$75 per adult", note: "A strong candidate for one memorable group dinner. Current dinner mains range from about €20 for a burger to €49 for fillet of beef; reserve early for ten.", link: "https://vaughans.ie/" },
-    { area: "Clare", title: "Dinner at the golf-course home", label: "Cook together · already covered by the $700–$850 food reserve", note: "The pending Vrbo lists a kitchen. If the host accepts, this is a good base for an easy dinner on the golf or Cliffs day while the second vehicle goes elsewhere if needed.", link: "https://www.vrbo.com/4365078" }
+    { area: "Clare", title: "Dinner at the golf-course home", label: "Cook together · already covered by the $700–$850 food reserve", note: "The confirmed Vrbo lists a kitchen, making this a good base for an easy dinner on the golf or Cliffs day while the second vehicle goes elsewhere if needed.", link: "https://www.vrbo.com/4365078" }
   ],
   alternates: [],
   bookings: [
@@ -83,11 +87,11 @@ window.TRIP_DATA = {
     { category: "Vehicle", title: "Hertz · Skoda Kodiaq or similar", family: "Cameron family", status: "confirmed", statusLabel: "Confirmed · paid with points", amount: 726.40, detail: "June 3 at 10:00 AM through June 9 at 4:00 PM · Dublin Baggot Street · driver Cameron · 72,640 Chase points · free cancellation through May 31, 2027. Two vehicles should give 10 travelers more luggage room, but confirm seat count and that the earlier 900-km allowance applies to this booked rate." },
     { category: "Vehicle", title: "Hertz · Skoda Kodiaq or similar", family: "Justin family", status: "confirmed", statusLabel: "Confirmed · paid with points", amount: 726.40, detail: "June 3 at 10:00 AM through June 9 at 4:00 PM · Dublin Baggot Street · driver Justin · 63,722 Chase points · free cancellation through May 31, 2027. Confirm seat count, luggage capacity and that the earlier 900-km allowance applies to this booked rate." },
     { category: "Lodging", title: "Knockmanagh Holiday Home", family: "Cameron family", status: "confirmed", statusLabel: "Confirmed", amount: 1310.68, original: "€1,122.06", detail: "June 3–6 · 3 nights · 7 adults + 3 children. Includes booking fee and fixed electricity charge. Refundable €200 security hold is not counted as trip expense." },
-    { category: "Lodging", title: "Lahinch 7-bedroom golf home", family: "Justin family", status: "pending", statusLabel: "Host acceptance pending", amount: 2921, detail: "June 6–9 · 3 nights · 7 adults + 3 children. Request sent; contribution credit remains pending until accepted." },
+    { category: "Lodging", title: "Lahinch 7-bedroom golf home", family: "Justin family", status: "confirmed", statusLabel: "Booked · Vrbo confirmed", amount: 2921, original: "€2,502.28", detail: "June 6–9 · 3 nights · 7 adults + 3 children. Vrbo shows the reservation as booked. Payment 2 of 2 is €1,668.75 and is due April 27, 2027; the displayed USD amount is the family’s working total." },
     { category: "Lodging", title: "Dublin arrival + final night", family: "Unassigned", status: "missing", statusLabel: "Not booked", amount: null, detail: "Still need June 1–3 and June 9–10 for all 10 travelers." }
   ],
   families: [
-    { name: "Justin family", members: "Justin, Jamie, Kara", travelers: 3, airfare: 2999.78, airfareBasis: "Exact receipt", sharedConfirmed: 726.40, pending: 2921, items: "Exact airfare receipt and Justin SUV confirmed; Lahinch request pending." },
+    { name: "Justin family", members: "Justin, Jamie, Kara", travelers: 3, airfare: 2999.78, airfareBasis: "Exact receipt", sharedConfirmed: 3647.40, pending: 0, items: "Exact airfare receipt, Justin SUV and Lahinch home confirmed. The remaining Lahinch installment is due April 27, 2027." },
     { name: "Cameron family", members: "Cameron, Laney, Liam, Arlo", travelers: 4, airfare: 3999.71, airfareBasis: "Estimated", sharedConfirmed: 2037.08, pending: 0, items: "Airfare estimated from the Justin-family average; Cameron SUV and Knockmanagh confirmed." },
     { name: "Williams family", members: "William, Mary, Misti", travelers: 3, airfare: 2999.78, airfareBasis: "Estimated", sharedConfirmed: 0, pending: 0, items: "Airfare estimated from the Justin-family average; receipt confirmation is still needed." }
   ],
