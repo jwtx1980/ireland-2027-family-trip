@@ -1,5 +1,5 @@
 window.TRIP_DATA = {
-  updated: "August 21, 2026",
+  updated: "August 24, 2026",
   fx: { date: "August 20, 2026", eurUsd: 1.1681, source: "European Central Bank" },
   costs: {
     airfareExactJustin: 2999.78,
@@ -14,6 +14,9 @@ window.TRIP_DATA = {
     perTravelerOverallKnown: 1568.38,
     carsConfirmed: 1452.80,
     killarneyConfirmed: 1310.68,
+    lodgingBooked: 4231.68,
+    lodgingPayers: 7,
+    lodgingPerPayer: 604.5257142857,
     lahinchTotalEur: 2502.28,
     lahinchRemainingEur: 1668.75,
     lahinchRemainingUsd: 1949.27
@@ -91,9 +94,9 @@ window.TRIP_DATA = {
     { category: "Lodging", title: "Dublin arrival + final night", family: "Unassigned", status: "missing", statusLabel: "Not booked", amount: null, detail: "Still need June 1–3 and June 9–10 for all 10 travelers." }
   ],
   families: [
-    { name: "Justin family", members: "Justin, Jamie, Kara", travelers: 3, airfare: 2999.78, airfareBasis: "Exact receipt", sharedConfirmed: 3647.40, pending: 0, items: "Exact airfare receipt, Justin SUV and Lahinch home confirmed. The remaining Lahinch installment is due April 27, 2027." },
-    { name: "Cameron family", members: "Cameron, Laney, Liam, Arlo", travelers: 4, airfare: 3999.71, airfareBasis: "Estimated", sharedConfirmed: 2037.08, pending: 0, items: "Airfare estimated from the Justin-family average; Cameron SUV and Knockmanagh confirmed." },
-    { name: "Williams family", members: "William, Mary, Misti", travelers: 3, airfare: 2999.78, airfareBasis: "Estimated", sharedConfirmed: 0, pending: 0, items: "Airfare estimated from the Justin-family average; receipt confirmation is still needed." }
+    { name: "Justin family", members: "Justin, Jamie, Kara", travelers: 3, lodgingPayers: 2, lodgingPayerNames: "Justin and Jamie", lodgingBooked: 2921, airfare: 2999.78, airfareBasis: "Exact receipt", sharedConfirmed: 3647.40, pending: 0, items: "Lahinch is assigned to this family. Its remaining vendor installment is due April 27, 2027." },
+    { name: "Cameron family", members: "Cameron, Laney, Liam, Arlo", travelers: 4, lodgingPayers: 2, lodgingPayerNames: "Cameron and Laney", lodgingBooked: 1310.68, airfare: 3999.71, airfareBasis: "Estimated", sharedConfirmed: 2037.08, pending: 0, items: "Knockmanagh is assigned to this family." },
+    { name: "Williams family", members: "William, Mary, Misti", travelers: 3, lodgingPayers: 3, lodgingPayerNames: "William, Mary and Misti", lodgingBooked: 0, airfare: 2999.78, airfareBasis: "Estimated", sharedConfirmed: 0, pending: 0, items: "No booked lodging has yet been assigned to this family." }
   ],
   activities: [
     { id: "dodublin", area: "Dublin", day: "Dublin day", title: "DoDublin hop-on / hop-off", distance: "0.5 mi · 10-minute walk", duration: "2–6 hours", cost: 29, note: "Flexible sightseeing with an easy return to the hotel.", link: "https://dodublin.ie/city-sightseeing-tours/hop-on-hop-off-24-hour" },
