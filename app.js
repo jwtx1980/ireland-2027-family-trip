@@ -90,6 +90,22 @@
     }).join("")}</div><div class="settlement-note"><strong>How the Dublin booking can catch Williams family up</strong><p>Williams family currently has ${moneyExact(williamsCurrentDue)} left in its lodging share. If that family books all of the group’s Dublin rooms, the full booking receives family credit and the new combined lodging pool is still divided among seven adults. A Dublin total of about ${moneyExact(dublinCatchUpAmount)} would put Williams family approximately even; a lower total reduces what remains due, while a higher total moves the family ahead.</p><p>Either approved Dublin setup can stay in the pool: three family rooms with William, Mary and Misti together, or four rooms with a separate room for Misti.</p></div><p class="ledger-footnote">This ledger covers only the two homes already booked. It excludes airfare, both SUVs, Dublin lodging, fuel, mileage, tolls, parking, food and activities. “Booked by family” is the obligation assigned to that family, not proof that every vendor installment has already posted.</p>`;
   }
 
+  function renderTotalPicture() {
+    const container = document.querySelector("#totalPicture");
+    if (!container) return;
+    const projection = DATA.projection;
+    const committed = projection.items.filter(item => item.stage === "committed").reduce((sum, item) => sum + item.amount, 0);
+    const projected = projection.items.reduce((sum, item) => sum + item.amount, 0);
+    const remaining = projected - committed;
+    const projectedPerTraveler = projected / projection.travelers;
+    const goalDifference = projected - projection.goalGroup;
+    const withInsurance = projected + projection.optionalInsurance.amount;
+    const committedPercent = Math.min(100, (committed / projected) * 100);
+    const goalPercent = Math.min(100, (projection.goalGroup / projected) * 100);
+
+    container.innerHTML = `<div class="total-compare"><article><span>Original working goal</span><strong>${money(projection.goalGroup)}</strong><small>${money(projection.goalPerTraveler)} per traveler</small></article><article><span>Booked or issued value so far</span><strong>${moneyExact(committed)}</strong><small>${money(committed / projection.travelers)} per traveler equivalent</small></article><article class="projected"><span>Projected all-in budget</span><strong>${money(projected)}</strong><small>${money(projectedPerTraveler)} per traveler · meals included</small></article></div><div class="budget-meter" aria-label="Committed costs compared with the projected trip total"><div class="meter-labels"><span>${moneyExact(committed)} committed</span><span>${moneyExact(remaining)} still planned</span></div><div class="meter-track"><span class="meter-fill" style="width:${committedPercent}%"></span><i class="goal-marker" style="left:${goalPercent}%"><b>Original ${money(projection.goalGroup)} goal</b></i></div></div><div class="projection-table"><div class="projection-head"><span>Trip component</span><span>Amount</span><span>Current status</span><span>What the number means</span></div>${projection.items.map(item => `<article><div><strong>${item.label}</strong><small>${item.stage === "committed" ? "Included in booked/issued value" : "Included in future allowance"}</small></div><span class="projection-amount">${moneyExact(item.amount)}</span><span><b class="projection-status ${item.stage}">${item.status}</b></span><p>${item.note}</p></article>`).join("")}</div><div class="goal-result ${goalDifference > 0 ? "over" : "under"}"><div><span>Compared with the original goal</span><strong>${goalDifference > 0 ? `${money(goalDifference)} over for the group` : `${money(Math.abs(goalDifference))} under for the group`}</strong><small>${goalDifference > 0 ? `${money(goalDifference / projection.travelers)} over` : `${money(Math.abs(goalDifference) / projection.travelers)} under`} per traveler</small></div><p>The current working projection is about ${money(projected)} total, or ${money(projectedPerTraveler)} each. It includes meals and a ${money(1500)} contingency, so the final amount could finish below the budget if the reserve is not needed.</p></div><aside class="insurance-total"><div><span>Optional—not in the projected total above</span><strong>${projection.optionalInsurance.label}</strong><p>${projection.optionalInsurance.note}</p></div><div><strong>${moneyExact(projection.optionalInsurance.amount)}</strong><small>With it: ${money(withInsurance)} group · ${money(withInsurance / projection.travelers)} each</small></div></aside><p class="projection-footnote"><strong>Transparency note:</strong> “Booked or issued value” is not the same as cash already posted. It includes estimated airfare for seven travelers, points used for both SUVs and the full value of booked lodging even when a later installment remains due. Planning allowances are not quotes and are shown separately.</p>`;
+  }
+
   function renderAlternates() {
     const list = document.querySelector("#alternateList");
     if (!list) return;
@@ -261,5 +277,5 @@
     document.querySelectorAll("main section[id]").forEach(section => observer.observe(section));
   }
 
-  renderTripChapters(); renderBookings(); renderAlternates(); initializeRouteMap(); bindChoiceButtons(); bindGallery(); bindControls(); bindNavigation(); updateBudget(); updateSummary();
+  renderTripChapters(); renderBookings(); renderTotalPicture(); renderAlternates(); initializeRouteMap(); bindChoiceButtons(); bindGallery(); bindControls(); bindNavigation(); updateBudget(); updateSummary();
 })();
