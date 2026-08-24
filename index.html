@@ -10,10 +10,10 @@
   <meta property="og:image" content="assets/og.png">
   <title>Ireland 2027 Family Trip</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
-  <link rel="stylesheet" href="styles.css?v=20260824-3">
+  <link rel="stylesheet" href="styles.css?v=20260824-4">
   <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-  <script defer src="data.js?v=20260824-3"></script>
-  <script defer src="app.js?v=20260824-3"></script>
+  <script defer src="data.js?v=20260824-4"></script>
+  <script defer src="app.js?v=20260824-4"></script>
 </head>
 <body>
   <header class="topbar">
@@ -59,15 +59,14 @@
     </section>
 
     <section class="section budget-section" id="budget">
-      <div class="section-heading narrow"><p class="eyebrow">Your personal or household total</p><h2>Turn the ideas above into a comfortable trip budget.</h2><p>Choose how many people you are paying for, your food style and any optional insurance. Every activity marked “Plan it” is included automatically.</p></div>
-      <div class="meal-range-strip narrow" aria-label="Food budget choices"><article><span>Cook more often</span><strong>$700 per traveler</strong><p>House breakfasts, sightseeing lunches, five or six cooked dinners and two nicer meals.</p></article><article class="recommended"><span>Comfortable plan</span><strong>$850 per traveler</strong><p>Three cooked dinners, four casual restaurant dinners, two nicer dinners, snacks and cushion.</p></article><article><span>Restaurant-heavy</span><strong>$1,000 per traveler</strong><p>More meals out, desserts and café stops. Alcohol and personal shopping remain separate.</p></article></div>
+      <div class="section-heading narrow"><p class="eyebrow">Your personal or household total</p><h2>Turn the ideas above into a practical trip budget.</h2><p>Choose how many people you are paying for and your food style. Every activity marked “Plan it” is included automatically.</p></div>
+      <div class="meal-range-strip narrow" aria-label="Food budget choices"><article><span>Cook more often</span><strong>$700 per traveler</strong><p>House breakfasts, sightseeing lunches, five or six cooked dinners and two nicer meals.</p></article><article class="recommended"><span>Working projection</span><strong>$750 per traveler</strong><p>Several meals cooked at the houses, casual meals, two nicer dinners, snacks and a modest cushion.</p></article><article><span>Restaurant-heavy</span><strong>$1,000 per traveler</strong><p>More meals out, desserts and café stops. Alcohol and personal shopping remain separate.</p></article></div>
       <div class="budget-layout narrow">
         <div class="budget-controls">
           <label>Travelers I am paying for<select id="travelerCount"><option value="1">1 traveler</option><option value="2">2 travelers</option><option value="3">3 travelers</option><option value="4">4 travelers</option><option value="5">5 travelers</option><option value="6">6 travelers</option><option value="7">7 travelers</option><option value="8">8 travelers</option><option value="9">9 travelers</option><option value="10">10 travelers</option></select></label>
           <label>Airfare per traveler<select id="airfare"><option value="1000">Current family average · $1,000</option><option value="1200">Higher fare allowance · $1,200</option></select></label>
-          <label>Food per traveler<select id="food"><option value="700">Cook more often · $700</option><option value="850" selected>Comfortable reserve · $850</option><option value="1000">Restaurant-heavy · $1,000</option></select></label>
+          <label>Food per traveler<select id="food"><option value="700">Cook more often · $700</option><option value="750" selected>Working projection · $750</option><option value="850">More meals out · $850</option><option value="1000">Restaurant-heavy · $1,000</option></select></label>
           <label>Household DFW parking or ride total<input id="airport" type="number" inputmode="numeric" min="0" step="10" value="0"></label>
-          <label class="check"><input id="insurance" type="checkbox" value="192"><span>Add a $192 travel-insurance allowance per traveler</span></label>
           <p class="fine">Food is spent during the trip rather than paid to the shared pot. This personal calculator spreads the two SUVs and two confirmed homes across all 10 travelers as a planning estimate; the actual booked-lodging settlement below divides the homes among seven paying adults. Dublin lodging, fuel, extra mileage, tolls and Ireland parking remain to be added. Activity costs apply to every traveler selected here, so adjust the traveler count if only part of your household will do an activity such as golf.</p>
         </div>
         <aside class="budget-total"><span id="budgetTotalLabel">Total for 1 traveler</span><strong id="personalTotal">$2,594</strong><p class="budget-scope" id="budgetScope">Per-traveler costs plus one household DFW amount</p><div id="budgetBreakdown"></div></aside>
@@ -97,7 +96,7 @@
     </section>
 
     <section class="section total-picture-section" id="total-picture">
-      <div class="section-heading narrow"><p class="eyebrow">The complete financial picture</p><h2>What is committed, what is still an allowance and where we stand against $32,000.</h2><p>This bottom line includes the generous meal plan, likely Dublin lodging, activities, driving costs and contingency. It keeps optional insurance separate so the family can see both outcomes.</p></div>
+      <div class="section-heading narrow"><p class="eyebrow">The complete financial picture</p><h2>Our starting point was $3,200 per traveler: 10 people × $3,200 = $32,000.</h2><p>This bottom line separates booked or issued costs from tighter working allowances for Dublin, food, activities, driving and contingency.</p></div>
       <div class="narrow" id="totalPicture"></div>
     </section>
   </main>

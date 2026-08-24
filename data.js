@@ -25,17 +25,16 @@ window.TRIP_DATA = {
     travelers: 10,
     goalGroup: 32000,
     goalPerTraveler: 3200,
-    optionalInsurance: { label: "Optional travel-insurance allowance", amount: 1920, note: "$192 × 10 travelers; shown separately because the group has not selected it." },
     items: [
       { label: "Airfare for 10", amount: 9999.27, stage: "committed", status: "Issued / estimated", note: "Justin family receipt is exact; the other seven tickets use the same $999.93 average until receipts are supplied." },
       { label: "Two booked homes", amount: 4231.68, stage: "committed", status: "Booked", note: "Killarney and Lahinch. This is the full reservation value, although vendor installments remain." },
       { label: "Two Hertz SUVs", amount: 1452.80, stage: "committed", status: "Booked with points", note: "Points count at their stated dollar value so each family receives contribution credit." },
-      { label: "Dublin lodging", amount: 3200, stage: "future", status: "Planning allowance", note: "Not booked. Allows roughly the amount that would bring Williams family close to even if it books all group rooms." },
-      { label: "Meals, groceries and snacks", amount: 8500, stage: "future", status: "Comfortable allowance", note: "$850 per traveler, including some meals cooked at the houses and two nicer dinners. Alcohol is separate." },
-      { label: "Activities and admissions", amount: 1800, stage: "future", status: "Flexible allowance", note: "Supports a useful mix of group admissions and limited Castle Course golf. Old Course golf could raise this materially." },
-      { label: "Ireland driving costs", amount: 2000, stage: "future", status: "Planning allowance", note: "Fuel, possible extra mileage, tolls and parking. Final rental coverage and mileage terms still need verification." },
-      { label: "DFW parking or rides", amount: 600, stage: "future", status: "Household allowance", note: "A group placeholder; coordinated drop-offs or shared rides could reduce it." },
-      { label: "Trip contingency", amount: 1500, stage: "future", status: "Unspent reserve", note: "For exchange-rate movement, price changes and small items not yet captured." }
+      { label: "Dublin lodging", amount: 2800, stage: "future", status: "Planning allowance", note: "Not booked. A working target for three family rooms or apartments; a fourth private room may increase it." },
+      { label: "Meals, groceries and snacks", amount: 7500, stage: "future", status: "Balanced allowance", note: "$750 per traveler, including groceries, meals cooked at the houses, casual meals and two nicer dinners. Alcohol is separate." },
+      { label: "Activities and admissions", amount: 1200, stage: "future", status: "Flexible allowance", note: "Assumes the group will select rather than do every activity. Golf and other high-cost choices remain visible separately." },
+      { label: "Ireland driving costs", amount: 1200, stage: "future", status: "Planning allowance", note: "Fuel, possible extra mileage, tolls and parking. Final rental coverage and mileage terms still need verification." },
+      { label: "DFW parking or rides", amount: 300, stage: "future", status: "Household allowance", note: "Assumes coordinated drop-offs, shared rides or reduced-cost parking." },
+      { label: "Trip contingency", amount: 750, stage: "future", status: "Unspent reserve", note: "A modest cushion for exchange-rate movement, price changes and small items not yet captured." }
     ]
   },
   stays: [
