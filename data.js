@@ -35,7 +35,11 @@ window.TRIP_DATA = {
         { label: "Check June 9–10", url: "https://www.booking.com/hotel/ie/staycity-aparthotels-dublin-city-centre.html?checkin=2027-06-09&checkout=2027-06-10&group_adults=7&group_children=3&age=14&age=8&age=5&no_rooms=6&selected_currency=EUR" }
       ],
       status: "Not booked · current Dublin candidate only",
-      roomPlan: "Three Dublin nights remain to be reserved: two nights on arrival and the final night. Search is set for 7 adults, 3 children and a flexible six-room mix. This candidate advertises fully equipped kitchens in its studios and apartments.",
+      roomPlan: "Three Dublin nights remain to be reserved: two nights on arrival and the final night. Compare a three-room family arrangement with a four-room arrangement that gives Misti her own room. This candidate advertises fully equipped kitchens in its studios and apartments.",
+      roomOptions: [
+        { label: "Lower-cost option", title: "Three approved family rooms or apartments", rooms: ["Cameron, Laney, Liam and Arlo · room for 4", "Justin, Jamie and Kara · room for 3", "William, Mary and Misti · room for 3"], note: "Book only room types whose official occupancy allows 4, 3 and 3 guests. A standard double room may not qualify." },
+        { label: "Privacy option", title: "Four rooms, including one for Misti", rooms: ["Cameron, Laney, Liam and Arlo · room for 4", "Justin, Jamie and Kara · room for 3", "William and Mary · room for 2", "Misti · room for 1"], note: "This costs more but gives Misti a private room. It can still remain in the seven-adult lodging pool if the group accepts the booked total." }
+      ],
       sourceNote: "Public Booking.com listing. Price and exact June 2027 availability must be rechecked before booking.",
       photos: ["assets/staycity-1.jpg", "assets/staycity-2.jpg"]
     },
@@ -52,7 +56,11 @@ window.TRIP_DATA = {
         { label: "See the public Vrbo listing", url: "https://www.vrbo.com/10978632ha?dateless=true" }
       ],
       status: "Confirmed reservation · booked by Cameron family",
-      roomPlan: "Capacity 10: five bedrooms with 3 double beds and 4 single beds. One double bedroom and a separate toilet are on the ground floor; the other four bedrooms and both full bathrooms are upstairs. The official layout confirms a kitchen/dining room and utility room.",
+      roomPlan: "Verified layout: one ground-floor double; upstairs are one ensuite double, one additional double and two twin bedrooms with two single beds each. The house sleeps 10, but the three children cannot all occupy one twin bedroom without an owner-approved additional bed.",
+      roomOptions: [
+        { label: "Works with listed beds", title: "No extra bed required", rooms: ["Ground-floor double · William and Mary", "Ensuite double · Cameron and Laney", "Double · Justin and Jamie", "Twin · Liam and Arlo", "Twin · Misti and Kara"], note: "This uses every listed bed and keeps the ground-floor bedroom available to a senior couple." },
+        { label: "Preferred if approved", title: "Misti solo and the children together", rooms: ["Ground-floor double · William and Mary", "Ensuite double · Cameron and Laney", "Double · Justin and Jamie", "Twin · Misti", "Other twin · Kara, Liam and Arlo"], note: "The last room has only two listed single beds. Use this plan only if Trident confirms an additional approved bed or another safe sleeping arrangement in writing." }
+      ],
       sourceNote: "Confirmed total €1,122.06 (about $1,311 at €1 = $1.1681). The joined Vrbo trip also shows the stay as booked by Laney for 7 adults and 3 children; only Laney can change or cancel it. The original email says a €112.21 confirmation charge will be made, so verify the posted charge and remaining balance with Laney. A refundable €200 security hold is separate. Check-in is 5–7 PM and checkout is 10 AM.",
       photos: ["assets/knockmanagh-1.jpg", "assets/knockmanagh-2.jpg"]
     },
@@ -69,6 +77,9 @@ window.TRIP_DATA = {
       ],
       status: "Booked · confirmed in Vrbo",
       roomPlan: "Sleeps 17 across 7 bedrooms and 8 beds: 6 double beds and 2 twin beds. The listing states 6 full bathrooms plus 2 half bathrooms, a kitchen and washing machine.",
+      roomOptions: [
+        { label: "Working arrangement", title: "Six groups with one flex bedroom", rooms: ["Cameron and Laney", "Justin and Jamie", "William and Mary", "Liam and Arlo", "Kara", "Misti", "One bedroom left flexible or spare"], note: "The seven-bedroom capacity supports this arrangement. Confirm the precise bed location in each bedroom before assigning names." }
+      ],
       sourceNote: "Vrbo now shows this stay as booked for 7 adults and 3 children. Exact total: €2,502.28; the family’s working USD amount remains $2,921. Payment 2 of 2 is €1,668.75 (about $1,949 at the planning exchange rate) and is due April 27, 2027. Check-in is 2 PM and checkout is 10:30 AM. The public listing’s two reviews give an 8/10 overall score, with one June 2026 review flagging cleanliness.",
       photos: ["assets/lahinch-golf-home-1.jpg", "assets/lahinch-golf-home-2.jpg"]
     }
