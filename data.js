@@ -72,10 +72,9 @@ window.TRIP_DATA = {
         { label: "See the public Vrbo listing", url: "https://www.vrbo.com/10978632ha?dateless=true" }
       ],
       status: "Confirmed reservation · booked by Cameron family",
-      roomPlan: "Verified layout: one ground-floor double; upstairs are one ensuite double, one additional double and two twin bedrooms with two single beds each. The house sleeps 10, but the three children cannot all occupy one twin bedroom without an owner-approved additional bed.",
+      roomPlan: "Verified layout: three separate double bedrooms plus two twin bedrooms with two single beds each. The workable plan uses all 10 listed sleeping places without relying on an extra bed.",
       roomOptions: [
-        { label: "Works with listed beds", title: "No extra bed required", rooms: ["Ground-floor double · William and Mary", "Ensuite double · Cameron and Laney", "Double · Justin and Jamie", "Twin · Liam and Arlo", "Twin · Misti and Kara"], note: "This uses every listed bed and keeps the ground-floor bedroom available to a senior couple." },
-        { label: "Preferred if approved", title: "Misti solo and the children together", rooms: ["Ground-floor double · William and Mary", "Ensuite double · Cameron and Laney", "Double · Justin and Jamie", "Twin · Misti", "Other twin · Kara, Liam and Arlo"], note: "The last room has only two listed single beds. Use this plan only if Trident confirms an additional approved bed or another safe sleeping arrangement in writing." }
+        { label: "Working assignment", title: "Fits the advertised beds exactly", rooms: ["Ground-floor double · William and Mary", "Ensuite double · Cameron and Laney", "Double · Justin and Jamie", "Twin · Liam and Arlo", "Twin · Misti and Kara"], note: "This uses all three double bedrooms and all four single beds. Kara sharing with Misti avoids assuming that either twin room can sleep three people." }
       ],
       sourceNote: "Confirmed total €1,122.06 (about $1,311 at €1 = $1.1681). The joined Vrbo trip also shows the stay as booked by Laney for 7 adults and 3 children; only Laney can change or cancel it. The original email says a €112.21 confirmation charge will be made, so verify the posted charge and remaining balance with Laney. A refundable €200 security hold is separate. Check-in is 5–7 PM and checkout is 10 AM.",
       photos: ["assets/knockmanagh-1.jpg", "assets/knockmanagh-2.jpg"]
