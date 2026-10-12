@@ -1,5 +1,5 @@
 window.TRIP_DATA = {
-  updated: "August 24, 2026",
+  updated: "October 12, 2026",
   fx: { date: "August 20, 2026", eurUsd: 1.1681, source: "European Central Bank" },
   costs: {
     airfareExactJustin: 2999.78,
@@ -26,38 +26,34 @@ window.TRIP_DATA = {
     goalGroup: 32000,
     goalPerTraveler: 3200,
     items: [
-      { label: "Airfare for 10", amount: 9999.27, stage: "committed", status: "Issued / estimated", note: "Justin family receipt is exact; the other seven tickets use the same $999.93 average until receipts are supplied." },
+      { label: "Airfare for 10", amount: 9999.27, stage: "committed", status: "Receipt + estimates", note: "Only the Justin family receipt ($2,999.78) is exact. The other seven tickets remain estimates until receipts are supplied; this is not a verified paid total." },
       { label: "Two booked homes", amount: 4231.68, stage: "committed", status: "Booked", note: "Killarney and Lahinch. This is the full reservation value, although vendor installments remain." },
-      { label: "Two Hertz SUVs", amount: 1452.80, stage: "committed", status: "Booked with points", note: "Points count at their stated dollar value so each family receives contribution credit." },
-      { label: "Dublin lodging", amount: 2700, stage: "future", status: "Family estimate", note: "Not booked. The family expects the three-room or apartment arrangement to land near this amount; a fourth private room may increase it." },
-      { label: "Meals, groceries and snacks", amount: 7500, stage: "future", status: "Balanced allowance", note: "$750 per traveler, including groceries, meals cooked at the houses, casual meals and two nicer dinners. Alcohol is separate." },
-      { label: "Activities and admissions", amount: 1200, stage: "future", status: "Flexible allowance", note: "Assumes the group will select rather than do every activity. Golf and other high-cost choices remain visible separately." },
-      { label: "Ireland driving costs", amount: 1200, stage: "future", status: "Planning allowance", note: "Fuel, possible extra mileage, tolls and parking. Final rental coverage and mileage terms still need verification." },
+      { label: "Two Hertz SUVs", amount: 1452.80, stage: "committed", status: "Booked with points", note: "The stated dollar value of points used for both vehicles, tracked separately from lodging. This is not a cash payment." },
+      { label: "Dublin lodging", amount: 2700, stage: "future", status: "Estimate only · prices unknown", note: "One combined placeholder for The July (June 1–3, William covering, booking unconfirmed) and Clayton (June 9–10, booked and covered by Laney). Replace this allowance with both actual totals when known; do not add them on top." },
+      { label: "Meals, groceries and snacks", amount: 7500, stage: "future", status: "Balanced allowance", note: "$750 per traveler, including groceries, meals cooked at the houses, casual meals and two nicer dinners. Paid as we go; this is an allowance, not a payment. Alcohol is separate." },
+      { label: "Activities and admissions", amount: 1200, stage: "future", status: "Flexible allowance", note: "Paid as we go. Assumes the group will select rather than do every activity. Golf and other high-cost choices remain visible separately." },
+      { label: "Ireland driving costs", amount: 1200, stage: "future", status: "Planning allowance", note: "Fuel is paid as we go. This allowance also includes possible extra mileage, tolls and parking. Final rental coverage and mileage terms still need verification." },
       { label: "DFW parking or rides", amount: 300, stage: "future", status: "Household allowance", note: "Assumes coordinated drop-offs, shared rides or reduced-cost parking." },
       { label: "Trip contingency", amount: 750, stage: "future", status: "Unspent reserve", note: "A modest cushion for exchange-rate movement, price changes and small items not yet captured." }
     ]
   },
   stays: [
     {
-      id: "staycity",
-      name: "Staycity Aparthotels Dublin City Centre",
-      area: "Dublin · first 2 nights and final night",
-      dateLabel: "June 1–3 and June 9–10, 2027 · 3 nights total",
+      id: "july-capel-street",
+      name: "The July – Capel Street",
+      area: "Dublin city centre – arrival stay",
+      dateLabel: "June 1–3, 2027 · 2 nights",
       statusType: "missing",
-      address: "Little Mary Street, Dublin, D07 PKW5",
-      link: "https://www.booking.com/hotel/ie/staycity-aparthotels-dublin-city-centre.html?checkin=2027-06-01&checkout=2027-06-03&group_adults=7&group_children=3&age=14&age=8&age=5&no_rooms=6&selected_currency=EUR",
+      address: "33–36 Strand Street Little, Dublin 7, D07 F861",
+      link: "https://www.thejuly.com/properties/dublin-capel-street",
       dateLinks: [
-        { label: "Check June 1–3", url: "https://www.booking.com/hotel/ie/staycity-aparthotels-dublin-city-centre.html?checkin=2027-06-01&checkout=2027-06-03&group_adults=7&group_children=3&age=14&age=8&age=5&no_rooms=6&selected_currency=EUR" },
-        { label: "Check June 9–10", url: "https://www.booking.com/hotel/ie/staycity-aparthotels-dublin-city-centre.html?checkin=2027-06-09&checkout=2027-06-10&group_adults=7&group_children=3&age=14&age=8&age=5&no_rooms=6&selected_currency=EUR" }
+        { label: "Open official property", url: "https://www.thejuly.com/properties/dublin-capel-street" }
       ],
-      status: "Not booked · current Dublin candidate only",
-      roomPlan: "Three Dublin nights remain to be reserved: two nights on arrival and the final night. Compare a three-room family arrangement with a four-room arrangement that gives Misti her own room. This candidate advertises fully equipped kitchens in its studios and apartments.",
-      roomOptions: [
-        { label: "Lower-cost option", title: "Three approved family rooms or apartments", rooms: ["Cameron, Laney, Liam and Arlo · room for 4", "Justin, Jamie and Kara · room for 3", "William, Mary and Misti · room for 3"], note: "Book only room types whose official occupancy allows 4, 3 and 3 guests. A standard double room may not qualify." },
-        { label: "Privacy option", title: "Four rooms, including one for Misti", rooms: ["Cameron, Laney, Liam and Arlo · room for 4", "Justin, Jamie and Kara · room for 3", "William and Mary · room for 2", "Misti · room for 1"], note: "This costs more but gives Misti a private room. It can still remain in the seven-adult lodging pool if the group accepts the booked total." }
-      ],
-      sourceNote: "Public Booking.com listing. Price and exact June 2027 availability must be rechecked before booking.",
-      photos: ["assets/staycity-1.jpg", "assets/staycity-2.jpg"]
+      status: "Selected · booking not confirmed · William covering",
+      roomPlan: "William is covering this arrival stay. The shared listing shows a ‘Reserve 3 rooms’ option, not a completed reservation. Room types, guest allocation and occupancy still need confirmation before assigning rooms.",
+      sourceNote: "Family-selected property for June 1–3. Price, payment status and cancellation terms have not been supplied. Official property preview is a rendering, not evidence of the rooms selected. Address and preview: The July official site.",
+      photos: ["https://assets.thejuly.com/transformations/Hotels/Dublin/Capelstreet/Exterior/Renders/_813xAUTO_crop_center-center_none/35998/View_Dusk_01_2K0A0016-1-1_2024-12-17-155921_rdqo.webp"],
+      photoLabel: "Official exterior rendering"
     },
     {
       id: "knockmanagh",
@@ -97,11 +93,28 @@ window.TRIP_DATA = {
       ],
       sourceNote: "Vrbo now shows this stay as booked for 7 adults and 3 children. Exact total: €2,502.28; the family’s working USD amount remains $2,921. Payment 2 of 2 is €1,668.75 (about $1,949 at the planning exchange rate) and is due April 27, 2027. Check-in is 2 PM and checkout is 10:30 AM. The public listing’s two reviews give an 8/10 overall score, with one June 2026 review flagging cleanliness.",
       photos: ["assets/lahinch-golf-home-1.jpg", "assets/lahinch-golf-home-2.jpg"]
+    },
+    {
+      id: "clayton-airport",
+      name: "Clayton Hotel Dublin Airport",
+      area: "Dublin Airport – final night",
+      dateLabel: "June 9–10, 2027 · 1 night",
+      statusType: "confirmed",
+      address: "Stockhole Lane, Clonshagh, Swords, Co. Dublin, K67 X3H5",
+      link: "https://www.claytonhotels.com/dublin-airport/",
+      dateLinks: [
+        { label: "Official hotel and airport directions", url: "https://www.claytonhotels.com/dublin-airport/location/" }
+      ],
+      status: "Booked by Laney · Laney covering",
+      roomPlan: "The itinerary confirms June 9–10, with check-in at 2 PM and checkout at 11 AM. The price, room count, room types, guest allocation and cancellation terms have not been supplied.",
+      sourceNote: "Booking status and times come from the shared itinerary; paid status is unverified. Plan an earlier departure for the June 10 flight at 11:45 AM—hotel checkout time is not the airport departure plan. Official exterior photo and address: Clayton Hotels.",
+      photos: ["https://media.claytonhotels.com/dalata-assets-2024/image/upload/f_auto,c_auto,w_750,q_auto/v1708963260/Uploads/Clayton/Exterior_Clayton_Hotel_Dublin_Airport_31aa989afc.jpg"],
+      photoLabel: "Official exterior photo"
     }
   ],
   dining: [
-    { area: "Dublin", title: "The Woollen Mills", label: "First- or final-night dinner · roughly $35–$55 per adult", note: "A lively modern-Irish option across from Ha’penny Bridge. Current mains run about €23–€38, plus a 12.5% service charge. Reserve for a group this size after the Dublin lodging is fixed.", link: "https://www.thewoollenmills.com/menus.htm" },
-    { area: "Dublin", title: "Aparthotel pantry meal", label: "Lower-cost arrival option · inside the food reserve", note: "If Staycity remains the choice, its kitchen makes a grocery breakfast or simple first-night meal possible. Keep this flexible until the Dublin rooms are actually booked.", link: "https://www.staycity.com/dublin/city-centre" },
+    { area: "Dublin", title: "The Woollen Mills", label: "Arrival-stay dinner · roughly $35–$55 per adult", note: "A lively modern-Irish option across from Ha’penny Bridge. Current mains run about €23–€38, plus a 12.5% service charge. Reserve for a group this size after the arrival lodging is confirmed.", link: "https://www.thewoollenmills.com/menus.htm" },
+    { area: "Dublin", title: "Easy arrival meal", label: "Flexible first-night plan · within the food allowance", note: "Keep the first evening simple near Capel Street. The July advertises kitchens, but confirm the selected accommodation before relying on a cooked meal. Food is paid as we go.", link: "https://www.thejuly.com/properties/dublin-capel-street" },
     { area: "Killarney", title: "Cronin’s Restaurant", label: "Casual Irish dinner · roughly $30–$50 per adult", note: "A family-run Killarney option for fish and chips, shepherd’s pie, burgers and local dishes. Current mains are mostly €18.95–€33; booking is recommended.", link: "https://croninsrestaurant.com/our-menu/" },
     { area: "Killarney", title: "Dinner at Knockmanagh", label: "Cook together · already covered by the $700–$850 food reserve", note: "The confirmed house has a kitchen and utility room. A grocery stop can cover breakfast, packed snacks and one or two relaxed dinners without another drive into town.", link: "https://www.tridentholidayhomes.ie/property/kerry/killarney/knockmanagh-holiday-home/373616/" },
     { area: "Clare", title: "The Edge, Lahinch", label: "Relaxed seafront meal · roughly $30–$50 per adult", note: "A flexible choice for burgers, fish, curry and salads. Current larger dishes are commonly €16–€27, with options suitable for children and mixed appetites.", link: "https://www.theedgelahinch.ie/lunchedge" },
@@ -115,14 +128,15 @@ window.TRIP_DATA = {
     { category: "Flight", title: "Airfare estimate · Williams family", family: "Williams family", status: "assumed", statusLabel: "Estimated from Justin receipt", amount: 2999.78, detail: "3 travelers × the Justin family’s exact $999.93 per-traveler average. Confirm that all three tickets are issued and provide the receipt to replace this estimate." },
     { category: "Vehicle", title: "Hertz · Skoda Kodiaq or similar", family: "Cameron family", status: "confirmed", statusLabel: "Confirmed · paid with points", amount: 726.40, detail: "June 3 at 10:00 AM through June 9 at 4:00 PM · Dublin Baggot Street · driver Cameron · 72,640 Chase points · free cancellation through May 31, 2027. Two vehicles should give 10 travelers more luggage room, but confirm seat count and that the earlier 900-km allowance applies to this booked rate." },
     { category: "Vehicle", title: "Hertz · Skoda Kodiaq or similar", family: "Justin family", status: "confirmed", statusLabel: "Confirmed · paid with points", amount: 726.40, detail: "June 3 at 10:00 AM through June 9 at 4:00 PM · Dublin Baggot Street · driver Justin · 63,722 Chase points · free cancellation through May 31, 2027. Confirm seat count, luggage capacity and that the earlier 900-km allowance applies to this booked rate." },
-    { category: "Lodging", title: "Knockmanagh Holiday Home", family: "Cameron family", status: "confirmed", statusLabel: "Confirmed", amount: 1310.68, original: "€1,122.06", detail: "June 3–6 · 3 nights · 7 adults + 3 children. Includes booking fee and fixed electricity charge. Refundable €200 security hold is not counted as trip expense." },
+    { category: "Lodging", title: "Knockmanagh Holiday Home", family: "Cameron family", status: "confirmed", statusLabel: "Booked · payment posting unverified", amount: 1310.68, original: "€1,122.06", detail: "June 3–6 · 3 nights · 7 adults + 3 children. Includes booking fee and fixed electricity charge. Verify the confirmation charge posting and remaining balance with Laney. Refundable €200 security hold is not counted as trip expense." },
     { category: "Lodging", title: "Lahinch 7-bedroom golf home", family: "Justin family", status: "confirmed", statusLabel: "Booked · Vrbo confirmed", amount: 2921, original: "€2,502.28", detail: "June 6–9 · 3 nights · 7 adults + 3 children. Vrbo shows the reservation as booked. Payment 2 of 2 is €1,668.75 and is due April 27, 2027; the displayed USD amount is the family’s working total." },
-    { category: "Lodging", title: "Dublin arrival + final night", family: "Unassigned", status: "missing", statusLabel: "Not booked", amount: null, detail: "Still need June 1–3 and June 9–10 for all 10 travelers." }
+    { category: "Lodging", title: "The July – Capel Street", family: "William covering", status: "missing", statusLabel: "Selected · booking not confirmed", amount: null, detail: "June 1–3 · 2 nights. The listing shows ‘Reserve 3 rooms’; this is not a booking confirmation. Price, room types, guest allocation, cancellation terms and payment status remain unverified." },
+    { category: "Lodging", title: "Clayton Hotel Dublin Airport", family: "Laney covering", status: "confirmed", statusLabel: "Booked by Laney · payment unverified", amount: null, detail: "June 9–10 · 1 night. Check-in 2 PM; checkout 11 AM. Price, room count, room types, guest allocation and cancellation terms have not been supplied. No Dublin price is added to this ledger until known." }
   ],
   families: [
     { name: "Justin family", members: "Justin, Jamie, Kara", travelers: 3, lodgingPayers: 2, lodgingPayerNames: "Justin and Jamie", lodgingBooked: 2921, airfare: 2999.78, airfareBasis: "Exact receipt", sharedConfirmed: 3647.40, pending: 0, items: "Lahinch is assigned to this family. Its remaining vendor installment is due April 27, 2027." },
-    { name: "Cameron family", members: "Cameron, Laney, Liam, Arlo", travelers: 4, lodgingPayers: 2, lodgingPayerNames: "Cameron and Laney", lodgingBooked: 1310.68, airfare: 3999.71, airfareBasis: "Estimated", sharedConfirmed: 2037.08, pending: 0, items: "Knockmanagh is assigned to this family." },
-    { name: "Williams family", members: "William, Mary, Misti", travelers: 3, lodgingPayers: 3, lodgingPayerNames: "William, Mary and Misti", lodgingBooked: 0, airfare: 2999.78, airfareBasis: "Estimated", sharedConfirmed: 0, pending: 0, items: "No booked lodging has yet been assigned to this family." }
+    { name: "Cameron family", members: "Cameron, Laney, Liam, Arlo", travelers: 4, lodgingPayers: 2, lodgingPayerNames: "Cameron and Laney", lodgingBooked: 1310.68, airfare: 3999.71, airfareBasis: "Estimated", sharedConfirmed: 2037.08, pending: 0, items: "Knockmanagh is assigned to this family; payment posting needs verification. Laney also covers the booked Clayton stay, whose price is not yet in this table." },
+    { name: "Williams family", members: "William, Mary, Misti", travelers: 3, lodgingPayers: 3, lodgingPayerNames: "William, Mary and Misti", lodgingBooked: 0, airfare: 2999.78, airfareBasis: "Estimated", sharedConfirmed: 0, pending: 0, items: "William covers The July arrival stay. Booking and price are unconfirmed, so this home-only table gives no Dublin credit yet." }
   ],
   activities: [
     { id: "dodublin", area: "Dublin", day: "Dublin day", title: "DoDublin hop-on / hop-off", distance: "0.5 mi · 10-minute walk", duration: "2–6 hours", cost: 29, note: "Flexible sightseeing with an easy return to the hotel.", link: "https://dodublin.ie/city-sightseeing-tours/hop-on-hop-off-24-hour" },
