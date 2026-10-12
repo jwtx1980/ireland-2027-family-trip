@@ -6,32 +6,36 @@
   <meta name="theme-color" content="#0e6651">
   <meta name="description" content="Explore the Ireland 2027 family route, stays, activities, dining ideas, personal costs and shared-trip progress.">
   <meta property="og:title" content="Ireland 2027 Family Trip">
-  <meta property="og:description" content="Explore our route, stays and possible days—then build a personal trip estimate.">
-  <meta property="og:image" content="assets/og.png">
+  <meta property="og:description" content="Ten of us. Nine nights. Dublin streets, Kerry lakes and the Atlantic coast. Explore our stays and build your own days.">
+  <meta property="og:image" content="https://jwtx1980.github.io/ireland-2027-family-trip/assets/cliffs-of-moher.jpg">
   <title>Ireland 2027 Family Trip</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
-  <link rel="stylesheet" href="styles.css?v=20261012-1">
+  <link rel="stylesheet" href="styles.css?v=20261012-2">
+  <link rel="stylesheet" href="journey.css?v=20261012-2">
   <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-  <script defer src="data.js?v=20261012-1"></script>
-  <script defer src="app.js?v=20261012-1"></script>
+  <script defer src="data.js?v=20261012-2"></script>
+  <script defer src="app.js?v=20261012-2"></script>
 </head>
 <body>
   <header class="topbar">
-    <a class="brand" href="#overview" aria-label="Ireland 2027 home"><span class="mark">IE</span><span>Ireland 2027<small>family trip proposal</small></span></a>
+    <a class="brand" href="#overview" aria-label="Ireland 2027 home"><span class="mark">IE</span><span>Ireland 2027<small>our family adventure</small></span></a>
     <button class="menu-button" id="menuButton" aria-expanded="false" aria-controls="siteNav">Menu</button>
     <nav id="siteNav" aria-label="Trip sections">
-      <a href="#overview">Overview</a><a href="#route">Route</a><a href="#places">Places & choices</a><a href="#budget">My cost</a><a href="#share">Text my plan</a><a href="#bookings">Payments</a><a href="#total-picture">Trip total</a>
+      <a href="#overview">Welcome</a><a href="#route">Our route</a><a href="#places">Stays & days</a><a href="#budget">My budget</a><a href="#share">Share ideas</a><a href="#bookings">Who's covering what</a>
     </nav>
   </header>
 
   <main>
     <section class="hero section" id="overview">
-      <div class="hero-story"><p class="eyebrow">10 travelers · 9 nights · 3 memorable bases</p><h1>Three corners of Ireland. One family adventure.</h1><p class="hero-copy">Dublin streets, Killarney’s lakes and the wild Atlantic coast—with enough flexibility for each vehicle to follow a different kind of day.</p><div class="hero-actions"><a class="button primary" href="#route">See the route</a><a class="button quiet" href="#places">Explore the stays and days</a></div><div class="hero-status"><span><b>May 31</b> depart DFW</span><span><b>June 1–10</b> in Ireland</span><span><b>2 vehicles</b> confirmed</span></div></div>
-      <a class="hero-visual" href="#places" aria-label="See the Ireland lodging photos and plans"><img class="hero-photo-main" src="assets/lahinch-golf-home-1.jpg" alt="Lahinch golf-course home"><img class="hero-photo-small top" src="assets/knockmanagh-1.jpg" alt="Knockmanagh Holiday Home near Killarney"><img class="hero-photo-small bottom" src="https://assets.thejuly.com/transformations/Hotels/Dublin/Capelstreet/Exterior/Renders/_813xAUTO_crop_center-center_none/35998/View_Dusk_01_2K0A0016-1-1_2024-12-17-155921_rdqo.webp" alt="The July – Capel Street official exterior rendering; selected, booking unconfirmed"><span class="hero-route-chip">Dublin → Killarney → Lahinch</span><span class="hero-dublin-chip">The July selected · Clayton booked</span></a>
+      <img class="adventure-backdrop" src="assets/cliffs-of-moher.jpg" alt="The Cliffs of Moher meeting the Atlantic Ocean" fetchpriority="high">
+      <div class="hero-story"><p class="eyebrow">May 31–June 10, 2027 · Our family trip</p><h1>A little city.<br>A lot of green.<br>All of us.</h1><p class="hero-copy">Coffee in Dublin. Lakes in Kerry. Atlantic air in Lahinch. Ten of us, nine nights, and plenty of room to make the days our own.</p><div class="hero-actions"><a class="button primary" href="#route">Follow our route ↓</a><a class="button quiet" href="#places">Find your kind of day</a></div><div class="hero-status"><span><b>10</b> travelers</span><span><b>9</b> nights in Ireland</span><span><b>2</b> booked SUVs</span></div></div>
+      <a class="hero-credit" href="https://www.cliffsofmoher.ie/" target="_blank" rel="noreferrer">Cliffs of Moher · a short drive from Lahinch ↗</a>
     </section>
 
+    <aside class="family-update narrow"><span class="update-label">The latest family plan</span><p><strong>William is covering our first Dublin stay at The July. Laney has booked our last night at Clayton.</strong> Fuel, meals and attractions will be paid as we go. <a href="#bookings">See who's covering each reservation ↓</a></p></aside>
+
     <section class="section route-section" id="route">
-      <div class="section-heading narrow"><p class="eyebrow">Start with the shape of the trip</p><h2>Dublin → Killarney → Lahinch → Dublin.</h2><p>Four stays take us from central Dublin to Kerry and Clare, then back to an airport hotel for the final night. The map shows where the stays sit and the realistic time each transfer will take with ten people, luggage, meals and breaks.</p></div>
+      <div class="section-heading narrow"><p class="eyebrow">Our nine nights, at a glance</p><h2>City streets to the Atlantic.</h2><p>Two nights in central Dublin, three near Killarney, three in Lahinch, then one easy airport night. Tap a map marker to see the stay. Dashed lines connect approximate locations; use the directions link for road routing.</p></div>
       <div class="route-layout narrow">
         <div id="tripMap" class="trip-map" aria-label="Interactive map of the Dublin, Killarney and Lahinch lodging route"><p>Loading the route map…</p></div>
         <div class="route-legs">
@@ -53,13 +57,14 @@
     </section>
 
     <section class="section journey-section" id="places">
-      <div class="section-heading narrow"><p class="eyebrow">One base at a time</p><h2>See where we stay, how the rooms can work and what sounds fun nearby.</h2><p>Each chapter keeps the lodging, suggested room assignments, photos, driving commitment, activities and meal ideas together. The two homes have working room plans. Dublin room types and guest allocations remain unverified.</p></div>
-      <aside class="activity-budget-banner narrow"><div><span>Activities currently added</span><strong id="activityRunningTotal">$0 per traveler</strong></div><p>“Plan it” adds the cost. “Interested” saves the idea without charging it.</p><a href="#budget">See my total ↓</a></aside>
+      <div class="section-heading narrow"><p class="eyebrow">The places we’ll call home</p><h2>Picture yourself here.</h2><p>Start with the stay, imagine a day, then save the activities you like. Two SUVs mean a golf morning and a sightseeing morning can both happen. These are possibilities to choose from, not a checklist to finish.</p></div>
+      <nav class="chapter-jumps narrow" aria-label="Jump to a stay"><a href="#chapter-july-capel-street">01 · Dublin</a><a href="#chapter-knockmanagh">02 · Killarney</a><a href="#chapter-lahinch-golf">03 · Lahinch</a><a href="#chapter-clayton-airport">04 · Airport night</a></nav>
+      <aside class="activity-budget-banner narrow"><div><span>My activity allowance</span><strong id="activityRunningTotal">$0 selected</strong><label class="activity-group-label">Budgeting for <select id="activityGroupSize" aria-label="How many travelers in my budget"></select></label></div><p>“Add to my day” adds an estimate. Choose how many of your travelers will join. Ideas stay on this device until you share them.</p><a href="#budget">See my total ↓</a></aside>
       <div id="tripChapters"></div>
     </section>
 
     <section class="section budget-section" id="budget">
-      <div class="section-heading narrow"><p class="eyebrow">Your personal or household total</p><h2>Turn the ideas above into a practical trip budget.</h2><p>Choose how many people you are paying for and your food style. Every activity marked “Plan it” is included automatically.</p></div>
+      <div class="section-heading narrow"><p class="eyebrow">Know what to set aside</p><h2>Your trip, your choices, your budget.</h2><p>Choose how many travelers you are paying for. Add the activities that appeal to you and a food allowance. This shows the full trip expense, including flights already bought, rather than a new amount to pay.</p></div>
       <div class="meal-range-strip narrow" aria-label="Food budget choices"><article><span>Cook more often</span><strong>$700 per traveler</strong><p>House breakfasts, sightseeing lunches, five or six cooked dinners and two nicer meals.</p></article><article class="recommended"><span>Working projection</span><strong>$750 per traveler</strong><p>Several meals cooked at the houses, casual meals, two nicer dinners, snacks and a modest cushion.</p></article><article><span>Restaurant-heavy</span><strong>$1,000 per traveler</strong><p>More meals out, desserts and café stops. Alcohol and personal shopping remain separate.</p></article></div>
       <div class="budget-layout narrow">
         <div class="budget-controls">
@@ -67,7 +72,7 @@
           <label>Airfare per traveler<select id="airfare"><option value="1000">Current family average · $1,000</option><option value="1200">Higher fare allowance · $1,200</option></select></label>
           <label>Food per traveler<select id="food"><option value="700">Cook more often · $700</option><option value="750" selected>Working projection · $750</option><option value="850">More meals out · $850</option><option value="1000">Restaurant-heavy · $1,000</option></select></label>
           <label>Household DFW parking or ride total<input id="airport" type="number" inputmode="numeric" min="0" step="10" value="0"></label>
-          <p class="fine">Fuel, food and attractions are paid as we go. This personal calculator spreads the two SUVs and two confirmed homes across all 10 travelers as a planning estimate; the prior seven-adult home split below is a provisional comparison, not a payment request. Dublin lodging prices, fuel, extra mileage, tolls and Ireland parking are excluded from this calculator. William covers The July and Laney covers Clayton; actual prices are still needed. Activity costs apply to every traveler selected here, so adjust the traveler count if only part of your household will do an activity such as golf.</p>
+          <p class="fine">For budgeting, lodging and transport are averaged across 10 travelers. This does not determine family contributions or replace the seven-adult lodging agreement. Includes a single $2,700 group allowance for both Dublin hotels, $1,200 for fuel and other ground travel, and a $750 group cushion. Hotel receipts will replace that allowance. Actual child and senior admission prices may be lower. Alcohol, shopping and any needed child-seat hire are separate.</p>
         </div>
         <aside class="budget-total"><span id="budgetTotalLabel">Planning subtotal for 1 traveler</span><strong id="personalTotal">Calculating…</strong><p class="budget-scope" id="budgetScope">Per-traveler costs plus one household DFW amount</p><div id="budgetBreakdown"></div></aside>
       </div>
@@ -84,15 +89,17 @@
     </section>
 
     <section class="section narrow booking-section" id="bookings">
-      <div class="section-heading"><p class="eyebrow">The practical part, after the trip ideas</p><h2>What is booked, who is covering it and what still needs confirmation.</h2><p>William is covering The July arrival stay; Laney booked and is covering the Clayton final night. Both prices remain unknown. Booked status does not establish paid status. Lodging update: October 12, 2026; other estimates retain their earlier basis.</p></div>
+      <div class="section-heading"><p class="eyebrow">Taking care of the big pieces together</p><h2>Who's covering what.</h2><p>The families are taking care of reservations; we’ll pay for fuel, food and outings as we go. Airfare is treated equally and stays outside the shared balance. Points count at the dollar value shown on the reservation.</p></div>
+      <div id="familyCoverage" class="coverage-grid"></div>
+      <p class="coverage-note">Both Dublin hotel totals are still needed before we can show a final balance. A booking’s full value includes any installments still to pay. There is no new transfer request on this page.</p>
       <div class="booking-summary" id="bookingSummary"></div>
       <p class="booking-source-note">Euro conversions use the <a href="https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-usd.en.html" target="_blank" rel="noreferrer">European Central Bank reference rate</a> for August 20, 2026: €1 = $1.1681. Card-network exchange rates can differ.</p>
-      <div class="booking-list" id="bookingList"></div>
-      <div class="contribution-panel">
+      <details class="reservation-details"><summary>Open the reservation and payment details</summary><div class="booking-list" id="bookingList"></div></details>
+      <details class="contribution-panel reservation-details"><summary>See the earlier seven-adult lodging comparison</summary>
         <div class="section-heading compact"><p class="eyebrow">Prior home-only split · provisional</p><h2>How the two home reservations compare under the earlier split.</h2><p>The two homes have a combined reservation value of $4,231.68. The earlier seven-adult model gives about $604.53 per adult. This comparison tracks assigned reservation value; it does not show cash paid, reimbursements or a final amount owed. Both Dublin stays are outside this table until their costs and treatment are confirmed.</p></div>
         <div id="contributionTable"></div>
         <aside class="ledger-warning"><strong>Final settlement remains open.</strong> The July is selected with booking confirmation needed; Clayton is booked. William and Laney are covering their respective stays. Verify prices and payment records before calculating reimbursements. Vehicles paid with points remain outside this home-only comparison.</aside>
-      </div>
+      </details>
     </section>
 
     <section class="section total-picture-section" id="total-picture">
@@ -110,6 +117,6 @@
     </div>
   </div>
 
-  <footer><span>Ireland 2027 family trip proposal</span><span>Static review site · no accounts · no shared database</span></footer>
+  <footer><span>Ireland 2027 · Our family adventure</span><span>Updated October 11, 2026 · All planning totals in USD<br>Your choices stay on this device. Share them in the family text.</span></footer>
 </body>
 </html>
