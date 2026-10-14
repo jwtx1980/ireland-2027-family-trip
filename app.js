@@ -106,19 +106,18 @@
     const ledger = document.querySelector("#contributionTable");
     if (!summary || !list || !ledger) return;
     summary.innerHTML = [
-      ["Two booked homes · full value", moneyExact(DATA.costs.lodgingBooked), "Killarney + Lahinch"],
-      ["Dublin hotel totals", "Receipts to add", "William: The July · Laney: Clayton"],
+      ["Known lodging totals", moneyExact(DATA.costs.lodgingBooked), "Two homes + The July; Clayton price to add"],
+      ["The big pieces", "All booked ✓", "4 stays · 2 SUVs · 10 flights"],
       ["Two confirmed SUVs", moneyExact(DATA.costs.carsConfirmed), "Paid with points; dollar value shown"],
       ["Future Lahinch installment", money(DATA.costs.lahinchRemainingUsd), `€${DATA.costs.lahinchRemainingEur.toLocaleString("en-US", { minimumFractionDigits: 2 })} due Apr 27, 2027`]
     ].map(([label, value, note]) => `<article><span>${label}</span><strong>${value}</strong><small>${note}</small></article>`).join("");
 
     list.innerHTML = DATA.bookings.map(item => `<article class="booking-item"><div class="booking-icon">${item.category.slice(0, 1)}</div><div class="booking-copy"><div class="booking-top"><span>${item.category} · ${item.family}</span><span class="status-chip ${item.status}">${item.statusLabel}</span></div><h3>${item.title}</h3><p>${item.detail}</p></div><div class="booking-amount">${item.amount == null ? "<strong>Cost needed</strong>" : `<strong>${moneyExact(item.amount)}</strong>${item.original ? `<small>${item.original}</small>` : ""}`}</div></article>`).join("");
 
-    ledger.innerHTML = `<div class="pool-callout"><div><span>Two-home value in prior split</span><strong>${moneyExact(DATA.costs.lodgingBooked)}</strong><small>Knockmanagh ${moneyExact(DATA.costs.killarneyConfirmed)} + Lahinch ${moneyExact(2921)}</small></div><div><span>Split among</span><strong>${DATA.costs.lodgingPayers} paying adults</strong><small>Children are not counted in this pool split</small></div><div><span>Approximate adult share</span><strong>${moneyExact(DATA.costs.lodgingPerPayer)}</strong><small>Displayed shares may differ by a cent due to rounding</small></div></div><div class="contribution-table lodging-ledger"><div class="contribution-head"><span>Family</span><span>Paying adults</span><span>Family lodging share</span><span>Home value assigned</span><span>Home-only comparison</span></div>${DATA.families.map(family => {
+    ledger.innerHTML = `<div class="pool-callout"><div><span>Known lodging reservation value</span><strong>${moneyExact(DATA.costs.lodgingBooked)}</strong><small>Two homes ${moneyExact(DATA.costs.homesBooked)} + The July ${moneyExact(DATA.costs.julyConfirmed)}</small></div><div><span>Split among</span><strong>${DATA.costs.lodgingPayers} paying adults</strong><small>Children are not counted in this pool split</small></div><div><span>Reference share before Clayton</span><strong>${moneyExact(DATA.costs.lodgingPerPayer)}</strong><small>Displayed shares may differ by a cent due to rounding</small></div></div><div class="contribution-table lodging-ledger"><div class="contribution-head"><span>Family</span><span>Paying adults</span><span>Reference lodging share</span><span>Lodging value covered</span><span>Still to add</span></div>${DATA.families.map(family => {
       const share = family.lodgingPayers * DATA.costs.lodgingPerPayer;
-      const position = family.lodgingBooked - share;
-      return `<article><div class="family-cell"><strong>${family.name}</strong><small>${family.members}</small><p>${family.items}</p></div><span class="ledger-cell"><small>Paying adults</small><strong>${family.lodgingPayers}</strong><small>${family.lodgingPayerNames}</small></span><span class="ledger-cell"><small>Family lodging share</small><strong>${moneyExact(share)}</strong></span><span class="ledger-cell"><small>Home value assigned</small><strong>${moneyExact(family.lodgingBooked)}</strong></span><span class="ledger-cell"><small>Home-only comparison</small><strong class="${position >= 0 ? "ahead" : "behind"}">${position >= 0 ? `${moneyExact(position)} above share` : `${moneyExact(Math.abs(position))} below share`}</strong></span></article>`;
-    }).join("")}</div><div class="settlement-note"><strong>Dublin coverage is now assigned separately</strong><p>William is covering The July for June 1–3; booking confirmation and price are still needed. Laney booked and is covering Clayton for June 9–10; its price and payment status are still needed. Neither stay has a verified amount to credit here.</p><p>The prior seven-adult split above is a comparison for the two homes only. Confirm how the family wants to reconcile these covered stays before treating any difference as a payment request.</p></div><p class="ledger-footnote">Assigned reservation values do not establish payments to vendors or reimbursements between families. Lahinch still has €1,668.75 due April 27, 2027; Killarney’s payment posting is unverified. This model excludes both Dublin stays, airfare, vehicles and daily spending. Fuel, food and attractions are paid as we go.</p>`;
+      return `<article><div class="family-cell"><strong>${family.name}</strong><small>${family.members}</small><p>${family.items}</p></div><span class="ledger-cell"><small>Paying adults</small><strong>${family.lodgingPayers}</strong><small>${family.lodgingPayerNames}</small></span><span class="ledger-cell"><small>Reference lodging share</small><strong>${moneyExact(share)}</strong></span><span class="ledger-cell"><small>Lodging value covered</small><strong>${moneyExact(family.lodgingBooked)}</strong></span><span class="ledger-cell"><small>Still to add</small><strong>${family.name === "Cameron family" ? "Clayton receipt" : "—"}</strong></span></article>`;
+    }).join("")}</div><div class="settlement-note"><strong>Dublin coverage is now assigned separately</strong><p>The July is booked for June 1–3 at $2,248 total, credited to Williams family. Laney’s booked Clayton stay for June 9–10 will be added to Cameron family’s contribution when its total is supplied.</p><p>The seven-adult reference above includes the two homes and The July. Clayton will increase both the lodging total and Cameron family’s contribution. This is not a request for payment.</p></div><p class="ledger-footnote">Assigned reservation values do not establish payments to vendors or reimbursements between families. Lahinch still has €1,668.75 due April 27, 2027; Killarney’s payment posting is unverified. This model excludes the unpriced Clayton stay, airfare, vehicles and daily spending. Fuel, food and attractions are paid as we go.</p>`;
   }
 
   function renderTotalPicture() {
@@ -128,7 +127,7 @@
     const committed = projection.items.filter(item => item.stage === "committed").reduce((sum, item) => sum + item.amount, 0);
     const projected = projection.items.reduce((sum, item) => sum + item.amount, 0);
     const remaining = projected - committed;
-    const dublinAllowance = projection.items.find(item => item.label === "Dublin lodging").amount;
+    const dublinAllowance = DATA.costs.claytonAllowance;
     const projectedPerTraveler = projected / projection.travelers;
     const goalDifference = projected - projection.goalGroup;
     const contingency = projection.items.find(item => item.label === "Trip contingency")?.amount || 0;
@@ -136,7 +135,7 @@
     const meterMax = Math.max(projected, projection.goalGroup);
     const goalPercent = projection.goalGroup / meterMax * 100;
 
-    container.innerHTML = `<div class="total-compare"><article><span>Original budget starting point</span><strong>${money(projection.goalGroup)}</strong><small>${projection.travelers} travelers × ${money(projection.goalPerTraveler)} each</small></article><article><span>Base value · includes estimates</span><strong>${moneyExact(committed)}</strong><small>${money(committed / projection.travelers)} per traveler equivalent</small></article><article class="projected"><span>Projected all-in budget</span><strong>${money(projected)}</strong><small>${money(projectedPerTraveler)} per traveler · meals included</small></article></div><div class="budget-meter" aria-label="Base value and allowances in the projected trip total"><div class="meter-labels"><span>${moneyExact(committed)} base value</span><span>${moneyExact(remaining)} in allowances</span></div><div class="meter-track"><span class="meter-fill" style="width:${committedPercent}%"></span><i class="goal-marker" style="left:${goalPercent}%"><b>${projection.travelers} × ${money(projection.goalPerTraveler)} starting goal</b></i></div></div><div class="projection-table"><div class="projection-head"><span>Trip component</span><span>Amount</span><span>Current status</span><span>What the number means</span></div>${projection.items.map(item => `<article><div><strong>${item.label}</strong><small>${item.stage === "committed" ? "Included in base value; see status" : "Included as a planning allowance"}</small></div><span class="projection-amount">${moneyExact(item.amount)}</span><span><b class="projection-status ${item.stage}">${item.status}</b></span><p>${item.note}</p></article>`).join("")}</div><div class="goal-result ${goalDifference > 0 ? "over" : "under"}"><div><span>Compared with the ${projection.travelers} × ${money(projection.goalPerTraveler)} starting point</span><strong>${goalDifference > 0 ? `${money(goalDifference)} over for the group` : `${money(Math.abs(goalDifference))} under for the group`}</strong><small>${goalDifference > 0 ? `${money(goalDifference / projection.travelers)} over` : `${money(Math.abs(goalDifference) / projection.travelers)} under`} per traveler</small></div><p>The current working projection is about ${money(projected)} total, or ${money(projectedPerTraveler)} each. It includes meals and a ${money(contingency)} contingency. The difference below ${money(projection.goalGroup)} remains available if an unbooked item costs more than its allowance.</p></div><p class="projection-footnote"><strong>What is included:</strong> ${moneyExact(committed)} combines $9,999.27 airfare (only Justin family’s $2,999.78 is exact), $4,231.68 for the two homes and $1,452.80 of vehicle value paid with points. Adding the single ${moneyExact(dublinAllowance)} Dublin estimate gives ${moneyExact(committed + dublinAllowance)} before daily spending and other allowances. These are reservation values and estimates, not a paid total. Dublin’s actual prices will replace that allowance. Vendor balances remain due and Killarney’s payment posting is unverified.</p><p class="projection-footnote"><strong>Still to clarify:</strong> Laney mentioned “everyone around $2,100–$2,200,” but the scope and what it includes are unresolved. It is not used as the trip total or as an amount owed. Fuel, food and attractions are paid as we go; their allowances above are budget placeholders.</p>`;
+    container.innerHTML = `<div class="total-compare"><article><span>Original budget starting point</span><strong>${money(projection.goalGroup)}</strong><small>${projection.travelers} travelers × ${money(projection.goalPerTraveler)} each</small></article><article><span>Base value · includes estimates</span><strong>${moneyExact(committed)}</strong><small>${money(committed / projection.travelers)} per traveler equivalent</small></article><article class="projected"><span>Projected all-in budget</span><strong>${money(projected)}</strong><small>${money(projectedPerTraveler)} per traveler · meals included</small></article></div><div class="budget-meter" aria-label="Base value and allowances in the projected trip total"><div class="meter-labels"><span>${moneyExact(committed)} base value</span><span>${moneyExact(remaining)} in allowances</span></div><div class="meter-track"><span class="meter-fill" style="width:${committedPercent}%"></span><i class="goal-marker" style="left:${goalPercent}%"><b>${projection.travelers} × ${money(projection.goalPerTraveler)} starting goal</b></i></div></div><div class="projection-table"><div class="projection-head"><span>Trip component</span><span>Amount</span><span>Current status</span><span>What the number means</span></div>${projection.items.map(item => `<article><div><strong>${item.label}</strong><small>${item.stage === "committed" ? "Included in base value; see status" : "Included as a planning allowance"}</small></div><span class="projection-amount">${moneyExact(item.amount)}</span><span><b class="projection-status ${item.stage}">${item.status}</b></span><p>${item.note}</p></article>`).join("")}</div><div class="goal-result ${goalDifference > 0 ? "over" : "under"}"><div><span>Compared with the ${projection.travelers} × ${money(projection.goalPerTraveler)} starting point</span><strong>${goalDifference > 0 ? `${money(goalDifference)} over for the group` : `${money(Math.abs(goalDifference))} under for the group`}</strong><small>${goalDifference > 0 ? `${money(goalDifference / projection.travelers)} over` : `${money(Math.abs(goalDifference) / projection.travelers)} under`} per traveler</small></div><p>The current working projection is about ${money(projected)} total, or ${money(projectedPerTraveler)} each. It includes meals and a ${money(contingency)} contingency. The difference below ${money(projection.goalGroup)} remains available if daily spending or the Clayton receipt comes in above its allowance.</p></div><p class="projection-footnote"><strong>What is included:</strong> ${moneyExact(committed)} combines the $9,999.27 airfare estimate, ${moneyExact(DATA.costs.lodgingBooked)} for the two homes and The July, and $1,452.80 of SUV value paid with points. All flights, stays and cars are booked. Only the Justin-family airfare receipt is exact; the other fares are assumed equal. These are reservation values and estimates, not a verified paid total.</p><p class="projection-footnote"><strong>Clayton still to reconcile:</strong> ${moneyExact(dublinAllowance)} is the remainder of our original $2,700 Dublin allowance after The July’s confirmed $2,248. It is not Clayton’s quoted price. The actual Clayton receipt will replace this remainder. Fuel, food and attractions are paid as we go; vendor installments still apply.</p>`;
   }
 
   function renderAlternates() {
@@ -200,7 +199,8 @@
     const lines = [
       ["Airfare · already purchased / assumed equal", budget.flight],
       ["Two homes · full reservation value", budget.homes],
-      ["Dublin hotels · allowance, receipts needed", budget.dublin],
+      ["The July · booked reservation value", budget.july],
+      ["Clayton · provisional allowance", budget.clayton],
       ["Two SUVs · value of points used", budget.cars],
       ["Food · pay as we go", budget.food],
       ["Fuel · pay as we go", budget.fuel],
@@ -234,8 +234,9 @@
   function calculateBudget() {
     const count = Math.min(TOTAL_TRAVELERS, Math.max(1, Number(state.travelerCount) || 1));
     const budget = {
-      count, flight: Number(state.airfare) * count, homes: DATA.costs.lodgingBooked / TOTAL_TRAVELERS * count,
-      dublin: DATA.projection.items.find(item => item.label === "Dublin lodging").amount / TOTAL_TRAVELERS * count, cars: DATA.costs.carsConfirmed / TOTAL_TRAVELERS * count,
+      count, flight: Number(state.airfare) * count, homes: DATA.costs.homesBooked / TOTAL_TRAVELERS * count,
+      dublin: (DATA.costs.julyConfirmed + DATA.costs.claytonAllowance) / TOTAL_TRAVELERS * count,
+      july: DATA.costs.julyConfirmed / TOTAL_TRAVELERS * count, clayton: DATA.costs.claytonAllowance / TOTAL_TRAVELERS * count, cars: DATA.costs.carsConfirmed / TOTAL_TRAVELERS * count,
       food: Number(state.food) * count, fuel: 50 * count, ground: 70 * count, cushion: 75 * count,
       airport: Number(state.airport || 0),
       activities: DATA.activities.reduce((sum, activity) => sum + (state.activities[activity.id] === "yes" ? activity.cost * participantCount(activity.id) : 0), 0)
@@ -249,7 +250,7 @@
     const coverage = [
       { name: "Justin family", people: "Justin, Jamie & Kara", stays: "Lahinch golf home · June 6–9", car: "Justin’s Hertz SUV · June 3–9", value: "$3,647.40", note: "$2,921 lodging + $726.40 SUV value. Includes the future Lahinch installment; this is not a cash-paid total." },
       { name: "Cameron family", people: "Cameron, Laney, Liam & Arlo", stays: "Knockmanagh · June 3–6 + Clayton · June 9–10", car: "Cameron’s Hertz SUV · June 3–9", value: "$2,037.08 + Clayton", note: "$1,310.68 house + $726.40 SUV value. Laney has booked and is covering Clayton; its total will be added from the receipt." },
-      { name: "Williams family", people: "William, Mary & Misti", stays: "The July · June 1–3", car: "William is covering the arrival stay", value: "Hotel total to add", note: "The July is selected. We still need its booking confirmation and price before calculating the final family balance." }
+      { name: "Williams family", people: "William, Mary & Misti", stays: "The July · June 1–3", car: "William is covering the arrival stay", value: moneyExact(DATA.costs.julyConfirmed), note: "The July is booked for June 1–3. The $2,248 total reported by Laney is credited to William’s family. Payment schedule and room details are still to be added." }
     ];
     document.querySelector("#familyCoverage").innerHTML = coverage.map(family => '<article><span class="eyebrow">' + family.people +
       '</span><h3>' + family.name + '</h3><p>' + family.stays + '</p><p>' + family.car +
@@ -267,11 +268,12 @@
       "ACTIVITY IDEAS", ...(activityLines.length ? activityLines : ["- No activity choices yet"]), "",
       "Estimated full trip expense: " + money(budget.total),
       "Per traveler equivalent: " + money(budget.total / budget.count),
-      "Includes flights already purchased/assumed, full lodging and SUV values, Dublin allowance, food, selected activities, ground travel, DFW amount and a cushion.",
+      "Includes booked flights (other family fares assumed equal), two homes, The July, SUVs, a provisional Clayton allowance, food, selected activities, ground travel, DFW amount and a cushion.",
       "Not an amount owed to the pool. Family reservation coverage is tracked separately.", "",
       "Airfare: " + money(budget.flight),
       "Two homes: " + money(budget.homes),
-      "Dublin hotel allowance: " + money(budget.dublin),
+      "The July (booked): " + money(budget.july),
+      "Clayton (provisional allowance): " + money(budget.clayton),
       "SUVs (points dollar value): " + money(budget.cars),
       "Food: " + money(budget.food),
       "Fuel: " + money(budget.fuel),
@@ -279,7 +281,7 @@
       "Chosen activities: " + money(budget.activities),
       "DFW parking/rides for household: " + money(budget.airport),
       "Unspent cushion: " + money(budget.cushion), "",
-      "William covers The July; Laney covers Clayton. Actual hotel totals will replace the Dublin allowance.",
+      "All stays, cars and flights are booked. William covers The July ($2,248); Laney covers Clayton. Clayton’s receipt will replace its provisional $452 group allowance.",
       "Fuel, food and attractions: pay as we go. These are my ideas, not a group booking or vote.",
       "Alcohol, shopping and any child-seat hire are separate."
     ].join("\n");

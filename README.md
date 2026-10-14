@@ -15,11 +15,13 @@ Edit the HTML, CSS, JavaScript or lodging data and push to `main`. The GitHub Pa
 
 Property previews are stored locally; the linked listing is the source of truth for current rooms and availability. Do not publish confirmation numbers, booking-management links, or receipt screenshots.
 
-## Family guide update · October 11, 2026
+## Family guide update · October 13, 2026
 
-- The July (June 1–3) is selected and William is covering it; booking confirmation and amount are still needed.
+- All stays, cars and flights are booked, per the family's October 13 confirmation.
+- The July (June 1–3) is booked for $2,248 USD total, covered by Williams family. Check-in 3 PM; checkout 11 AM. Apartment details and payment schedule are not supplied.
 - Clayton Dublin Airport (June 9–10) is booked by Laney; its amount and room allocation are not supplied.
-- Laney's $2,100–$2,200 figure has an unresolved scope and is not used to calculate balances.
+- The previous $2,700 combined Dublin allowance is split into The July's confirmed $2,248 and a provisional $452 remainder for Clayton. The remainder is not a quote; replace it with Clayton's actual receipt. Do not add either stay twice.
+- Known lodging total: $6,479.68 excluding the unpriced Clayton stay. Seven-adult reference share: about $925.67; no new cash-due assertion.
 - Fuel, food and activities are paid as the family goes. The personal calculator includes their allowances, both Dublin hotels once, and chosen activity participant counts. It is a trip-expense estimate, not a pool payment request.
 - Existing activity prices retain their earlier research basis, labeled as estimates; they were not freshly quoted in this design update.
 

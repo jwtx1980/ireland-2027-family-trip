@@ -10,11 +10,11 @@
   <meta property="og:image" content="https://jwtx1980.github.io/ireland-2027-family-trip/assets/cliffs-of-moher.jpg">
   <title>Ireland 2027 Family Trip</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
-  <link rel="stylesheet" href="styles.css?v=20261012-2">
-  <link rel="stylesheet" href="journey.css?v=20261012-2">
+  <link rel="stylesheet" href="styles.css?v=20261013-1">
+  <link rel="stylesheet" href="journey.css?v=20261013-1">
   <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-  <script defer src="data.js?v=20261012-2"></script>
-  <script defer src="app.js?v=20261012-2"></script>
+  <script defer src="data.js?v=20261013-1"></script>
+  <script defer src="app.js?v=20261013-1"></script>
 </head>
 <body>
   <header class="topbar">
@@ -32,7 +32,7 @@
       <a class="hero-credit" href="https://www.cliffsofmoher.ie/" target="_blank" rel="noreferrer">Cliffs of Moher · a short drive from Lahinch ↗</a>
     </section>
 
-    <aside class="family-update narrow"><span class="update-label">The latest family plan</span><p><strong>William is covering our first Dublin stay at The July. Laney has booked our last night at Clayton.</strong> Fuel, meals and attractions will be paid as we go. <a href="#bookings">See who's covering each reservation ↓</a></p></aside>
+    <aside class="family-update narrow"><span class="update-label">The big pieces are booked ✓</span><p><strong>All four stays, both SUVs and everyone’s flights are booked.</strong> William is covering The July ($2,248 total), and Laney is covering Clayton. Fuel, meals and attractions will be paid as we go. <a href="#bookings">See who's covering each reservation ↓</a></p></aside>
 
     <section class="section route-section" id="route">
       <div class="section-heading narrow"><p class="eyebrow">Our nine nights, at a glance</p><h2>City streets to the Atlantic.</h2><p>Two nights in central Dublin, three near Killarney, three in Lahinch, then one easy airport night. Tap a map marker to see the stay. Dashed lines connect approximate locations; use the directions link for road routing.</p></div>
@@ -48,7 +48,7 @@
       <div class="route-dates narrow">
         <div class="trip-window"><strong>AA 132 · DFW May 31 at 7:00 PM</strong><span>Nonstop overnight</span><strong>Arrive Dublin June 1 at 9:45 AM</strong><span>9 nights</span><strong>AA 133 · Dublin June 10 at 11:45 AM</strong></div>
         <ol class="stay-timeline">
-          <li class="timeline-open"><span class="timeline-number">1</span><div><strong>The July – Capel Street</strong><span>June 1–3</span><small>2 nights · selected, booking unconfirmed · William covering</small></div></li>
+          <li><span class="timeline-number">1</span><div><strong>The July – Capel Street</strong><span>June 1–3</span><small>2 nights · booked · $2,248 total · William covering · check-in 3 PM / checkout 11 AM</small></div></li>
           <li><span class="timeline-number">2</span><div><strong>Knockmanagh Holiday Home</strong><span>June 3–6</span><small>3 nights · booked</small></div></li>
           <li><span class="timeline-number">3</span><div><strong>Lahinch golf home</strong><span>June 6–9</span><small>3 nights · booked</small></div></li>
           <li><span class="timeline-number">4</span><div><strong>Clayton Hotel Dublin Airport</strong><span>June 9–10</span><small>1 night · booked by Laney, Laney covering · check-in 2 PM / checkout 11 AM</small></div></li>
@@ -72,7 +72,7 @@
           <label>Airfare per traveler<select id="airfare"><option value="1000">Current family average · $1,000</option><option value="1200">Higher fare allowance · $1,200</option></select></label>
           <label>Food per traveler<select id="food"><option value="700">Cook more often · $700</option><option value="750" selected>Working projection · $750</option><option value="850">More meals out · $850</option><option value="1000">Restaurant-heavy · $1,000</option></select></label>
           <label>Household DFW parking or ride total<input id="airport" type="number" inputmode="numeric" min="0" step="10" value="0"></label>
-          <p class="fine">For budgeting, lodging and transport are averaged across 10 travelers. This does not determine family contributions or replace the seven-adult lodging agreement. Includes a single $2,700 group allowance for both Dublin hotels, $1,200 for fuel and other ground travel, and a $750 group cushion. Hotel receipts will replace that allowance. Actual child and senior admission prices may be lower. Alcohol, shopping and any needed child-seat hire are separate.</p>
+          <p class="fine">For budgeting, lodging and transport are averaged across 10 travelers. This does not determine family contributions or replace the seven-adult lodging agreement. Includes The July’s $2,248 booked total plus a provisional $452 group allowance for Clayton (the remainder of the original $2,700 Dublin budget), $1,200 for fuel and other ground travel, and a $750 group cushion. Only Clayton’s allowance still needs its actual hotel total. Actual child and senior admission prices may be lower. Alcohol, shopping and any needed child-seat hire are separate.</p>
         </div>
         <aside class="budget-total"><span id="budgetTotalLabel">Planning subtotal for 1 traveler</span><strong id="personalTotal">Calculating…</strong><p class="budget-scope" id="budgetScope">Per-traveler costs plus one household DFW amount</p><div id="budgetBreakdown"></div></aside>
       </div>
@@ -91,19 +91,19 @@
     <section class="section narrow booking-section" id="bookings">
       <div class="section-heading"><p class="eyebrow">Taking care of the big pieces together</p><h2>Who's covering what.</h2><p>The families are taking care of reservations; we’ll pay for fuel, food and outings as we go. Airfare is treated equally and stays outside the shared balance. Points count at the dollar value shown on the reservation.</p></div>
       <div id="familyCoverage" class="coverage-grid"></div>
-      <p class="coverage-note">Both Dublin hotel totals are still needed before we can show a final balance. A booking’s full value includes any installments still to pay. There is no new transfer request on this page.</p>
+      <p class="coverage-note">The July’s $2,248 is now credited to Williams family. Clayton’s total is the remaining lodging amount needed for the final family balance. A booking’s full value includes any installments still to pay. There is no new transfer request on this page.</p>
       <div class="booking-summary" id="bookingSummary"></div>
       <p class="booking-source-note">Euro conversions use the <a href="https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-usd.en.html" target="_blank" rel="noreferrer">European Central Bank reference rate</a> for August 20, 2026: €1 = $1.1681. Card-network exchange rates can differ.</p>
       <details class="reservation-details"><summary>Open the reservation and payment details</summary><div class="booking-list" id="bookingList"></div></details>
-      <details class="contribution-panel reservation-details"><summary>See the earlier seven-adult lodging comparison</summary>
-        <div class="section-heading compact"><p class="eyebrow">Prior home-only split · provisional</p><h2>How the two home reservations compare under the earlier split.</h2><p>The two homes have a combined reservation value of $4,231.68. The earlier seven-adult model gives about $604.53 per adult. This comparison tracks assigned reservation value; it does not show cash paid, reimbursements or a final amount owed. Both Dublin stays are outside this table until their costs and treatment are confirmed.</p></div>
+      <details class="contribution-panel reservation-details"><summary>See the seven-adult lodging breakdown</summary>
+        <div class="section-heading compact"><p class="eyebrow">Seven-adult lodging split · provisional</p><h2>The lodging we have amounts for so far.</h2><p>The two homes and The July total $6,479.68, or about $925.67 per paying adult across seven adults. Clayton is also booked; its amount still needs to be added. This is a reference split of full reservation values, not a statement of cash paid or money due now.</p></div>
         <div id="contributionTable"></div>
-        <aside class="ledger-warning"><strong>Final settlement remains open.</strong> The July is selected with booking confirmation needed; Clayton is booked. William and Laney are covering their respective stays. Verify prices and payment records before calculating reimbursements. Vehicles paid with points remain outside this home-only comparison.</aside>
+        <aside class="ledger-warning"><strong>Final settlement remains open.</strong> All stays are booked. William’s family is credited with The July; Laney’s Clayton amount will be added when supplied. Payment schedules remain separate from booking status. Vehicles paid with points remain outside this lodging-only comparison.</aside>
       </details>
     </section>
 
     <section class="section total-picture-section" id="total-picture">
-      <div class="section-heading narrow"><p class="eyebrow">The complete financial picture</p><h2>Our starting point was $3,200 per traveler: 10 people × $3,200 = $32,000.</h2><p>This projection combines known reservation values and airfare estimates with planning allowances. The $2,700 Dublin placeholder covers both hotel stays once and will be replaced by their actual prices. It is not money already spent.</p></div>
+      <div class="section-heading narrow"><p class="eyebrow">The complete financial picture</p><h2>Our starting point was $3,200 per traveler: 10 people × $3,200 = $32,000.</h2><p>This projection combines known reservation values and airfare estimates with planning allowances. The July is now included at its $2,248 booked total. The remaining $452 of the earlier Dublin allowance is provisional for Clayton, whose actual price is still needed. Each stay is counted once; these totals are not a cash-paid ledger.</p></div>
       <div class="narrow" id="totalPicture"></div>
     </section>
   </main>
@@ -117,6 +117,6 @@
     </div>
   </div>
 
-  <footer><span>Ireland 2027 · Our family adventure</span><span>Updated October 11, 2026 · All planning totals in USD<br>Your choices stay on this device. Share them in the family text.</span></footer>
+  <footer><span>Ireland 2027 · Our family adventure</span><span>Updated October 13, 2026 · All planning totals in USD<br>Your choices stay on this device. Share them in the family text.</span></footer>
 </body>
 </html>
